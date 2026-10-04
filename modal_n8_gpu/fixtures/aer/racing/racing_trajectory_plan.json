@@ -1,0 +1,135 @@
+{
+  "batch_size": 5,
+  "candidate_set_sha256": "ba62b5e93e6bbbd21d83eec2bbdf9ac893c0ba6d3d5166d80d9350d786e3a8a3",
+  "confidence_procedure": "paired percentile bootstrap, Bonferroni across frozen pairs and all four rounds",
+  "discriminating_edges_sha256": "2d68e18114ec095da86f1fad4d54793c05f38dd0b1499f07c2fc383a208934a3",
+  "equivalence_margin": 0.01,
+  "max_rounds": 4,
+  "max_trajectories": 20,
+  "paired_bootstraps": 100000,
+  "protocol": "STATIC_BFS_N8_ADAPTIVE_EDGE_RACING_V1",
+  "racing_cost_cap_estimated_usd": 10.0,
+  "total_delta": 0.05,
+  "trajectories": [
+    {
+      "prompt_id": 29,
+      "prompt_sha256": "9b7a928557d4220a3012374d903fbc9a841fa2b6995eb059b087a3e02e17ae13",
+      "rank": 0,
+      "seed": 1000
+    },
+    {
+      "prompt_id": 65,
+      "prompt_sha256": "31d1fb7c9ac490b9194b6ce6fc04cc6e90a784ef454805c63a7d82cbe4c54818",
+      "rank": 1,
+      "seed": 1001
+    },
+    {
+      "prompt_id": 79,
+      "prompt_sha256": "68b01886c81865f6ce00046f4d9f45935f595e90335cfca70e3f4243bfc02306",
+      "rank": 2,
+      "seed": 1002
+    },
+    {
+      "prompt_id": 58,
+      "prompt_sha256": "195c9f0d441a5d653860491b331da1d62fea8f36e467c4f00c4d7a2924079f8a",
+      "rank": 3,
+      "seed": 1003
+    },
+    {
+      "prompt_id": 54,
+      "prompt_sha256": "1d6dbadc7dc0b1eee2c2c4b3dac98c6bd05e3e2daad3269b2e8df358da5a430b",
+      "rank": 4,
+      "seed": 1004
+    },
+    {
+      "prompt_id": 32,
+      "prompt_sha256": "53a28d44f16b8de5f55f03b449ed286992c8c39b815051c676f445237d829f65",
+      "rank": 5,
+      "seed": 1005
+    },
+    {
+      "prompt_id": 47,
+      "prompt_sha256": "7ccbe36846b3fb690e08512f21eaebbbcedfeffda32599ab32eaf2ecc96a2846",
+      "rank": 6,
+      "seed": 1006
+    },
+    {
+      "prompt_id": 39,
+      "prompt_sha256": "b976238d77f716db0cd80e0341ed74ba4617a22ed8cff83732b42deec1c56ae8",
+      "rank": 7,
+      "seed": 1007
+    },
+    {
+      "prompt_id": 36,
+      "prompt_sha256": "5e98a91ee83cc01f1b83449f26f0b0ed86af10fd13167e996e9278c124473f99",
+      "rank": 8,
+      "seed": 1008
+    },
+    {
+      "prompt_id": 62,
+      "prompt_sha256": "accca5b4f62a26de506a6c788df021bcbf4ce432e97123b4599c513eee1ee93c",
+      "rank": 9,
+      "seed": 1009
+    },
+    {
+      "prompt_id": 15,
+      "prompt_sha256": "a3452778a505ff6d7da19f441aa3cf65a5df011e920fdf90ee2bfaeef3a30615",
+      "rank": 10,
+      "seed": 1010
+    },
+    {
+      "prompt_id": 89,
+      "prompt_sha256": "2f31fe20c5ba7db443d6f65498e5df89848171b838f4028c742200174b159b1f",
+      "rank": 11,
+      "seed": 1011
+    },
+    {
+      "prompt_id": 33,
+      "prompt_sha256": "4f261557f2fe06bba4ad848a8772f1af2aa6cfd287c3cd814332eda5821a02b6",
+      "rank": 12,
+      "seed": 1012
+    },
+    {
+      "prompt_id": 37,
+      "prompt_sha256": "aef2c93b67e805f3dca2c32255297b0e51332a63ad282469bd9076f861cd30bf",
+      "rank": 13,
+      "seed": 1013
+    },
+    {
+      "prompt_id": 16,
+      "prompt_sha256": "e2a35291b3e2ff105627f9355754837ad3a1b5e62ebf0be640961b3e4e58c62c",
+      "rank": 14,
+      "seed": 1014
+    },
+    {
+      "prompt_id": 56,
+      "prompt_sha256": "6d392cb56579f77e1c329f7776ae57ed34b37c13e67f3bf49da8ef44d61afa00",
+      "rank": 15,
+      "seed": 1015
+    },
+    {
+      "prompt_id": 59,
+      "prompt_sha256": "78e0fb1704c934d46aa91a8e26cc03cf02001bf27f546035bc591b760a3496e0",
+      "rank": 16,
+      "seed": 1016
+    },
+    {
+      "prompt_id": 45,
+      "prompt_sha256": "8486276578db479c0eaf91057e2bce5a2a4c978736e9e591338228b64fbf2ad4",
+      "rank": 17,
+      "seed": 1017
+    },
+    {
+      "prompt_id": 84,
+      "prompt_sha256": "efccaaf8ef68e41e2fab91c630e74b4d33b8938c9355ad4e23e6315592f219f3",
+      "rank": 18,
+      "seed": 1018
+    },
+    {
+      "prompt_id": 73,
+      "prompt_sha256": "63fa2c48846cbadb60d2d660a39527f2612483449efbfe659dcebc160006a8f0",
+      "rank": 19,
+      "seed": 1019
+    }
+  ]
+}

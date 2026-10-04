@@ -1,0 +1,394 @@
+{
+  "actual_bootstrap_mass_covered": 0.881,
+  "candidates": [
+    {
+      "bootstrap_count": 2086,
+      "bootstrap_frequency": 0.4172,
+      "edge_keys": [
+        "-1_to_40_tau_2",
+        "40_to_60_tau_2",
+        "60_to_90_tau_32",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_fa108c0b4ca9f3d6",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        90
+      ],
+      "taus": [
+        2.0,
+        2.0,
+        32.0
+      ]
+    },
+    {
+      "bootstrap_count": 394,
+      "bootstrap_frequency": 0.0788,
+      "edge_keys": [
+        "-1_to_40_tau_8",
+        "40_to_60_tau_8",
+        "60_to_90_tau_8",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_14c384cb6099d11a",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        90
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    {
+      "bootstrap_count": 383,
+      "bootstrap_frequency": 0.0766,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_60_tau_8",
+        "60_to_90_tau_8",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_4b665defb868e392",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        60,
+        90
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    {
+      "bootstrap_count": 379,
+      "bootstrap_frequency": 0.0758,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_40_tau_2",
+        "40_to_90_tau_32",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_937dd840e3b6069f",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        40,
+        90
+      ],
+      "taus": [
+        8.0,
+        2.0,
+        32.0
+      ]
+    },
+    {
+      "bootstrap_count": 378,
+      "bootstrap_frequency": 0.0756,
+      "edge_keys": [
+        "-1_to_40_tau_8",
+        "40_to_60_tau_8",
+        "60_to_80_tau_2",
+        "80_to_100_tau_end"
+      ],
+      "policy_id": "static_6a3c12143c6e7f79",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        80
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        2.0
+      ]
+    },
+    {
+      "bootstrap_count": 303,
+      "bootstrap_frequency": 0.0606,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_80_tau_8",
+        "80_to_90_tau_32",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_ddaa0b0ad985050c",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        80,
+        90
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        32.0
+      ]
+    },
+    {
+      "bootstrap_count": 262,
+      "bootstrap_frequency": 0.0524,
+      "edge_keys": [
+        "-1_to_40_tau_2",
+        "40_to_60_tau_2",
+        "60_to_90_tau_8",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_540a3546612097ac",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        90
+      ],
+      "taus": [
+        2.0,
+        2.0,
+        8.0
+      ]
+    },
+    {
+      "bootstrap_count": 220,
+      "bootstrap_frequency": 0.044,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_40_tau_2",
+        "40_to_60_tau_2",
+        "60_to_100_tau_end"
+      ],
+      "policy_id": "static_10d60ece0c0de14d",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        40,
+        60
+      ],
+      "taus": [
+        8.0,
+        2.0,
+        2.0
+      ]
+    },
+    {
+      "bootstrap_count": 0,
+      "bootstrap_frequency": 0.0,
+      "edge_keys": [
+        "-1_to_40_tau_8",
+        "40_to_60_tau_8",
+        "60_to_90_tau_32",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_df7ddcbdb5f12bd4",
+      "source": "fixed_incumbent",
+      "steps": [
+        40,
+        60,
+        90
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        32.0
+      ]
+    }
+  ],
+  "coarse_n": 5,
+  "coarse_top1_policy_id": "static_937dd840e3b6069f",
+  "coarse_top1_predicted_regret": -0.13813084363937378,
+  "graph_candidates": [
+    {
+      "bootstrap_count": 2086,
+      "bootstrap_frequency": 0.4172,
+      "edge_keys": [
+        "-1_to_40_tau_2",
+        "40_to_60_tau_2",
+        "60_to_90_tau_32",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_fa108c0b4ca9f3d6",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        90
+      ],
+      "taus": [
+        2.0,
+        2.0,
+        32.0
+      ]
+    },
+    {
+      "bootstrap_count": 394,
+      "bootstrap_frequency": 0.0788,
+      "edge_keys": [
+        "-1_to_40_tau_8",
+        "40_to_60_tau_8",
+        "60_to_90_tau_8",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_14c384cb6099d11a",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        90
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    {
+      "bootstrap_count": 383,
+      "bootstrap_frequency": 0.0766,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_60_tau_8",
+        "60_to_90_tau_8",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_4b665defb868e392",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        60,
+        90
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        8.0
+      ]
+    },
+    {
+      "bootstrap_count": 379,
+      "bootstrap_frequency": 0.0758,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_40_tau_2",
+        "40_to_90_tau_32",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_937dd840e3b6069f",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        40,
+        90
+      ],
+      "taus": [
+        8.0,
+        2.0,
+        32.0
+      ]
+    },
+    {
+      "bootstrap_count": 378,
+      "bootstrap_frequency": 0.0756,
+      "edge_keys": [
+        "-1_to_40_tau_8",
+        "40_to_60_tau_8",
+        "60_to_80_tau_2",
+        "80_to_100_tau_end"
+      ],
+      "policy_id": "static_6a3c12143c6e7f79",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        80
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        2.0
+      ]
+    },
+    {
+      "bootstrap_count": 303,
+      "bootstrap_frequency": 0.0606,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_80_tau_8",
+        "80_to_90_tau_32",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_ddaa0b0ad985050c",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        80,
+        90
+      ],
+      "taus": [
+        8.0,
+        8.0,
+        32.0
+      ]
+    },
+    {
+      "bootstrap_count": 262,
+      "bootstrap_frequency": 0.0524,
+      "edge_keys": [
+        "-1_to_40_tau_2",
+        "40_to_60_tau_2",
+        "60_to_90_tau_8",
+        "90_to_100_tau_end"
+      ],
+      "policy_id": "static_540a3546612097ac",
+      "source": "StageA_bootstrap",
+      "steps": [
+        40,
+        60,
+        90
+      ],
+      "taus": [
+        2.0,
+        2.0,
+        8.0
+      ]
+    },
+    {
+      "bootstrap_count": 220,
+      "bootstrap_frequency": 0.044,
+      "edge_keys": [
+        "-1_to_30_tau_8",
+        "30_to_40_tau_2",
+        "40_to_60_tau_2",
+        "60_to_100_tau_end"
+      ],
+      "policy_id": "static_10d60ece0c0de14d",
+      "source": "StageA_bootstrap",
+      "steps": [
+        30,
+        40,
+        60
+      ],
+      "taus": [
+        8.0,
+        2.0,
+        2.0
+      ]
+    }
+  ],
+  "incumbent_policy_id": "static_df7ddcbdb5f12bd4",
+  "mass_target": 0.9,
+  "max_candidates": 8,
+  "min_candidates": 2,
+  "proposal_bootstraps": 5000,
+  "proposal_seed": 20261003,
+  "proposal_uncertainty_high": true,
+  "protocol": "STATIC_BFS_N8_ADAPTIVE_EDGE_RACING_V1",
+  "source_edge_observations_sha256": "89dc2fb931c242e1ec10037f7ef23eac48172a08fab2b56719a868276ae17d4b",
+  "source_stage_a_trajectories_sha256": "22dff62267b79b0a6e7fa42d15a616951ccad175bfed50d76779459fadf66fd3"
+}

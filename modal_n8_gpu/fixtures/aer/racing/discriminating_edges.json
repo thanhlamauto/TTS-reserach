@@ -1,0 +1,43 @@
+{
+  "all_graph_edges": 92,
+  "candidate_count": 9,
+  "candidate_set_sha256": "ba62b5e93e6bbbd21d83eec2bbdf9ac893c0ba6d3d5166d80d9350d786e3a8a3",
+  "common_edges": [],
+  "discriminating_edge_count": 16,
+  "discriminating_edges": [
+    "-1_to_30_tau_8",
+    "-1_to_40_tau_2",
+    "-1_to_40_tau_8",
+    "30_to_40_tau_2",
+    "30_to_60_tau_8",
+    "30_to_80_tau_8",
+    "40_to_60_tau_2",
+    "40_to_60_tau_8",
+    "40_to_90_tau_32",
+    "60_to_100_tau_end",
+    "60_to_80_tau_2",
+    "60_to_90_tau_32",
+    "60_to_90_tau_8",
+    "80_to_100_tau_end",
+    "80_to_90_tau_32",
+    "90_to_100_tau_end"
+  ],
+  "union_edges": [
+    "-1_to_30_tau_8",
+    "-1_to_40_tau_2",
+    "-1_to_40_tau_8",
+    "30_to_40_tau_2",
+    "30_to_60_tau_8",
+    "30_to_80_tau_8",
+    "40_to_60_tau_2",
+    "40_to_60_tau_8",
+    "40_to_90_tau_32",
+    "60_to_100_tau_end",
+    "60_to_80_tau_2",
+    "60_to_90_tau_32",
+    "60_to_90_tau_8",
+    "80_to_100_tau_end",
+    "80_to_90_tau_32",
+    "90_to_100_tau_end"
+  ]
+}
