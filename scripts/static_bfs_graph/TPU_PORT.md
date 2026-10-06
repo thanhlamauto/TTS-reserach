@@ -129,3 +129,47 @@ TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
 `analyze` refuses partial rows or mismatched prompt/seed/edge hashes. Do not
 combine these TPU records with the earlier Modal GPU graph or the TPU
 four-seed graph without a separate protocol and provenance audit.
+
+## Dense-10 grid-density pilot
+
+`tpu_grid_density_10bin.py` is a separate, TRAIN-only diagnostic of temporal
+grid resolution. It reuses the same first 20 TRAIN prompt indices and seed 42
+as graph20; no production graph or compiled policy is modified. The frozen
+comparison is Dense10 at indices `[10,20,...,90]`, ten single-midpoint
+policies inserting one of `[5,15,...,95]`, and Dense20 at `[5,10,...,95]`.
+Every event uses tau=8. For DDIM100, index 10 means normalized denoising
+progress 0.10, **not** the scheduler's descending timestep value.
+
+Run `plan`, then `smoke` on chip 0. The smoke executes Dense10, midpoint 45,
+and Dense20 on one prompt and writes all three complete event sequences to
+`smoke_gate.json`; inspect it before expanding. Run `full` concurrently on
+chips 0–3, one process per chip with `TPU_VISIBLE_CHIPS=<chip>` and
+`PJRT_DEVICE=TPU`, from the repository root. `full` refuses to start without
+a passing smoke gate. It resumes atomic rows; do not launch duplicate
+workers. After 20 + 200 + 20 rows are present, run `account` with the Unix
+timestamps bracketing smoke and full, then `analyze`.
+
+```bash
+export GRID_RUN="$STATIC_BFS_DCS/results/grid-density-10bin-pilot-v1"
+"$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_grid_density_10bin \
+  plan --run-root "$GRID_RUN"
+TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
+  -m scripts.static_bfs_graph.tpu_grid_density_10bin smoke \
+  --run-root "$GRID_RUN" --dcs-root "$STATIC_BFS_DCS" --chip 0
+# Repeat this full command concurrently for chips 0, 1, 2 and 3:
+TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
+  -m scripts.static_bfs_graph.tpu_grid_density_10bin full \
+  --run-root "$GRID_RUN" --dcs-root "$STATIC_BFS_DCS" --chip 0
+"$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_grid_density_10bin \
+  status --run-root "$GRID_RUN"
+"$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_grid_density_10bin \
+  account --run-root "$GRID_RUN" --start-unix START_UNIX --end-unix END_UNIX
+"$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_grid_density_10bin \
+  analyze --run-root "$GRID_RUN"
+```
+
+The report contains 20,000 paired prompt-bootstrap draws for each comparison,
+one PNG plot, verifier-work caveats, and descriptive outcome A/B/C/D. `GPU-hours`
+are zero on this TPU VM; the run also records TPU-chip-hours and a clearly
+labelled illustrative price scenario, not a cloud invoice. No policy reward
+benchmark or final schedule tuning is part of this pilot.
