@@ -26,3 +26,7 @@ measured on graph-fit prompts only. It was not compared head-to-head with the
 three N=8 policies on the 48 held-out TRAIN prompts. The reference is a fixed
 anchor for edge interventions, not a known optimum. No new GPU experiment was
 run as part of publishing this repository.
+
+The [TPU v5p-8 port runbook](scripts/static_bfs_graph/TPU_PORT.md) describes
+the separate checkout, pinned environment, and frozen paired dense-reference
+diagnostic. Merely preparing the port does not run the diagnostic.
