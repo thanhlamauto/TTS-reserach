@@ -87,3 +87,45 @@ The full run expects 192 reference and 576 policy rows. `analyze` refuses
 incomplete or nonpaired data, then writes `results.json` and `REPORT.md` with
 prompt-level paired bootstrap CIs. For an independent future confirmation,
 freeze a design first and use the reserved TEST split in a separate protocol.
+
+## Smaller 20-prompt, one-seed graph study
+
+At the user's request, `tpu_n8_graph20_seed1.py` freezes the first 20 indices
+of the existing 60-prompt TRAIN split, **seed 42 only**, and the original 92
+edges, step grid, tau grid, N=8, backend, and K=3 additive search. Each of
+four chips receives five disjoint prompts; all use seed 42. This is not four
+seeds, and its 20 prompt units do not support claims about untouched TEST.
+
+The 20 reference rows and 1,840 logical edge rows consist of 1,680 new edge
+interventions plus 160 exact copies of the reference. This is graph fitting
+only; the chosen policy's terminal reward is **not** audited. The analysis
+reports the K=3 path and bootstrap exact-path frequency at both the 12-prompt
+prefix and all 20 prompts, without changing the objective.
+
+```bash
+export STATIC_BFS_GRAPH20="$STATIC_BFS_DCS/results/n8-graph20-seed1-tpu-v1"
+cd "$STATIC_BFS_REPO"
+"$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_n8_graph20_seed1 \
+  plan --run-root "$STATIC_BFS_GRAPH20"
+
+# One-chip gate: first reference and first new intervention, then inspect rows.
+TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
+  -m scripts.static_bfs_graph.tpu_n8_graph20_seed1 reference \
+  --run-root "$STATIC_BFS_GRAPH20" --dcs-root "$STATIC_BFS_DCS" \
+  --chip 0 --max-new-units 1
+TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
+  -m scripts.static_bfs_graph.tpu_n8_graph20_seed1 edges \
+  --run-root "$STATIC_BFS_GRAPH20" --dcs-root "$STATIC_BFS_DCS" \
+  --chip 0 --max-new-units 1
+
+# Once the gate passes, run reference for chips 0–3, then edges for chips 0–3.
+# Each chip is a separate process with TPU_VISIBLE_CHIPS set to its chip index.
+"$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_n8_graph20_seed1 \
+  status --run-root "$STATIC_BFS_GRAPH20"
+"$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_n8_graph20_seed1 \
+  analyze --run-root "$STATIC_BFS_GRAPH20"
+```
+
+`analyze` refuses partial rows or mismatched prompt/seed/edge hashes. Do not
+combine these TPU records with the earlier Modal GPU graph or the TPU
+four-seed graph without a separate protocol and provenance audit.

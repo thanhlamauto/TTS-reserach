@@ -7,6 +7,7 @@ torch_xla==2.4.0
 libtpu-nightly==0.1.dev20240612+default
 numpy==1.26.3
 scipy==1.13.1
+pyarrow==14.0.2
 numba==0.60.0
 transformers==4.38.2
 tokenizers==0.15.2
