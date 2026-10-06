@@ -24,6 +24,7 @@ git clone https://github.com/XiangchengZhang/Diffusion-inference-scaling.git "$S
 git -C "$STATIC_BFS_DCS/official" checkout c158ab9eb058adb24ad0f8d48506ab837d7fae91
 python3.10 -m venv "$STATIC_BFS_DCS/venv"
 "$STATIC_BFS_DCS/venv/bin/pip" install uv
+"$STATIC_BFS_DCS/venv/bin/pip" install wheel setuptools
 export UV_CACHE_DIR=/dev/shm/static-bfs-uv-cache
 "$STATIC_BFS_DCS/venv/bin/uv" pip install --python "$STATIC_BFS_DCS/venv/bin/python" \
   'torch==2.4.0+cpu' 'torchvision==0.19.0+cpu' \
@@ -65,16 +66,16 @@ cd "$STATIC_BFS_REPO"
 "$STATIC_BFS_DCS/venv/bin/python" -m scripts.static_bfs_graph.tpu_reference_compare plan --run-root "$STATIC_BFS_RUN"
 
 # Gate: only graph-fit prompt 0, seed 42, chip 0; do not scale until it passes.
-TPU_VISIBLE_CHIPS=0 "$STATIC_BFS_DCS/venv/bin/python" \
+TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
   -m scripts.static_bfs_graph.tpu_reference_compare smoke \
   --run-root "$STATIC_BFS_RUN" --dcs-root "$STATIC_BFS_DCS" --seed 42 --chip 0
 
 # After checking the smoke rows, run one worker per chip for each stage.
 # Example for chip 0/seed 42; repeat concurrently for chips 1–3/seeds 43–45.
-TPU_VISIBLE_CHIPS=0 "$STATIC_BFS_DCS/venv/bin/python" \
+TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
   -m scripts.static_bfs_graph.tpu_reference_compare reference \
   --run-root "$STATIC_BFS_RUN" --dcs-root "$STATIC_BFS_DCS" --seed 42 --chip 0
-TPU_VISIBLE_CHIPS=0 "$STATIC_BFS_DCS/venv/bin/python" \
+TPU_VISIBLE_CHIPS=0 PJRT_DEVICE=TPU "$STATIC_BFS_DCS/venv/bin/python" \
   -m scripts.static_bfs_graph.tpu_reference_compare policies \
   --run-root "$STATIC_BFS_RUN" --dcs-root "$STATIC_BFS_DCS" --seed 42 --chip 0
 
