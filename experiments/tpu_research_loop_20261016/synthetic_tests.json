@@ -1,0 +1,89 @@
+{
+  "algebra_tests": [
+    {
+      "cases": 1000,
+      "name": "temperature_ratio_bound",
+      "passed": true,
+      "terminal_reward_gain_implied": false
+    },
+    {
+      "cases": 1000,
+      "name": "surrogate_regret_decomposition",
+      "passed": true
+    }
+  ],
+  "no_diffusion_claim": true,
+  "no_new_method": true,
+  "passed": true,
+  "scenarios": [
+    {
+      "certificate_rate": 0.0,
+      "diagnostic": "NO_STRUCTURAL_INTERACTION_DETECTED",
+      "estimated_model_residual": [
+        -0.0020286741991567903,
+        -0.004606019996168421,
+        -0.004038375102605179,
+        -0.008710234792269742
+      ],
+      "false_epsilon_certificate_rate": 0.0,
+      "guarantee_scope": "finite-look Gaussian paired known-variance toy only; not ImageReward; shared block correlation retained",
+      "known_synthetic_coverage_gap": null,
+      "mean_direct_within_class_regret": 0.01728000000000001,
+      "mean_graph_within_class_regret": 0.0,
+      "repetitions": 500,
+      "scenario": "additive_high_noise",
+      "true_model_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "certificate_rate": 1.0,
+      "diagnostic": "COMPOSITION_PRESENT",
+      "estimated_model_residual": [
+        0.30006625838579054,
+        0.0003273594503672379,
+        -0.00023109966267894404,
+        3.768936323504745e-05
+      ],
+      "false_epsilon_certificate_rate": 0.0,
+      "guarantee_scope": "finite-look Gaussian paired known-variance toy only; not ImageReward; shared block correlation retained",
+      "known_synthetic_coverage_gap": null,
+      "mean_direct_within_class_regret": 0.0,
+      "mean_graph_within_class_regret": 0.23999999999999988,
+      "repetitions": 500,
+      "scenario": "interaction",
+      "true_model_residual": [
+        0.3,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "certificate_rate": 0.998,
+      "diagnostic": "COVERAGE_FAILURE_KNOWN_ONLY_BECAUSE_SYNTHETIC_TRUTH_AVAILABLE",
+      "estimated_model_residual": [
+        -0.0003053950435114586,
+        -0.00024742597920063313,
+        0.0003293372178706428,
+        -0.0006729350317554724
+      ],
+      "false_epsilon_certificate_rate": 0.0,
+      "guarantee_scope": "finite-look Gaussian paired known-variance toy only; not ImageReward; shared block correlation retained",
+      "known_synthetic_coverage_gap": 0.44,
+      "mean_direct_within_class_regret": 0.0,
+      "mean_graph_within_class_regret": 0.0,
+      "repetitions": 500,
+      "scenario": "missing_optimum",
+      "true_model_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}

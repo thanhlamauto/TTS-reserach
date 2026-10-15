@@ -1,0 +1,25 @@
+{
+  "file_hashes": {
+    "/home/thanhlamtba31/TTS-reserach/scripts/diffusion_classical_search_t2i/tpu_runner.py": "69895ae141da09ee704e52166bcc7027b74951cc19ea2ee06a80212d7b044a52",
+    "/home/thanhlamtba31/TTS-reserach/scripts/static_bfs_graph/adapter.py": "e675c67bcee9b011855621eb4d481afc72507a9deca4d20bd36c81d7771ceffa",
+    "/home/thanhlamtba31/TTS-reserach/configs/diffusion_classical_search_t2i_table12.json": "ad6f98acbfbde94bb2b2a5fc858b02b682836e827be36fe6f167bee7a036785a",
+    "/home/thanhlamtba31/TTS-reserach/envs/static-bfs-tpu/requirements.txt": "c497aeaebfd04dd7ba15d2f849ff24f6e6f6bfc902c0c57290bc2ff693a32bf1",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/model_index.json": "e2f6f22e274374010aec30c79eb2d6e53fff4a36ac0225523a92cb2d41a83347",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/text_encoder/config.json": "845df614cb9327ae7bbea027316246fae917827407da6df13572e41b5f93b4cc",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/special_tokens_map.json": "c4864a9376a8401918425bed71fc14fc0e81f9b59ec45c1cf96cccb2df508eac",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/vocab.json": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/tokenizer/tokenizer_config.json": "00439066fcba73de57644cf41e4e3b9f2dbb09d7f3fc2005898ba52399045882",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/vae/config.json": "786a7d21647ddea6a04b9675c03d3cb45e90a2f3c6da5fbda2c54ade040036de",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/scheduler/scheduler_config.json": "699cce92eb7c122e2eb7dfdea78e6187fda76a5ed4a8e42319b85610e620e091",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/feature_extractor/preprocessor_config.json": "2a1da83b5e1032aaeef397552ddb408dca0d8cd1dc58f61bf6abf38d6f33a0a2",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/unet/config.json": "78f474de6bab3d893868f37be97b636ae65c0df3073ed3256ca458ff599b5f96",
+    "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/safety_checker/config.json": "5dd77a06cbd9b155060bd58deb81ffd1aafc1c6d7970acac674c1128bd4edfe2"
+  },
+  "HF_checkpoint_revision": "451f4fe16113bff5a5d2269ed5ad43b0592e9a14",
+  "official_source_commit": "c158ab9eb058adb24ad0f8d48506ab837d7fae91",
+  "ImageReward_cache_files": [
+    "med_config.json",
+    "ImageReward.pt"
+  ],
+  "golden_images_present": true
+}

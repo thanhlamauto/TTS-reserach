@@ -1,0 +1,70 @@
+{
+  "contrasts": [
+    {
+      "A": "VERIFIED",
+      "B": "GRAPH_ONLY",
+      "P": 24,
+      "S": 4,
+      "approx_prompts_80pct_power_alpha_family_0p05_three_contrasts": 124,
+      "between_prompt_variance_B_forecast": 0.0013214381958985672,
+      "between_prompt_variance_B_untruncated": 0.0013214381958985672,
+      "boundary_rule": "retain raw negative estimate; truncate to0 only for nonnegative planning forecast",
+      "descriptive_CI95_high": 0.02402848487351237,
+      "descriptive_CI95_low": -0.02999569763778709,
+      "mean_delta": -0.0036866216105408967,
+      "observed_SE": 0.014044573950869485,
+      "planned_epsilon": 0.02,
+      "precision_note": "normal approximation from historical 24-prompt pilot, not a guarantee or IR tail bound",
+      "within_prompt_policy_covariance": 0.03414807518971611,
+      "within_prompt_seed_variance_W": 0.01365025273270413,
+      "within_prompt_unpaired_variance": 0.08194640311213636
+    },
+    {
+      "A": "VERIFIED",
+      "B": "MANUAL8",
+      "P": 24,
+      "S": 4,
+      "approx_prompts_80pct_power_alpha_family_0p05_three_contrasts": 296,
+      "between_prompt_variance_B_forecast": 0.004252234445365392,
+      "between_prompt_variance_B_untruncated": 0.004252234445365392,
+      "boundary_rule": "retain raw negative estimate; truncate to0 only for nonnegative planning forecast",
+      "descriptive_CI95_high": 0.029077336503056918,
+      "descriptive_CI95_low": -0.05441620632918784,
+      "mean_delta": -0.012672014437460652,
+      "observed_SE": 0.02170363920752028,
+      "planned_epsilon": 0.02,
+      "precision_note": "normal approximation from historical 24-prompt pilot, not a guarantee or IR tail bound",
+      "within_prompt_policy_covariance": 0.025730535453259745,
+      "within_prompt_seed_variance_W": 0.028211665884158726,
+      "within_prompt_unpaired_variance": 0.07967273679067821
+    },
+    {
+      "A": "GRAPH_ONLY",
+      "B": "MANUAL8",
+      "P": 24,
+      "S": 4,
+      "approx_prompts_80pct_power_alpha_family_0p05_three_contrasts": 187,
+      "between_prompt_variance_B_forecast": 0.0020261409985084756,
+      "between_prompt_variance_B_untruncated": 0.0020261409985084756,
+      "boundary_rule": "retain raw negative estimate; truncate to0 only for nonnegative planning forecast",
+      "descriptive_CI95_high": 0.02181218635911739,
+      "descriptive_CI95_low": -0.044170331863764054,
+      "mean_delta": -0.008985392826919755,
+      "observed_SE": 0.01721491454428538,
+      "planned_epsilon": 0.02,
+      "precision_note": "normal approximation from historical 24-prompt pilot, not a guarantee or IR tail bound",
+      "within_prompt_policy_covariance": 0.025931782855919964,
+      "within_prompt_seed_variance_W": 0.020345351151602725,
+      "within_prompt_unpaired_variance": 0.07220891686344266
+    }
+  ],
+  "diagnostic": "paired prompt/seed variance and precision planning",
+  "direct_search_required": "exact shared candidate bank and total all-in profiling cost; NOT RUN, no equal-budget winner claim",
+  "final_confirmation_opened": false,
+  "new_compilation_replicates": 0,
+  "next_step": "TPU-only ImageReward gate, then one small multiseed DEVELOPMENT pilot if budget authorized; no interaction objective until reproducible residual evidence",
+  "status": [
+    "BUDGET_UNVERIFIED",
+    "UNDERIDENTIFIED"
+  ]
+}

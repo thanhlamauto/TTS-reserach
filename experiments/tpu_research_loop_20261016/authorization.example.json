@@ -1,0 +1,8 @@
+{
+  "human_authorized": false,
+  "billing_conditions_verified": false,
+  "authorization_reference": null,
+  "GPU_budget": 0,
+  "remaining_authorized_chip_hours": 0,
+  "note": "Template denies compute; must not copy and mark true without actual user allocation and verified billing conditions."
+}

@@ -1,0 +1,19 @@
+section,requirement,status,evidence,limit
+1,fixed offline compiler scope,PARTIAL,preregistered_config.json; immutable_policy_hashes.json,No deployed controller or method winner
+2,read original evidence and preserve work on separate branch,PASS,STATE.md; evidence/input_manifest.json; evidence/report_deduplication.json,Historical aliases deduplicated; user files untouched
+3,TPU-only budget and billing verified before launch,BLOCKED,evidence/remote_preflight.json; logs/accelerator_gate_check.log,"Billing API disabled, remaining allocation absent; no accelerator launched"
+3,"40percent reserve, port subcap, deadline, cumulative kill guard",CPU_TESTED_NOT_ACCELERATOR_VALIDATED,budget_guard.py; logs/CPU_unit_tests.log,9 CPU tests; no VM shutdown authority
+4,denoiser/neural verifier TPU correctness and timing,NOT_RUN,reward_tpu_gate.py; reward_golden_manifest.json,Legacy CPU verifier is incompatible; new gate pending allocation
+4,real adapter temperature/history/SSP/RNG CPU semantics,PASS_CPU_ONLY,evidence/cpu_semantics_test.json,Not CPU–TPU parity
+4,cache and sibling-branch replay,PARTIAL,selector_baselines.py; logs/CPU_unit_tests.log,"Cache identity tests pass, full trajectory parity not tested"
+5,Ultra CPU geometry audit without policy wins,PASS_CPU_ONLY,geometry_summary.json; ultra_geometry_audit.csv; ultra_development_manifest.json,"19701 pairs,8 new dev proposals; dynamics/training coverage not proved"
+5,PointMaze TPU port and informative pilot,NOT_RUN,STATE.md; RESUME.md,Budget gate; no graph authorized
+6,exact baseline class and direct-search implementation,PARTIAL,immutable_policy_hashes.json; covered_bank_graph_manifest.json; selector_baselines.py,"6 policies16unionedges; equality tests only, no neural equal-budget comparison"
+7,prompt/seed covariance and precision diagnostic,PASS_DEVELOPMENT_ONLY,variance_components.csv; precision_plan.csv,"Historic data, approximate normal/cluster inference"
+7,separate composition error from noise and confirm correction,UNDERIDENTIFIED,STATE.md; evidence/input_manifest.json,No structural correction fitted from wide residual CIs
+8,one cheap falsifiable diagnostic and negative decisions,PASS_OFFLINE_PHASE,preregistered_config.json; diagnostic_decision.json; decision_log.jsonl,Only diagnostic1 executed; no repeated search until win
+9,theory proofs and primary-source scope review,PASS_CONDITIONAL_ONLY,THEORY.md; evidence/bfs_paper_full.txt,Uniform bounds and real coverage not established
+9,three CPU synthetic scenarios,PASS_SANITY_ONLY,synthetic_tests.json,No diffusion guarantee
+10,"fresh selection, fixed-sample confirmation, independent compile replicates",NOT_RUN,split_manifest.json,All historical rows remain DEVELOPMENT;0 new compilation replicates
+11,empirical method superiority and quality-matched profiling gain,NOT_ESTABLISHED,FINAL_REPORT.md,No production change
+12,durable evidence/ledger/reports/real resume entrypoints,PASS_OFFLINE_PHASE,STATE.md; THEORY.md; FINAL_REPORT.md; RESUME.md; cost_ledger.jsonl,Accelerator resume prerequisites explicitly unmet

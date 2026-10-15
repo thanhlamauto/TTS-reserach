@@ -1,0 +1,51 @@
+{
+  "CONFIRMATION": {
+    "budget_reserved_fraction": 0.4,
+    "requires": "one fixed-sample opening after selector and candidate rule freeze; independent compilation replicates when feasible",
+    "status": "NOT_OPENED"
+  },
+  "DEVELOPMENT": {
+    "all_old_graphs_and_reports": "previously inspected TRAIN; fresh seeds do not make prompts unseen",
+    "historic_policy_audit": {
+      "prompts": [
+        4,
+        5,
+        11,
+        14,
+        18,
+        29,
+        35,
+        37,
+        39,
+        41,
+        43,
+        47,
+        48,
+        49,
+        51,
+        54,
+        57,
+        59,
+        62,
+        74,
+        75,
+        81,
+        87,
+        88
+      ],
+      "seeds": [
+        2026100914,
+        2026100915,
+        2026100916,
+        2026100917
+      ],
+      "source_sha256": "0ca158f47e4f7e85e515ff172234376da9dbf00505cbe5f5ae93f151b8b9b753"
+    }
+  },
+  "SELECTION": {
+    "requires": "separate fresh prompt inventory and frozen sampling distribution; no reuse of history as independent selection",
+    "status": "NOT_OPENED"
+  },
+  "new_observations": 0,
+  "unused_reserved_128_prefix_prompts": "not read, not used"
+}

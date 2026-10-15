@@ -1,0 +1,56 @@
+[
+  {
+    "source": "alphaxiv",
+    "id": "2610.01933",
+    "title": "Error-Corrected Inference-Time Scaling for Imperfect Diffusion Models",
+    "abstract": "Inference-time scaling adapts pretrained diffusion models to new sampling tasks without additional training. Existing methods rely primarily on Monte Carlo sampling with more particles, yet are premised on the pretrained model being exact. In practice, data and training limitations make the model imperfect, and these methods inherit its error. More particles reduce Monte Carlo error but cannot remove the mismatch between the endpoint and the desired target or the error in tracking the prescribed probability path. We introduce the Energy-based Feynman-Kac Corrector (EBFKC), a framework for energy-based diffusion models that corrects these errors on the fly given a reference energy. We first derive Feynman-Kac dynamics that track a prescribed path exactly in the continuous-time population limit even when the model is imperfect, and approximate these dynamics using sequential Monte Carlo with variance-controlling guidance. To remove the endpoint mismatch, we use the pretrained energy as a surrogate along the diffusion path and progressively incorporate the discrepancy between the learned and target terminal energies. Experiments on Gaussian mixture models, particle systems, alanine dipeptide, and alanine tetrapeptide show that our method closely matches target distributions and molecular free-energy profiles under annealing and reward tilting, whereas standard inference-time scaling baselines retain substantial sampling errors.",
+    "publicationDate": "2026-10-01T16:05:00.000Z",
+    "votes": 2,
+    "snippets": [
+      {
+        "pageNumber": 1,
+        "snippet": "Preprint\nERROR-CORRECTED INFERENCE-TIME SCALING FOR\nIMPERFECT DIFFUSION MODELS\nZuokai Wen\n1 \nLouis Grenioux\n2 \nWeinan E\n3 \nJiequn Han\n2∗\n1\nSchool of Artificial Intelligence, Shanghai Jiao Tong Univers..."
+      },
+      {
+        "pageNumber": 1,
+        "snippet": "Preprint\nERROR-CORRECTED INFERENCE-TIME SCALING FOR\nIMPERFECT DIFFUSION MODELS\nZuokai Wen\n1 \nLouis Grenioux\n2 \nWeinan E\n3 \nJiequn Han\n2∗\n1\nSchool of Artificial Intelligence, Shanghai Jiao Tong Univers..."
+      }
+    ]
+  },
+  {
+    "source": "alphaxiv",
+    "id": "2607.21591",
+    "title": "Inference-Time Scaling of Diffusion Models via Progressive Seed Pruning",
+    "abstract": "Diffusion and flow-matching models dominate conditional image generation, yet inference-time scaling for these models is far less developed than for autoregressive language models. Because final quality is highly sensitive to the initial noise seed, many approaches spend extra compute on seed search or resampling under a black-box reward, but typically maintaining a constant memory footprint throughout inference. We show that relaxing this constraint enables an underexplored inference-time scaling axis: by front-loading exploration, evaluating many seeds early, and pruning aggressively, we can use a fixed compute budget more effectively. \\emph{Progressive Seed Pruning} (\\PSP) scores intermediate denoised estimates and progressively narrows the candidate set so that only promising trajectories are fully denoised, while keeping the total number of model evaluations fixed. Across diffusion and flow-matching backbones, \\PSP \\ consistently improves reward-guided selection and achieves higher GenEval scores (automated) and better human evaluation on prompt-alignment than best-of-$N$, importance-sampling, and tree-search baselines at matched compute. Project page: this https URL. Code: this https URL.",
+    "publicationDate": "2026-07-23T17:59:46.000Z",
+    "votes": 24,
+    "snippets": [
+      {
+        "pageNumber": 1,
+        "snippet": "Inference-Time Scaling of Diffusion Models via\nProgressive Seed Pruning\nRogério Guimarães\n1 \nand Pietro Perona\n1\nCalifornia Institute of Technology, Pasadena CA 91125, USA\n{rogerio,perona}@caltech.edu..."
+      },
+      {
+        "pageNumber": 1,
+        "snippet": "Inference-Time Scaling of Diffusion Models via\nProgressive Seed Pruning\nRogério Guimarães\n1 \nand Pietro Perona\n1\nCalifornia Institute of Technology, Pasadena CA 91125, USA\n{rogerio,perona}@caltech.edu..."
+      }
+    ]
+  },
+  {
+    "source": "alphaxiv",
+    "id": "2605.19317",
+    "title": "Inference-Time Scaling in Diffusion Models through Iterative Partial Refinement",
+    "abstract": "Inference-time scaling has emerged as a major approach for improving reasoning capabilities, and has been increasingly applied to diffusion models. However, existing inference-time scaling methods for diffusion models typically rely on external verifiers or reward models to rank and select samples, limiting their scalability to settings where such evaluators are available and reliable. Moreover, while recent diffusion models perform sequential inference with region-wise, mixed-noise conditioning, inference-time scaling tailored to this setting remains relatively underexplored. We propose Iterative Partial Refinement (IPR), an inference-time scaling method for sequential diffusion that requires no external verifier. Starting from an already-generated sample, IPR re-noises a subset of regions and regenerates them conditioned on the remaining regions, enabling the model to revise earlier decisions under a richer context than was available during the initial generation. This iterative partial refinement produces more globally consistent samples without external verification. On reasoning tasks requiring global constraint satisfaction, IPR consistently improves performance: on MNIST Sudoku, the valid solution rate increases from 55.8% to 75.0%. These results show that iterative partial refinement alone can serve as an effective inference-time scaling strategy for diffusion models in sequential, mixed-noise settings. Code is available at: this https URL",
+    "publicationDate": "2026-05-19T03:53:50.000Z",
+    "votes": 10,
+    "snippets": [
+      {
+        "pageNumber": 1,
+        "snippet": "Accepted at the ICLR 2026 Workshop on AI with Recursive Self-Improvement\nINFERENCE-TIME SCALING IN DIFFUSION MODELS\nTHROUGH ITERATIVE PARTIAL REFINEMENT\nTaegu Kang\nKAIST\nrivertae9@kaist.ac.kr\nJaesik Y..."
+      },
+      {
+        "pageNumber": 1,
+        "snippet": "Accepted at the ICLR 2026 Workshop on AI with Recursive Self-Improvement\nINFERENCE-TIME SCALING IN DIFFUSION MODELS\nTHROUGH ITERATIVE PARTIAL REFINEMENT\nTaegu Kang\nKAIST\nrivertae9@kaist.ac.kr\nJaesik Y..."
+      }
+    ]
+  }
+]

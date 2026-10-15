@@ -1,0 +1,69 @@
+{
+  "status": "NOT_RUN",
+  "source_rows_sha256": "07217dc071c1b84a6bb2d5168d818f1b5ab558726fba22541fec7f993c71e418",
+  "images": [
+    {
+      "relative_image": "images/p000-ONLY20.png",
+      "prompt": "a concept art of a vehicle, cyberpunk",
+      "saved_CPU_IR": 0.8691648244857788,
+      "selected_rgb_sha256": "3bca7a3c65cc4b1bf2ffd5de594c128d9751fe9a1d78f4c28e56205a000578b5",
+      "PNG_sha256": "6a2ef8b97ab61d01ae9a5c5336ee26fe441c57434fa801880cc5cbff81c1e0a8"
+    },
+    {
+      "relative_image": "images/p000-EVERY1_TO20.png",
+      "prompt": "a concept art of a vehicle, cyberpunk",
+      "saved_CPU_IR": 0.9599825739860535,
+      "selected_rgb_sha256": "d3e98d28810974e76b6962536a653cdbd097dec9a4b41a4abcee7e17e83b554a",
+      "PNG_sha256": "645219753a289cd9cbdc4187f6fbf303f20a9c17704f18e410d21b906f8a5470"
+    },
+    {
+      "relative_image": "images/p002-ONLY20.png",
+      "prompt": "a beautiful painting of the jungle in the morning with lots of smoke, fantasy art, matte painting",
+      "saved_CPU_IR": 1.1907895803451538,
+      "selected_rgb_sha256": "7743f9377eed721c954dea141c8fde174727fe07fb02febee057d85b2899e00a",
+      "PNG_sha256": "03c2036a1d3b8dde4e34393573936413bb26034d1609b243572677429455909c"
+    },
+    {
+      "relative_image": "images/p002-EVERY1_TO20.png",
+      "prompt": "a beautiful painting of the jungle in the morning with lots of smoke, fantasy art, matte painting",
+      "saved_CPU_IR": 1.1686588525772095,
+      "selected_rgb_sha256": "e4deeeaddf78a63c1df9b0fe41a74b7eed605f38cd9c555eeff45769fc535c87",
+      "PNG_sha256": "07b5196d7aa990fa4286a172f84f2d68bdaaa3bba9a4cd289671ba09afcc1429"
+    },
+    {
+      "relative_image": "images/p003-ONLY20.png",
+      "prompt": "anthropomorphic crow werecreature, photograph captured in a forest",
+      "saved_CPU_IR": 1.1193681955337524,
+      "selected_rgb_sha256": "4545c985c8b208c2d9d2ff850183477f38c9e2e85727f58f0f358458d432284a",
+      "PNG_sha256": "b0012e235f3d278504286d4c5e71113e85b5831cdd270b909f639f91a5474b5e"
+    },
+    {
+      "relative_image": "images/p003-EVERY1_TO20.png",
+      "prompt": "anthropomorphic crow werecreature, photograph captured in a forest",
+      "saved_CPU_IR": 1.1371219158172607,
+      "selected_rgb_sha256": "f3df1d6109c9153df78434263d4cc82782ca91e267aa0a35cd5a44f7f5a7958a",
+      "PNG_sha256": "54cec13cf20e5f91d627fd07545aa04b7e6b39c62a15d8ca794e23173d35eed1"
+    },
+    {
+      "relative_image": "images/p004-ONLY20.png",
+      "prompt": "a beautiful portrait of a beautiful woman in the jungle surrounded by pink flowers, shamanism, matte painting, fantasy art",
+      "saved_CPU_IR": 1.9813220500946045,
+      "selected_rgb_sha256": "30ad3e8cf8eb1e76f150821c9b51d5d763a07ac49d309b1bd50b658d10114d08",
+      "PNG_sha256": "8f9fa29862b2d9fd6e2907eb8a0bc89f38a234b442df39a619f34541b124c73a"
+    },
+    {
+      "relative_image": "images/p004-EVERY1_TO20.png",
+      "prompt": "a beautiful portrait of a beautiful woman in the jungle surrounded by pink flowers, shamanism, matte painting, fantasy art",
+      "saved_CPU_IR": 1.9882779121398926,
+      "selected_rgb_sha256": "fe4b6d89950c91bf64ffec376d20c5baf8e7c7261488aec48bdd2cbc99a58589",
+      "PNG_sha256": "ed8579d5b27aec36eb6c54511b9373dafe228fb2a030dfd2232c215cce7d0f6e"
+    }
+  ],
+  "tolerance": {
+    "atol": 0.001,
+    "rtol": 0.001
+  },
+  "use": "TPU-only neural verifier parity; CPU reference values already measured in historical run",
+  "fixed_batch": 8,
+  "no_new_neural_compute": true
+}

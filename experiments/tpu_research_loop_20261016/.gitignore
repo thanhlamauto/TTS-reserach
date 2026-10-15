@@ -1,0 +1,6 @@
+__pycache__/
+authorization.json
+budget.lock
+logs/
+evidence/bfs_paper_full.txt
+ultra_geometry_audit.csv

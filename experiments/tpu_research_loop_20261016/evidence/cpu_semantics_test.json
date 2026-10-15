@@ -1,0 +1,102 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "manual_max_history_20",
+      "passed": true
+    },
+    {
+      "name": "manual_score_multiplier_softmax_20",
+      "passed": true
+    },
+    {
+      "name": "manual_fixed_shape_20",
+      "passed": true
+    },
+    {
+      "name": "manual_max_history_40",
+      "passed": true
+    },
+    {
+      "name": "manual_score_multiplier_softmax_40",
+      "passed": true
+    },
+    {
+      "name": "manual_fixed_shape_40",
+      "passed": true
+    },
+    {
+      "name": "manual_max_history_80",
+      "passed": true
+    },
+    {
+      "name": "manual_score_multiplier_softmax_80",
+      "passed": true
+    },
+    {
+      "name": "manual_fixed_shape_80",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_max_history_20",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_score_multiplier_softmax_20",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_fixed_shape_20",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_max_history_40",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_score_multiplier_softmax_40",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_fixed_shape_40",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_max_history_80",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_score_multiplier_softmax_80",
+      "passed": true
+    },
+    {
+      "name": "raw_tau_fixed_shape_80",
+      "passed": true
+    },
+    {
+      "name": "manual_exact_event_temperatures",
+      "passed": true
+    },
+    {
+      "name": "manual_and_explicit_equivalence",
+      "passed": true
+    },
+    {
+      "name": "multiplier_not_denominator",
+      "passed": true
+    },
+    {
+      "name": "zero_based_index",
+      "passed": true
+    }
+  ],
+  "manual_beta": [
+    6.0693804425899085,
+    15.822498780869108,
+    56.680144328798654
+  ],
+  "device": "cpu",
+  "neural_model_forwards": 0,
+  "TPU_initializations": 0,
+  "source_sha256": "e675c67bcee9b011855621eb4d481afc72507a9deca4d20bd36c81d7771ceffa"
+}

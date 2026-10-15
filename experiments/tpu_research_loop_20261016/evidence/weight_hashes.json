@@ -1,0 +1,36 @@
+{
+  "checkpoint_files": [
+    {
+      "path": "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/text_encoder/model.safetensors",
+      "bytes": 492265874,
+      "sha256": "d008943c017f0092921106440254dbbe00b6a285f7883ec8ba160c3faad88334"
+    },
+    {
+      "path": "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/vae/diffusion_pytorch_model.safetensors",
+      "bytes": 334643276,
+      "sha256": "a2b5134f4dbc140d9c11f11cba3233099e00af40f262f136c691fb7d38d2194c"
+    },
+    {
+      "path": "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/unet/diffusion_pytorch_model.safetensors",
+      "bytes": 3438167540,
+      "sha256": "19da7aaa4b880e59d56843f1fcb4dd9b599c28a1d9d9af7c1143057c8ffae9f1"
+    },
+    {
+      "path": "/home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/safety_checker/model.safetensors",
+      "bytes": 1215981830,
+      "sha256": "9d6a233ff6fd5ccb9f76fd99618d73369c52dd3d8222376384d0e601911089e8"
+    },
+    {
+      "path": "/home/thanhlamtba31/static-bfs-dcs/cache/ImageReward/ImageReward.pt",
+      "bytes": 1786880927,
+      "sha256": "d71dc8d4912bc633c06ab8ef1ef6a81e8199d4369f14b47b29baf1d19de561f6"
+    },
+    {
+      "path": "/home/thanhlamtba31/static-bfs-dcs/cache/ImageReward/med_config.json",
+      "bytes": 485,
+      "sha256": "d8b5029cc3c0124313d17009d043f0701bbe497f3721fa4ceb818720fe665326"
+    }
+  ],
+  "hash_read_CPU_seconds": 6.724728199187666,
+  "neural_forwards": 0
+}

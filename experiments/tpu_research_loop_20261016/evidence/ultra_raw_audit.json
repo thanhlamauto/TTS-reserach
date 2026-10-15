@@ -1,0 +1,13 @@
+{
+  "interpretation": "floor effect; identical observed differences are not population equivalence",
+  "passed": true,
+  "raw_sha256": "111032d3dd06b8e6362803455c047e8940ff3ce2e2ad7c2cb736f6b4b5deb399",
+  "rows": 96,
+  "same_success_case_seed": true,
+  "successes": {
+    "BoN": 1,
+    "Dense": 1,
+    "K5": 1,
+    "Paper": 1
+  }
+}

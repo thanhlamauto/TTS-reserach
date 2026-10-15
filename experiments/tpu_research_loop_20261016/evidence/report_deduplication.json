@@ -1,0 +1,52 @@
+{
+  "content_hash_groups": {
+    "03549c3c5f95a06caec45c552784a76dfc25c9736a6fdb5f6abbffa4f970dfb9": [
+      "artifacts/static-bfs-graph/early20_quick_compare_v1/REPORT.md"
+    ],
+    "0d2cce69074f0b624e9eaa8cbf6d927e28c75bc9bb80bb2889f8c5faf400ce1e": [
+      "experiments/pointmaze_ultra_density_pilot_v1/REPORT.md",
+      "experiments/pointmaze_ultra_density_pilot_v1/remote_artifacts/pointmaze_ultra_density_pilot_v1/REPORT.md"
+    ],
+    "19deaaa63975cdd3bd13d676648b67e2046c76fa2fb12540af05fdc2cf2944d5": [
+      "artifacts/static-bfs-graph/early_pair20_v1/REPORT.md"
+    ],
+    "28e9b6980f4461b1b73ddb3f0a9e40f12ca09d7b753a0deb3583609aae743979": [
+      "artifacts/static-bfs-graph/early20_even60_v1/REPORT.md"
+    ],
+    "4d1067653abd2d7b59d6abf4861f26d8432f4a183e4644b49c44deec18c0f481": [
+      "artifacts/static-bfs-graph/early_single60_v1/REPORT.md"
+    ],
+    "67f5ca6ac32e3f75f5820c86d2c303a786cfc2ce1f69ac706e3951a9714e62ec": [
+      "artifacts/static-bfs-graph/early20_train60_v1/REPORT.md"
+    ],
+    "7b4c84818df0c448767ffed3b8c47c020cddad47a6ee6531e00605d64586eda6": [
+      "artifacts/static-bfs-graph/sequential_graph_refinement_v1/REPORT.md"
+    ],
+    "a6ea39471e1b4f5c0a763f0a8501e25626b92cc47481a5f696264c1c9a3a4263": [
+      "artifacts/static-bfs-graph/seed_coverage_compiler_v2/REPORT.md"
+    ],
+    "be07ede79179d56d83aefbaea7b85a90e504ce30e51deea0090db4468074333e": [
+      "artifacts/static-bfs-graph/n8-graph20-seed1-tpu-v1/REPORT.md"
+    ],
+    "c0982834830dcb4640effe576de42b2dc425a01802e4e2ff97bb0dd18f0ba0a8": [
+      "artifacts/static-bfs-graph/reference_distribution_anchor_v1/REPORT.md"
+    ],
+    "cc2d141b1d71fc81f24f4925ea22391c3e0a85dc968160d930d481b2845b0eda": [
+      "artifacts/static-bfs-graph/policy_verification_compiler_v1/REPORT.md"
+    ],
+    "cdb00fab73a8815453d59b89ee2f04f1bb5e9d3abc1e1adc2281f830be87aa2f": [
+      "artifacts/static-bfs-graph/grid_density_overnight_confirmation/REPORT.md"
+    ],
+    "d397c78ae33739ad0a33ac8c49b1588d6059a6ffdeddc5814a6a4e54b9afacfa": [
+      "artifacts/static-bfs-graph/grid-density-10bin-pilot-v1/REPORT.md"
+    ],
+    "dc43523a3645473afddcc1caa1cbacc266745166e62d2a936a07e257c2e1e3ca": [
+      "artifacts/static-bfs-graph/same_trajectory_edge_policy_diagnostic_v1/REPORT.md"
+    ],
+    "ed337d50c1e1de51ee87eb8e90d060eca85d6fb3f567de0fd6b0d2d59c054857": [
+      "artifacts/static-bfs-graph/adaptive_graph_refinement_v1/REPORT.md"
+    ]
+  },
+  "independent_compilation_replicates_in_this_campaign": 0,
+  "warning": "different reports sharing source run/data are also not independent even when bytes differ"
+}

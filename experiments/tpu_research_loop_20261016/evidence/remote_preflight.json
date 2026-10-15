@@ -1,0 +1,23 @@
+{
+  "host": "t1v-n-21e731f5-w-0",
+  "project": "neurips2025-6631",
+  "zone": "projects/176144370338/zones/us-central1-a",
+  "accelerator_type": "v5p-8",
+  "node_id": "tpu-v5p-8-01",
+  "physical_device_nodes": [
+    "3",
+    "2",
+    "1",
+    "0"
+  ],
+  "packages": {
+    "torch": "2.4.0+cpu",
+    "torch_xla": "2.4.0",
+    "diffusers": "0.31.0.dev0",
+    "transformers": "4.38.2",
+    "image-reward": "1.5"
+  },
+  "repo_commit": "9cee8a582abe2653af1add30ecc058ef5ad89d8b",
+  "billing_status": "UNVERIFIED: earlier read-only Cloud Billing call failed SERVICE_DISABLED; no API enabled",
+  "authorized_remaining_budget": null
+}

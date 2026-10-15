@@ -1,0 +1,144 @@
+{
+  "candidate_count": 6,
+  "union_edge_count": 16,
+  "paths": {
+    "790f859db9223a8d72c25e81cf9b904ae493a6a7d0ee712cdc213032ee57231c": [
+      "1771db72c49a79ed5bc3e5264ed5b065651ce4e90aed2e43d746a1a42b3ccb81",
+      "90e903da055c67889b9a96fa6443c262d95125f53d01b3628976110bf93e4455",
+      "647ca6014c9c885d02b7df49da515986de12910d830a87510fe112efe6b7ed6e",
+      "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e"
+    ],
+    "bce970d0c0a85ea98031a7d3bea3f904729f517d1c30b3b89f6259ef2b9ef0bc": [
+      "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a",
+      "453cee9efb3426573eb1b9b2d77cb7d2b714dc8a44b6f0abccbe8b61eefb90c3",
+      "fe6a9ec515c04b1b0df17ef22bd5b70e1e2c9bef8de12fd60b008e0bfebc14c4",
+      "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e"
+    ],
+    "31e98e083b6a39ffb9f47624d0a63e09b878f1bd1d4a8c3377a52b1326be453f": [
+      "25a3c78a6e77bcaf9f73ef309b9d818dfa2eaad1d6cbd185c0111257105af879",
+      "d165adf1d175fc5cfb8b7855b8572a79961cce128e6522640bc30f7a47a52450",
+      "ded6ff1654163ab6a2bbe08c35b610a16839f73baac04d31fba295af9534b484",
+      "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e"
+    ],
+    "2ea2e1f8a1eae70f8604cb43214ae27b81149774b35555c0c1a14003df2b760a": [
+      "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a",
+      "c05a4c190d7cd57cc0792e741f5fe79a13050e702b0d3a4e8b59a82368b3b158",
+      "fe6a9ec515c04b1b0df17ef22bd5b70e1e2c9bef8de12fd60b008e0bfebc14c4",
+      "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e"
+    ],
+    "3e72ea92095d9db57de0eabf49c80f720365c52a3255ec2afeb82887ea547ce1": [
+      "a378bee2ce795928e021dd72949c464bcf94d063136f31bef4837dfc3390bf3b",
+      "9083921294936a997c8179b30114b46b66f4dc9f476e415c54765048c07e6bbe",
+      "647ca6014c9c885d02b7df49da515986de12910d830a87510fe112efe6b7ed6e",
+      "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e"
+    ],
+    "68026fe0f34d38c770f73974fe5787625aaeca31a021f908b5a68c124c1ac69a": [
+      "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a",
+      "6446bc16db50d04f71b11037f966355cd84166cf3b276289770df24eceab41a5",
+      "16ee83580bd4c562c55cb7da40cfda04524829fa07f9fb64745bd88ff6f58384",
+      "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e"
+    ]
+  },
+  "edges": {
+    "1771db72c49a79ed5bc3e5264ed5b065651ce4e90aed2e43d746a1a42b3ccb81": {
+      "src": -1,
+      "dst": 50,
+      "multiplier": 8.0
+    },
+    "90e903da055c67889b9a96fa6443c262d95125f53d01b3628976110bf93e4455": {
+      "src": 50,
+      "dst": 60,
+      "multiplier": 2.0
+    },
+    "647ca6014c9c885d02b7df49da515986de12910d830a87510fe112efe6b7ed6e": {
+      "src": 60,
+      "dst": 80,
+      "multiplier": 32.0
+    },
+    "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e": {
+      "src": 80,
+      "dst": 100,
+      "multiplier": null
+    },
+    "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a": {
+      "src": -1,
+      "dst": 40,
+      "multiplier": 8.0
+    },
+    "453cee9efb3426573eb1b9b2d77cb7d2b714dc8a44b6f0abccbe8b61eefb90c3": {
+      "src": 40,
+      "dst": 60,
+      "multiplier": 8.0
+    },
+    "fe6a9ec515c04b1b0df17ef22bd5b70e1e2c9bef8de12fd60b008e0bfebc14c4": {
+      "src": 60,
+      "dst": 90,
+      "multiplier": 32.0
+    },
+    "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e": {
+      "src": 90,
+      "dst": 100,
+      "multiplier": null
+    },
+    "25a3c78a6e77bcaf9f73ef309b9d818dfa2eaad1d6cbd185c0111257105af879": {
+      "src": -1,
+      "dst": 20,
+      "multiplier": 6.0693804425899085
+    },
+    "d165adf1d175fc5cfb8b7855b8572a79961cce128e6522640bc30f7a47a52450": {
+      "src": 20,
+      "dst": 40,
+      "multiplier": 15.822498780869108
+    },
+    "ded6ff1654163ab6a2bbe08c35b610a16839f73baac04d31fba295af9534b484": {
+      "src": 40,
+      "dst": 80,
+      "multiplier": 56.680144328798654
+    },
+    "c05a4c190d7cd57cc0792e741f5fe79a13050e702b0d3a4e8b59a82368b3b158": {
+      "src": 40,
+      "dst": 60,
+      "multiplier": 2.0
+    },
+    "a378bee2ce795928e021dd72949c464bcf94d063136f31bef4837dfc3390bf3b": {
+      "src": -1,
+      "dst": 50,
+      "multiplier": 2.0
+    },
+    "9083921294936a997c8179b30114b46b66f4dc9f476e415c54765048c07e6bbe": {
+      "src": 50,
+      "dst": 60,
+      "multiplier": 8.0
+    },
+    "6446bc16db50d04f71b11037f966355cd84166cf3b276289770df24eceab41a5": {
+      "src": 40,
+      "dst": 80,
+      "multiplier": 8.0
+    },
+    "16ee83580bd4c562c55cb7da40cfda04524829fa07f9fb64745bd88ff6f58384": {
+      "src": 80,
+      "dst": 90,
+      "multiplier": 32.0
+    }
+  },
+  "sampling_nodes": [
+    20,
+    40,
+    50,
+    60,
+    80,
+    90
+  ],
+  "all_exact_baselines_in_bank": true,
+  "reference": "new reference must include node50; must pass new same-backend prefix/counter/RNG gates before profiling",
+  "manual_beta_precision": "full JSON float in hashed edge identity; do not round to g-format key",
+  "scientific_comparison_status": "NOT_RUN",
+  "offline_budget_matching": "same all-in occupied-slice time cap per compiler replicate; track NFE/verifier/compile/retry separately, Pareto if work dimensions cannot all match",
+  "required_selectors": [
+    "graph_only_select",
+    "full_policy_verify_select",
+    "direct_full_policy_select"
+  ],
+  "direct_baseline": "uniform full-policy evaluation over the same frozen6-policy bank; no graph; same available incumbents and development info",
+  "old_manual_fine_data": "DEVELOPMENT only; not confirmation of the newly covered selector"
+}

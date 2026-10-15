@@ -1,0 +1,345 @@
+{
+  "DEVELOPMENT_only": true,
+  "N": 16,
+  "all_outcomes_unopened": true,
+  "cases": [
+    {
+      "degree2_corridor_fraction": 0.9459459459459459,
+      "detour_ratio": 2.846049894151541,
+      "detour_tier": "LOW_DETOUR",
+      "distance_bin": "MIDDLE_LOW",
+      "expected_bottlenecks": 37.0,
+      "expected_turns": 13.0,
+      "frozen_bin_detour_thresholds": [
+        3.0869745325651587,
+        4.242640687119286
+      ],
+      "id": "ultra_dev00",
+      "shortest_grid_distance": 36,
+      "task_info": {
+        "goal_ij": [
+          17,
+          3
+        ],
+        "goal_xy": [
+          8,
+          64
+        ],
+        "init_ij": [
+          13,
+          15
+        ],
+        "init_xy": [
+          56,
+          48
+        ],
+        "task_name": "ultra_dev20261016_00"
+      }
+    },
+    {
+      "degree2_corridor_fraction": 0.972972972972973,
+      "detour_ratio": 2.7610739598505334,
+      "detour_tier": "LOW_DETOUR",
+      "distance_bin": "MIDDLE_LOW",
+      "expected_bottlenecks": 37.0,
+      "expected_turns": 15.0,
+      "frozen_bin_detour_thresholds": [
+        3.0869745325651587,
+        4.242640687119286
+      ],
+      "id": "ultra_dev01",
+      "shortest_grid_distance": 36,
+      "task_info": {
+        "goal_ij": [
+          14,
+          17
+        ],
+        "goal_xy": [
+          64,
+          52
+        ],
+        "init_ij": [
+          1,
+          18
+        ],
+        "init_xy": [
+          68,
+          0
+        ],
+        "task_name": "ultra_dev20261016_01"
+      }
+    },
+    {
+      "degree2_corridor_fraction": 0.9459459459459459,
+      "detour_ratio": 11.384199576606164,
+      "detour_tier": "HIGH_DETOUR",
+      "distance_bin": "MIDDLE_LOW",
+      "expected_bottlenecks": 37.0,
+      "expected_turns": 9.0,
+      "frozen_bin_detour_thresholds": [
+        3.0869745325651587,
+        4.242640687119286
+      ],
+      "id": "ultra_dev02",
+      "shortest_grid_distance": 36,
+      "task_info": {
+        "goal_ij": [
+          15,
+          8
+        ],
+        "goal_xy": [
+          28,
+          56
+        ],
+        "init_ij": [
+          14,
+          5
+        ],
+        "init_xy": [
+          16,
+          52
+        ],
+        "task_name": "ultra_dev20261016_02"
+      }
+    },
+    {
+      "degree2_corridor_fraction": 0.972972972972973,
+      "detour_ratio": 4.365641250653994,
+      "detour_tier": "HIGH_DETOUR",
+      "distance_bin": "MIDDLE_LOW",
+      "expected_bottlenecks": 37.0,
+      "expected_turns": 14.0,
+      "frozen_bin_detour_thresholds": [
+        3.0869745325651587,
+        4.242640687119286
+      ],
+      "id": "ultra_dev03",
+      "shortest_grid_distance": 36,
+      "task_info": {
+        "goal_ij": [
+          11,
+          16
+        ],
+        "goal_xy": [
+          60,
+          40
+        ],
+        "init_ij": [
+          3,
+          14
+        ],
+        "init_xy": [
+          52,
+          8
+        ],
+        "task_name": "ultra_dev20261016_03"
+      }
+    },
+    {
+      "degree2_corridor_fraction": 0.9705882352941176,
+      "detour_ratio": 4.679482981656174,
+      "detour_tier": "LOW_DETOUR",
+      "distance_bin": "MIDDLE_HIGH",
+      "expected_bottlenecks": 68.0,
+      "expected_turns": 21.0,
+      "frozen_bin_detour_thresholds": [
+        4.925937968028512,
+        6.1941521911817246
+      ],
+      "id": "ultra_dev04",
+      "shortest_grid_distance": 67,
+      "task_info": {
+        "goal_ij": [
+          11,
+          17
+        ],
+        "goal_xy": [
+          64,
+          40
+        ],
+        "init_ij": [
+          5,
+          4
+        ],
+        "init_xy": [
+          12,
+          16
+        ],
+        "task_name": "ultra_dev20261016_04"
+      }
+    },
+    {
+      "degree2_corridor_fraction": 0.9264705882352942,
+      "detour_ratio": 4.315849396885566,
+      "detour_tier": "LOW_DETOUR",
+      "distance_bin": "MIDDLE_HIGH",
+      "expected_bottlenecks": 68.0,
+      "expected_turns": 26.0,
+      "frozen_bin_detour_thresholds": [
+        4.925937968028512,
+        6.1941521911817246
+      ],
+      "id": "ultra_dev05",
+      "shortest_grid_distance": 67,
+      "task_info": {
+        "goal_ij": [
+          11,
+          2
+        ],
+        "goal_xy": [
+          4,
+          40
+        ],
+        "init_ij": [
+          7,
+          17
+        ],
+        "init_xy": [
+          64,
+          24
+        ],
+        "task_name": "ultra_dev20261016_05"
+      }
+    },
+    {
+      "degree2_corridor_fraction": 0.9411764705882353,
+      "detour_ratio": 6.3028298181701015,
+      "detour_tier": "HIGH_DETOUR",
+      "distance_bin": "MIDDLE_HIGH",
+      "expected_bottlenecks": 68.0,
+      "expected_turns": 21.0,
+      "frozen_bin_detour_thresholds": [
+        4.925937968028512,
+        6.1941521911817246
+      ],
+      "id": "ultra_dev06",
+      "shortest_grid_distance": 67,
+      "task_info": {
+        "goal_ij": [
+          17,
+          10
+        ],
+        "goal_xy": [
+          36,
+          64
+        ],
+        "init_ij": [
+          9,
+          17
+        ],
+        "init_xy": [
+          64,
+          32
+        ],
+        "task_name": "ultra_dev20261016_06"
+      }
+    },
+    {
+      "degree2_corridor_fraction": 0.9411764705882353,
+      "detour_ratio": 6.1941521911817246,
+      "detour_tier": "HIGH_DETOUR",
+      "distance_bin": "MIDDLE_HIGH",
+      "expected_bottlenecks": 68.0,
+      "expected_turns": 20.0,
+      "frozen_bin_detour_thresholds": [
+        4.925937968028512,
+        6.1941521911817246
+      ],
+      "id": "ultra_dev07",
+      "shortest_grid_distance": 67,
+      "task_info": {
+        "goal_ij": [
+          17,
+          7
+        ],
+        "goal_xy": [
+          24,
+          64
+        ],
+        "init_ij": [
+          11,
+          16
+        ],
+        "init_xy": [
+          60,
+          40
+        ],
+        "task_name": "ultra_dev20261016_07"
+      }
+    }
+  ],
+  "checkpoint_archive_sha256": "c7f20e023444e1d417be33e854cb6e53b0d0428a712dfb2b034731e6b3ed24b6",
+  "horizon": 2800,
+  "inference_steps": 16,
+  "old_pairs_and_official_task_pairs_excluded": true,
+  "one_map_only": true,
+  "policies": {
+    "BoN": {
+      "id": "pointmaze_62b6fd3f55267da3",
+      "multipliers": [],
+      "steps": []
+    },
+    "Dense": {
+      "id": "pointmaze_83d22e722af412e2",
+      "multipliers": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "steps": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14
+      ]
+    },
+    "K5": {
+      "id": "pointmaze_e7f4f4b370911f51",
+      "multipliers": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "steps": [
+        2,
+        4,
+        8,
+        12,
+        14
+      ]
+    },
+    "Paper": {
+      "id": "pointmaze_85483e89b1ca208b",
+      "multipliers": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "steps": [
+        4,
+        8,
+        12
+      ]
+    }
+  },
+  "recur_steps": 6,
+  "requires_TPU_port_and_budget": true,
+  "seeds": [
+    2026101601,
+    2026101602
+  ],
+  "source_policy_manifest_sha256": "6d8465caa93042d131d322e6b6037f962b546a31c690694dc3b1755218418d32",
+  "source_training_horizon": 2000,
+  "status": "GEOMETRY_ONLY_FROZEN_NO_INFERENCE",
+  "success_20_80pct": "heuristic only; policy discordance/precision gate also required",
+  "success_primary": "environment success"
+}
