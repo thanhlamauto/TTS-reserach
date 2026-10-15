@@ -14,7 +14,7 @@ def write(n,x):
 def csvout(n,rows):
  p=HERE/n;p.parent.mkdir(parents=True,exist_ok=True)
  import io
- s=io.StringIO();w=csv.DictWriter(s,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
+ s=io.StringIO();w=csv.DictWriter(s,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
  if p.exists():assert p.read_text()==s.getvalue().replace('\r\n','\n')
  else:p.write_text(s.getvalue())
 def append_event(x):
