@@ -2,7 +2,7 @@ section,requirement,status,evidence,limit
 1,fixed offline compiler scope,PARTIAL,preregistered_config.json; immutable_policy_hashes.json,No deployed controller or method winner
 2,read original evidence and preserve work on separate branch,PASS,STATE.md; evidence/input_manifest.json; evidence/report_deduplication.json,Historical aliases deduplicated; user files untouched
 3,TPU-only budget and billing verified before launch,BLOCKED,evidence/remote_preflight.json; logs/accelerator_gate_check.log,"Billing API disabled, remaining allocation absent; no accelerator launched"
-3,"40percent reserve, port subcap, deadline, cumulative kill guard",CPU_TESTED_NOT_ACCELERATOR_VALIDATED,budget_guard.py; logs/CPU_unit_tests.log,9 CPU tests; no VM shutdown authority
+3,"40percent reserve, port subcap, deadline, cumulative kill guard",CPU_TESTED_NOT_ACCELERATOR_VALIDATED,budget_guard.py; logs/CPU_interruption_tests.log,12 CPU tests incl actual interruption; independent worker deadline; no TPU parity claim
 4,denoiser/neural verifier TPU correctness and timing,NOT_RUN,reward_tpu_gate.py; reward_golden_manifest.json,Legacy CPU verifier is incompatible; new gate pending allocation
 4,real adapter temperature/history/SSP/RNG CPU semantics,PASS_CPU_ONLY,evidence/cpu_semantics_test.json,Not CPU–TPU parity
 4,cache and sibling-branch replay,PARTIAL,selector_baselines.py; logs/CPU_unit_tests.log,"Cache identity tests pass, full trajectory parity not tested"

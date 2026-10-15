@@ -24,4 +24,34 @@ class GuardTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    r=Path(d);self.auth(r);(r/'KILL_SWITCH').touch()
    with self.assertRaises(PermissionError):g.reserve(r,'exploration',30,4)
+
+class InterruptionTests(unittest.TestCase):
+ def test_invalid_numbers_are_denied(self):
+  for value in [float('nan'),float('inf'),True]:
+   with tempfile.TemporaryDirectory() as d:
+    r=Path(d);r.joinpath('authorization.json').write_text(json.dumps({'human_authorized':True,'billing_conditions_verified':True,'authorization_reference':'CPU_TEST_ONLY','GPU_budget':0,'remaining_authorized_chip_hours':value}))
+    with self.assertRaises(PermissionError):g.authorize(r)
+  with tempfile.TemporaryDirectory() as d:
+   with self.assertRaises(ValueError):g.reserve(Path(d),'SD15_smoke',float('nan'),4)
+ def test_worker_own_deadline_needs_no_supervisor(self):
+  import subprocess,sys,time,signal
+  program="import time; from budget_guard import arm_child_deadline; arm_child_deadline({'deadline_unix':time.time()+2.3}); time.sleep(20)"
+  started=time.monotonic();run=subprocess.run([sys.executable,'-c',program],cwd=Path(__file__).parent,timeout=3)
+  self.assertEqual(run.returncode,-signal.SIGALRM);self.assertLess(time.monotonic()-started,3)
+ def test_sigterm_reaps_worker_and_records_ledger(self):
+  import subprocess,sys,time,signal,os,shutil
+  with tempfile.TemporaryDirectory() as d:
+   r=Path(d);GuardTests().auth(r);guard=r/'budget_guard.py';shutil.copyfile(Path(__file__).with_name('budget_guard.py'),guard)
+   worker=r/'reward_tpu_gate.py';worker.write_text("import os,time\nfrom pathlib import Path\nPath(__file__).with_name('child.pid').write_text(str(os.getpid()))\ntime.sleep(60)\n")
+   parent=subprocess.Popen([sys.executable,str(guard),'--root',str(r),'--phase','SD15_smoke','--max-seconds','20','--entrypoint',str(worker)],stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+   try:
+    end=time.monotonic()+4
+    while not (r/'child.pid').exists() and time.monotonic()<end:time.sleep(.02)
+    self.assertTrue((r/'child.pid').exists());child=int((r/'child.pid').read_text());parent.send_signal(signal.SIGTERM);parent.communicate(timeout=4)
+    self.assertNotEqual(parent.returncode,0)
+    with self.assertRaises(ProcessLookupError):os.kill(child,0)
+    rows=g.history(r);self.assertEqual(rows[-1]['event'],'COMPLETE');self.assertEqual(rows[-1]['reason'],'interrupted_by_signal');self.assertGreater(g.used(rows),0)
+   finally:
+    if parent.poll() is None:parent.kill();parent.communicate()
+
 if __name__=='__main__':unittest.main()

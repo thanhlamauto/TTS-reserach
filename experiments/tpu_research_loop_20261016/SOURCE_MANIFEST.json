@@ -1,11 +1,11 @@
 {
   "files": {
-    "budget_guard.py": "51ceb5bae53698d03d4eaa773d56f77454fec3938958fad2b036eeb82d1f3fa2",
+    "budget_guard.py": "51915b36533a8c008cd56d41c74c6b6b614e2cf5786bcf275430dd44fd897e03",
     "selector_baselines.py": "823e386f37fd37b53a07bcf3b163413207c06fa84a02282945e0a4ae851fecc8",
     "offline_loop.py": "9100514eedeadb5cbfe9c8c614465b62888a8bf9251691bffd0ed6a30e66f7e2",
-    "reward_tpu_gate.py": "baeb8b07b532beb7ed4568bbb2aecb931a7f1716125a228a9c7a1159408c41f5",
+    "reward_tpu_gate.py": "7fb2a3d61df667ea774b5200d6bdedfced44ece19c326c51df61023f1c75a59a",
     "test_selector_baselines.py": "da133697f783fa168a9b0fad1aa7083d773754772b436b8ba39c6a585bba6eb7",
-    "test_budget_guard.py": "80b801394bd4f85290a48f330012490dc3eec8844c7e9f98545f77e42518e243",
+    "test_budget_guard.py": "580b0c43a75c47ce91a428973bc54e9498987b66a496550d678cebe0c438598f",
     "cpu_semantics_test.py": "a550cc6d3c7b0171f8dc434f4bff715f483fef3f5968e2377567a3eebf5bc6d5",
     "ultra_development_manifest.json": "8c9f77e99a645ede683bee46373e22fb5558d7eada3d736d085fc12fe6c8caf4",
     "reward_golden_manifest.json": "709610041b6e0028a93a95a451f716a4cfdd4e7cbacb75f40e5542fe1dad1319",
@@ -17,10 +17,10 @@
     "diagnostic_decision.json": "727c660eb838062faab674bfb03be9f2e5a59af462feceac61c96dcb343cf79f",
     "split_manifest.json": "331abf1841eb148f521285fe9895cea1e52bdb7f20f50e9671fd7ff14f0ed1e7",
     "covered_bank_graph_manifest.json": "ce428711e374f0c5304c8145008c12b2e74d1cee5ace8a90a73694b28f51ad91",
-    "STATE.md": "22bc486a2e86414a938e571b785708de9951b6c180e19d9750d737aff945054f",
+    "STATE.md": "f3b884434134d0211615e9fe32e90e4c5d96c6de5ea2bf4d3e4a17820fc36a91",
     "THEORY.md": "6868180f487d53ea164aa65cc4b3e5875343408251b7c37b498762eaca75a935",
-    "FINAL_REPORT.md": "52ed20c41de9b165dbd9536190ed50ecb31f57e821abf42c663fbcfe9401f983",
-    "RESUME.md": "37f6bb6d68cd376d620a52e5e2171388d6424932e168ca6bec6c23f58d7ad31f"
+    "FINAL_REPORT.md": "cd355dcba29cac81b93526c043c22a561fa5889e8991226ba7f8a842baa73091",
+    "RESUME.md": "17a0f924a63a47f9d3bfa270e86b407244a40033603acb403c5374791092dcbf"
   },
   "new_GPU_hours": 0,
   "new_TPU_chip_hours": 0,

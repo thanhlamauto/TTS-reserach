@@ -4,11 +4,12 @@ import argparse,hashlib,json,os,sys,time
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--root',type=Path,required=True);p.add_argument('--golden-manifest',type=Path,required=True);p.add_argument('--dcs-root',type=Path,default=Path('/home/thanhlamtba31/static-bfs-dcs'));a=p.parse_args()
- from budget_guard import authorize,history
+ from budget_guard import authorize,history,arm_child_deadline
  authorize(a.root)
  leases=history(a.root)
  active=[r for r in leases if r['event']=='RESERVE' and r['phase']=='SD15_smoke' and r['deadline_unix']>time.time() and not any(x['event']=='COMPLETE' and x['job_id']==r['job_id'] for x in leases)]
  if len(active)!=1:raise PermissionError('must execute under exactly one active budget_guard lease')
+ arm_child_deadline(active[0])
  assert os.environ.get('PJRT_DEVICE')=='TPU' and os.environ.get('TPU_VISIBLE_CHIPS')=='0'
  import numpy as np,torch
  import torch_xla.core.xla_model as xm
