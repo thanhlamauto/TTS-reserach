@@ -1,0 +1,48 @@
+{
+  "actual_new_tpu_denoising_steps": 0,
+  "blocker": {
+    "anonymous_head_status": 401,
+    "error_code": "GatedRepo",
+    "repo": "facebook/dinov3-vitb16-pretrain-lvd1689m",
+    "revision": "5931719e67bbdb9737e363e781fb0c67687896bc",
+    "token_persisted": false,
+    "user_token_head_status": 403
+  },
+  "code_sha256": "8422a9a46b6487484136c7622154db45bfea7837c9c6fcb32c923758fe453ca0",
+  "implementation": "independent_reimplementation",
+  "new_gpu_jobs": 0,
+  "original_package_available": false,
+  "pretrained_encoder_gradient_preflight": false,
+  "pretrained_sd15_run": false,
+  "quality_improvement_claim": false,
+  "real_xla_replay": false,
+  "runtime": {
+    "device": "cpu",
+    "packages": {
+      "Pillow": "12.0.0",
+      "PyYAML": "6.0.3",
+      "numpy": "2.3.4",
+      "pytest": "8.4.2",
+      "torch": "2.8.0"
+    },
+    "python": "3.13.7 (main, Aug 14 2025, 11:12:11) [Clang 17.0.0 (clang-1700.0.13.3)]"
+  },
+  "synthetic_demo": {
+    "all_replay_passed": true,
+    "code_unchanged_during_demo": true,
+    "configurations": 9,
+    "jobs": 36,
+    "paired_replay_cases": 4,
+    "prompts": 2,
+    "scored_p1_previews_shared_with_controls": true,
+    "suffix_replicates": 2,
+    "unique_jobs": true
+  },
+  "unit_tests": {
+    "command": "PYTHONPATH=. <isolated-python> -m pytest -q",
+    "failed": 0,
+    "observed_stdout": "41 passed in 2.73s",
+    "passed": 41,
+    "seconds": 2.73
+  }
+}

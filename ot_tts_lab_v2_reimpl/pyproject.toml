@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ot-tts-lab-reimplementation"
+version = "0.1.0"
+description = "Independent implementation of the supplied OT-TTS v2 specification"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.4", "numpy>=1.26", "PyYAML>=6", "Pillow>=10"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["otlab*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

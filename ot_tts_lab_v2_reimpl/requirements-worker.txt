@@ -1,0 +1,8 @@
+# Install into a NEW CPU worker environment, never the frozen XLA sampler env.
+torch==2.8.0
+torchvision==0.23.0
+transformers==4.56.2
+diffusers==0.35.1
+numpy==2.3.4
+PyYAML==6.0.3
+Pillow==12.0.0

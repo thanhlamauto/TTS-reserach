@@ -1,0 +1,10 @@
+device: cpu
+cpu_threads: 4
+local_files_only: true
+feature_microbatch: 1
+vae:
+  model_id: /home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14
+  identity: runwayml/stable-diffusion-v1-5@451f4fe16113bff5a5d2269ed5ad43b0592e9a14/vae
+encoder:
+  model_id: facebook/dinov3-vitb16-pretrain-lvd1689m
+  revision: 5931719e67bbdb9737e363e781fb0c67687896bc

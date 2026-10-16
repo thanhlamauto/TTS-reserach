@@ -1,0 +1,51 @@
+{
+  "package": "ot-tts-lab",
+  "version": "0.2.0",
+  "tested_runtime": {
+    "python": "3.13.5",
+    "torch": "2.10.0+cpu",
+    "device": "CPU",
+    "cuda_available": false
+  },
+  "unit_tests": {
+    "passed": 41,
+    "failed": 0,
+    "output": ".........................................                                [100%]\n41 passed in 0.76s"
+  },
+  "synthetic_end_to_end": {
+    "jobs_completed": 36,
+    "trial_configurations": 9,
+    "prompts": 2,
+    "suffix_replicates": 2,
+    "status": "PASS",
+    "source": "otlab.cli demo"
+  },
+  "compile_and_cli_help": "PASS",
+  "tests_cover": [
+    "Sinkhorn marginals",
+    "self-divergence and both self gradients",
+    "finite-difference envelope gradient",
+    "weighted unequal-mass 1D OT",
+    "feature two-pass VJP",
+    "orthonormal block projection",
+    "post-BF16 trust bound",
+    "exact allocation vs brute force",
+    "no-op/quality guard",
+    "shared noise",
+    "leakage/stale clean rejection",
+    "terminal pooling ties",
+    "prompt bootstrap",
+    "selector uniqueness"
+  ],
+  "not_executed": [
+    "real DINOv3 checkpoint",
+    "real SigLIP 2 checkpoint",
+    "real DreamSim/PickScore models",
+    "pretrained VAE+encoder end-to-end",
+    "SD1.5 pretrained sampling",
+    "TPU/XLA integration",
+    "FLUX adapter"
+  ],
+  "integration_remaining": "Map advance/predict_clean/score plus counters to the existing frozen sampler; export actual current-checkpoint clean predictions and noise tapes.",
+  "research_claim": "No improvement in real reward/diversity has been measured by this package release."
+}

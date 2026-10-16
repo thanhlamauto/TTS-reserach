@@ -1,0 +1,25 @@
+{
+  "inputs": [
+    {
+      "source": "/Users/nguyenthanhlam/Documents/INTEGRATION_VI.md",
+      "copied_to": "INTEGRATION_VI.md",
+      "sha256": "78f74844c243430450643c4ba774c4476585d0eeb2f56c3a506ec1b5429407cc"
+    },
+    {
+      "source": "/Users/nguyenthanhlam/Documents/README_VI (1).md",
+      "copied_to": "README_VI.md",
+      "sha256": "086805643cd8c5500e0240dba468f734848c4e3a9955821c1cf72d3c2993ce9c"
+    },
+    {
+      "source": "/Users/nguyenthanhlam/Documents/SWEEP_PLAYBOOK.md",
+      "copied_to": "SWEEP_PLAYBOOK.md",
+      "sha256": "3976ebf58e7f4d74a4e7d4518d29c918975203e9a289cdc0ee5f598ddd363904"
+    },
+    {
+      "source": "/Users/nguyenthanhlam/Documents/TEST_STATUS.json",
+      "copied_to": "SUPPLIED_TEST_STATUS.json",
+      "sha256": "d47e99d1d5c52b50f9e4fa1f1ce7962435ffe898a9d9793e1ee68bc71cb904c2"
+    }
+  ],
+  "note": "User-supplied specification and unverified original-release test claims; not new results"
+}
