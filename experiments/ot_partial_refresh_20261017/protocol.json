@@ -4,6 +4,8 @@
   "allocated_physical_chips": 4,
   "antithetic_factorial": "NOT_OPENED",
   "calibration_is_implementation_choice": true,
+  "cold_aux_unet_nfe": 24,
+  "cold_sampling_nfe": 2400,
   "dcs_root": "/home/thanhlamtba31/static-bfs-dcs",
   "distance_scale": "median positive donor-donor cosine distance, floor1e-6; no column-centering",
   "donor_pool": 12,
@@ -21,6 +23,7 @@
   ],
   "no_GPU_no_Modal_no_new_models": true,
   "old_root": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016",
+  "prediction_reuse_status": "FAILED_STRICT_GATE_USE_ORIGINAL_SAMPLER",
   "primary_independent_distance_threshold": null,
   "primary_quality_threshold": null,
   "quality_diversity_selector": null,
@@ -41,6 +44,7 @@
     "R1_ENGINEERING_SMOKE"
   ],
   "survive": 18,
+  "transition_mode": "original_fused_recompute",
   "visible_chips": "0",
   "wall_cap_seconds": 3600
 }

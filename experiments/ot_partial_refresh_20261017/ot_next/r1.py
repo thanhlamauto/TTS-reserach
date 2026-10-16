@@ -85,8 +85,18 @@ def execute(adapter, features, config, output, merge_distance, status):
         checkpoint = adapter.advance(initial,0,40,ids,tape)
     torch.save(dict(initial=initial,checkpoint=checkpoint,noise_seed=noise_seed,
                     tape_sha=tensor_sha(tape.variance_noise),next_index=40),output/'prefix.pt')
+    if config.get('transition_mode')!='original_fused_recompute':
+        raise RuntimeError('cached-prediction optimization did not pass exactness; use frozen original transition')
+    status('R1_original_full_replay_gate')
+    trusted,checkpoints,_=adapter.sampler.run(adapter.prompt,initial[:4],start=0,checkpoints=(40,),noise_seed=noise_seed)
+    adapter.counters['original_full_replay_sample_steps']+=400
+    adapter.counters['unet_cfg_branch_sample_evaluations']+=800
+    if not torch.equal(checkpoint[:4],checkpoints[40]):
+        raise RuntimeError('new keyed prefix differs from original sampler.run prefix')
     status('R1_event_prediction')
-    eps, clean = prediction(adapter,checkpoint,40)
+    # Safe compatibility path: use the existing preview evaluator and ORIGINAL
+    # fused transition after donor copy. Charge24 auxiliary UNet evaluations.
+    clean=adapter.predict_clean(checkpoint,40)
     proxy, rgb = adapter.score(clean,'proxy')
     dino = features.encode(rgb,'R1_event40')
     rng = np.random.default_rng(np.random.SeedSequence([seed,prompt_id,40,7341]))
@@ -94,40 +104,27 @@ def execute(adapter, features, config, output, merge_distance, status):
     common, methods = allocate(proxy.numpy(),dino.numpy(),merge_distance,1.,uniforms)
     common.update(event_next_index=40,state_after_updates=40,innovation_first_applied_index=40,
                   prefix_seed=seed,source_slots=list(ids),noise_key='historical per-step + child-slot microbatch',
-                  donor_state_copy=True,donor_prediction_copy=True,latent_interpolation=False,
+                  donor_state_copy=True,donor_prediction_copy=False,correct_donor_prediction_recomputed=True,
+                  cached_prediction_optimization_passed=False,transition_mode=config['transition_mode'],
+                  latent_interpolation=False,
                   encoder_gradient=False,external_bank=False,merge_distance=merge_distance)
     atomic_json(output/'allocation.json',dict(common=common,methods=methods))
-    torch.save(dict(eps=eps,clean=clean,rgb=rgb,reward=proxy,features=dino),output/'event.pt')
-    # Single unconditional no-op state/prediction reuse gate on the exact tape.
-    replay_before = dict(adapter.counters)
-    direct41 = adapter.advance(checkpoint[:4],40,41,ids[:4],tape)
-    reused41 = transition(adapter,checkpoint[:4],eps[:4],40,tape.at(40,ids[:4]))
-    atomic_json(output/'no_op_replay_partial.json',dict(bitwise=torch.equal(direct41,reused41),
-        max_abs=float((direct41.float()-reused41.float()).abs().max()),
-        differing_values=int((direct41!=reused41).sum()),values=direct41.numel(),
-        raw_prediction_dtype=str(eps.dtype),prediction_contract='native BF16 UNet unconditional+conditional outputs'))
-    if not torch.equal(direct41,reused41):
-        raise RuntimeError('cached epsilon transition is not exact')
-    # Copy/reorder test includes a donor different from every source being replaced.
-    parents = methods['partial_ot']['parent_ids']
-    replaced = common['replaced']
-    check_parents = [parents[i] for i in replaced[:4]]
-    check_noise = tape.at(40,replaced[:4])
-    donor_direct = adapter.advance(checkpoint[check_parents],40,41,replaced[:4],tape)
-    donor_reused = transition(adapter,checkpoint[check_parents],eps[check_parents],40,check_noise)
-    if not torch.equal(donor_direct,donor_reused):
-        raise RuntimeError('copied donor prediction/state mismatch')
-    atomic_json(output/'replay_gate.json',dict(passed=True,no_op_bitwise=True,donor_reorder_bitwise=True,
-                gamma_zero_recovers_reward=common['gamma_zero_recovers_reward'],
-                gate_counters={k:v-replay_before.get(k,0) for k,v in adapter.counters.items()}))
+    torch.save(dict(clean=clean,rgb=rgb,reward=proxy,features=dino,
+                    prediction_recomputed_after_donor_copy=True),output/'event.pt')
     rows=[]
     for name,allocation in methods.items():
         start=time.perf_counter()
         status('R1_terminal',method=name)
         parent = allocation['parent_ids']
         method_before=dict(adapter.counters)
-        state41=transition(adapter,checkpoint[parent],eps[parent],40,tape.at(40,ids))
-        terminal=adapter.advance(state41,41,100,ids,tape)
+        terminal=adapter.advance(checkpoint[parent],40,100,ids,tape)
+        if name=='none':
+            if not torch.equal(terminal[:4],trusted):
+                raise RuntimeError('none checkpoint resume differs from original full100 parent')
+            atomic_json(output/'replay_gate.json',dict(passed=True,original_full100_vs_resume_bitwise=True,
+                original_prefix40_bitwise=True,gamma_zero_recovers_reward=True,
+                original_gate_sample_nfe=400,cached_prediction_optimization_passed=False,
+                transition_mode=config['transition_mode'],aux_event_nfe=24))
         reward,terminal_rgb=adapter.score(terminal,'terminal')
         terminal_dino=features.encode(terminal_rgb,name+'_terminal')
         top=torch.argsort(reward,descending=True,stable=True)[:8]
@@ -153,8 +150,9 @@ def execute(adapter, features, config, output, merge_distance, status):
                  top8_clip_diversity=mean_diversity(clip_f[top]),
                  all24_dino_diversity=mean_diversity(terminal_dino),
                  unique_ancestors=len(set(parent)),sibling_pairs=sibling,
-                 nominal_cold_sampling_nfe=2400,aux_unet_nfe=0,
-                 event_prediction_included_in_denoising_nfe=True,
+                 nominal_cold_sampling_nfe=2400,aux_unet_nfe=24,total_cold_nfe=2424,
+                 event_prediction_included_in_denoising_nfe=False,
+                 transition_mode=config['transition_mode'],cached_prediction_optimization_passed=False,
                  current_job_counters={k:v-method_before.get(k,0) for k,v in adapter.counters.items()},
                  shared_prefix_cold_wall_measured=False,elapsed_seconds=time.perf_counter()-start,
                  primary_good_distinct='NOT_EVALUATED_THRESHOLDS_UNSET',
@@ -179,6 +177,7 @@ def execute(adapter, features, config, output, merge_distance, status):
             raise RuntimeError('unchanged survivor trajectory drifted')
     result=dict(passed=True,rows=rows,prompts=1,prefix_seeds=1,
                 engineering_only=True,scientific_winner=None,unchanged18survivors_bitwise=True,
+                transition_mode=config['transition_mode'],cached_prediction_optimization_passed=False,
                 all_counters={k:v-before.get(k,0) for k,v in adapter.counters.items()},
                 future_antithetic_or_sweep='NOT_RUN')
     atomic_json(output/'COMPLETE.json',result)
