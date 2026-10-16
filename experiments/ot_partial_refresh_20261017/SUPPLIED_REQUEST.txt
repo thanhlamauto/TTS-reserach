@@ -1,0 +1,448 @@
+Đợt tiếp theo nên đổi từ “sửa nhẹ tất cả source” sang “chọn trạng thái nào đáng tiếp tục, cấp bao nhiêu nhánh cho nó, và học từ kết quả hoàn chỉnh”. OT chỉ nên giữ vai trò ở những quyết định mà nó thực sự có thể thay đổi kết quả.
+Nên triển khai theo ba hướng, không mở cả ba thành một sweep lớn:
+Hướng	Thay đổi cốt lõi	Ưu tiên
+R1 — Partial refresh + coverage-aware OT	Giữ phần lớn population; thay các particle kém bằng nhánh từ những nhóm tốt còn thiếu	Triển khai chính trước
+R2 — Terminal-feedback branching	Học khả năng thành công của từng checkpoint từ các continuation đã hoàn thành	Khi reward preview hoặc proposal hiện tại không đủ tốt
+R3 — Kernel Poisson reward transport	Xây dựng velocity để thực hiện reward reweighting, không tối thiểu khoảng cách tới bank	Nhánh nghiên cứu riêng, bắt đầu trên bài toán nhỏ
+
+
+Thêm một ablation ít thay đổi code: antithetic noise giữa các nhánh cùng parent, để kiểm tra có tăng độ đa dạng mà không tăng số denoising steps hay không.
+Các cấu hình bên dưới là đề xuất thí nghiệm, chưa có kết quả chứng minh hiệu quả trên hệ thống của bạn.
+1. Trước hết, phải xác định đúng thứ đang thất bại
+Pilot hiện tại cho thấy P1 OT, independent và greedy chọn đúng cùng states/endpoints. P2 chưa tạo ảnh vì solver không đạt tolerance; các nhánh phía sau chưa chạy. Vì vậy, chưa thể gộp “selector không tạo khác biệt” với “feature-space transport không hiệu quả” thành một kết luận chung.    REPORT    REPORT
+Một điểm quan trọng về triển khai: report nói đây là bản tái dựng độc lập từ mô tả, không phải chạy trực tiếp package trước. Các thay đổi tiếp theo phải gắn vào source thực sự đã chạy, không giả định các logger, solver hoặc adapter trong package cũ đã có mặt.    REPORT
+Thí nghiệm E0: hoàn thành “trần của proposal”
+Có 16 edit proposals, trong đó sáu edit đã được chọn và có terminal endpoint. Như vậy còn mười edit cần hoàn thành để biết proposal tốt nhất thực sự là gì.    REPORT
+Nếu xác nhận preview state nằm đúng tại index54:
+\[
+\text{Chi phí bổ sung}
+=
+10(100-54)
+=
+\boxed{460\text{ sample-NFE}},
+\]
+chưa tính auxiliary evaluations thực tế nếu có.
+Sau đó đo ba thứ:
+Phép đo	Câu hỏi được trả lời
+Oracle một output/source	Trong ba lựa chọn của từng source, có lựa chọn nào thực sự tốt hơn đáng kể không?
+Oracle bỏ ràng buộc một output/source	Việc buộc giữ đủ tám source có đang làm mất cơ hội chọn kết quả tốt?
+Preview gain so với terminal gain	Lookahead có chọn đúng chỉnh sửa không?
+
+
+Với một output/source, tối đa chỉ có \(3^8=6561\) tổ hợp. Có thể kiểm tra reward–diversity trên các terminal outcomes đã lưu mà không thêm denoising.
+Oracle chỉ dùng để chẩn đoán, không được báo như thuật toán inference.
+Đồng thời, lưu nhãn nhóm của từng proposal hợp lệ:
+\[
+\chi=
+\frac1N\sum_i
+\mathbf1\left\{
+\text{proposal của source }i
+\text{ thuộc nhiều hơn một nhóm}
+\right\}.
+\]
+Nếu \(\chi=0\), diversity penalty theo group count là hằng số dưới ràng buộc một output/source. Khi ấy tăng penalty không giúp OT khác independent.
+Quyết định sau E0
+Kết quả	Việc cần thay
+Oracle cũng gần none	Cách sinh proposal
+Oracle tốt nhưng selector thực chọn kém	Reward preview hoặc utility
+Bỏ ràng buộc một/source giúp rõ	Cách phân bổ nhánh
+Có proposal tốt và khác nhau, selector OT vẫn kém	Objective/capacity của OT
+
+
+Đây là phép thử nên làm trước mọi campaign mới.
+2. R1 — Giữ phần lớn population, dùng OT phân bổ các nhánh thay thế
+2.1. Vì sao ưu tiên hướng này?
+Thiết kế cũ yêu cầu mỗi source tự cải thiện bằng một chỉnh sửa nhỏ. R1 cho phép:
+\[
+\boxed{
+\text{source kém nhận 0 nhánh tiếp theo;}
+\quad
+\text{parent tốt nhận nhiều hơn 1 nhánh.}
+}
+\]
+Nhưng không resample toàn bộ population ở mỗi event. Ban đầu chỉ thay 25%.
+Đây không phải ý tưởng hoàn toàn mới: nghiên cứu về particle resampling đã xem xét lineage collapse và cách kiểm soát offspring counts. Đáng chú ý, bản hiện tại của bài từng mang tên FVD đã đổi thành VASR, nghiên cứu systematic resampling và phân bổ mass; cần dùng đúng phiên bản khi chọn baseline. arXiv
+Phần cần chứng minh riêng của R1 là geometry giúp phân bổ các nhánh mới tốt hơn reward-only hoặc group-stratified selection, chứ không chỉ chứng minh thay ít particle giữ diversity tốt hơn thay tất cả.
+2.2. Setup đầu tiên
+Giữ backend hiện tại, không đổi encoder hay sampler:
+Thành phần	Cấu hình đề xuất
+Model/sampler	SD1.5, DDIM100, eta=1, CFG7.5
+Population	24 particle online, không thêm reference bank
+Output	8 ảnh chọn từ 24 terminal candidates
+Event đầu tiên	Index40
+Replacement	6 particle thấp điểm nhất
+Survivors	18 particle còn lại
+Donor pool	Top12 theo reward proxy
+Geometry	DINOv2 global feature của predicted-clean image
+Gradient qua encoder/VAE	Không
+Latent interpolation	Không
+
+
+Backend này giữ đúng setup đã có bằng chứng replay trong report.    REPORT
+Tại index40, tính UNet prediction và predicted-clean image đúng của state hiện tại. Dùng chúng để chấm reward và lấy DINO feature.
+Khi chọn donor, copy nguyên state và prediction tương ứng, sau đó chạy DDIM transition với noise riêng cho mỗi child. Không dùng prediction của source đã bị thay.
+2.3. OT phân bổ vào những nhóm đang thiếu
+Tạo tối đa bốn medoid từ donor pool đủ tốt. Nếu các medoid quá giống nhau thì merge; không ép mọi prompt phải có bốn mode.
+Gọi \(s_g\) là số survivor trong nhóm \(g\). Một demand đơn giản cho các slot thay thế là:
+\[
+d_g=\left[\frac{24}{G}-s_g\right]_+,
+\qquad
+\alpha_g=\frac{d_g}{\sum_h d_h}.
+\]
+Ở đây \(G\) là số nhóm thực sau merge.
+Ví dụ, nếu các survivor đã tập trung nhiều vào một kiểu bố cục, phần demand sẽ ưu tiên những nhóm tốt khác còn thiếu.
+Hàng của OT lúc này là “nhóm output cần bổ sung”, không phải danh tính của source đã bỏ. Điều này tránh lỗi thiết kế trước: tính coupling với một source rồi xóa source đó, khiến thông tin ghép cặp không còn tác dụng.
+2.4. Dùng semi-relaxed OT, không cần iterative Sinkhorn
+Gọi:
+- \(D_{gi}\): distance từ anchor nhóm \(g\) tới donor \(i\);
+- \(\ell_i\): reward logit đã chuẩn hóa;
+- \(u_i\): uniform mass trên donor pool.
+Giải:
+\[
+\min_{P\ge0}
+\sum_{g,i}P_{gi}(\gamma D_{gi}-\ell_i)
++
+\varepsilon\,\mathrm{KL}(P\|\alpha\otimes u),
+\]
+với:
+\[
+P\mathbf1=\alpha,
+\qquad
+\boxed{\text{target marginal được tự do}.}
+\]
+Bài toán này có nghiệm đóng:
+\[
+\boxed{
+P_{gi}
+=
+\alpha_g
+\frac{
+u_i\exp[(\ell_i-\gamma D_{gi})/\varepsilon]
+}{
+\sum_j u_j\exp[(\ell_j-\gamma D_{gj})/\varepsilon]
+}.
+}
+\]
+Sau đó:
+\[
+b_i=\sum_gP_{gi}
+\]
+là xác suất cấp nhánh cho donor \(i\).
+Dùng residual resampling từ \(b\) để chọn sáu donor. Với bốn anchor và 12 donor, đây chỉ là một ma trận \(4\times12\).
+Không có lời hứa rằng thêm chữ OT sẽ tốt hơn. Bản đầu này gần một mixture of local softmax; ưu điểm là objective rõ, dễ kiểm tra, không mắc lại lỗi convergence của Sinkhorn.
+Có hai kiểm tra toán học quan trọng:
+- Khi \(\gamma=0\), thuật toán phải khôi phục reward-only donor weights.
+- Không được double-center cost: target marginal đang tự do, nên column offsets có thể thay đổi chính quyết định chọn donor.
+2.5. Sweep R1 theo thứ tự
+Tham số	Mặc định	Sweep đầu
+Replacement fraction	0,25	Chưa đổi
+Event	40	Chưa đổi
+Geometry strength \(\gamma\)	1	0,3; 1; 3
+Entropy coefficient	1	Cố định
+Số nhóm	Tối đa 4	Merge bằng ngưỡng đã khóa
+Reward-only ESS	Khoảng 50% donor count	Cùng rule cho các control
+
+
+Chuẩn hóa reward và distance bằng cùng quy tắc giữa các phương pháp. Với reward temperature, có thể chọn để reward-only weights có ESS khoảng sáu trong donor pool 12. Nếu reward gần hằng số, không khuếch đại nhiễu bằng cách chia cho standard deviation cực nhỏ.
+Sau khi chọn geometry strength mới thử replacement 0,25/0,5; sau đó mới thêm event60. Không sweep cả ba chiều cùng lúc.
+2.6. Bốn phương pháp cần chạy cùng nhau
+Phương pháp	Khác biệt duy nhất
+none	Không thay particle
+partial_reward	Sáu donor chọn chỉ theo reward
+partial_group	Phân bổ theo nhóm cứng rồi chọn donor theo reward
+partial_ot	Phân bổ bằng semi-relaxed OT
+
+
+Các nhánh partial phải dùng cùng survivor mask, donor pool, reward logits và cách rounding. Như vậy, khác biệt mới phản ánh cách phân bổ.
+Log tối thiểu gồm donor weights, ESS, offspring counts, ancestry, group occupancy trước/sau, và terminal diversity giữa các child cùng parent.
+Nếu OT chỉ tốt hơn none nhưng ngang partial_group, thì chưa có đóng góp riêng của OT.
+3. Ablation ít tốn thêm compute: antithetic noise cho sibling
+Một vấn đề của branching là copy parent tốt nhưng các child vẫn rất giống nhau. Có thể kiểm tra cách thay tương quan giữa các noise, thay vì tăng độ lớn perturbation.
+Với hai child cùng donor:
+\[
+\xi_k^{(1)}=\xi_k,
+\qquad
+\xi_k^{(2)}=-\xi_k,
+\qquad
+\xi_k\sim\mathcal N(0,I).
+\]
+Dùng cho năm bước đầu sau fork, sau đó quay lại noise độc lập.
+Không đổi dấu latent; không tăng eta; không thêm noise ngoài scheduler.
+Vì \(\xi\) và \(-\xi\) có cùng marginal Gaussian, mỗi child vẫn nhận innovation đúng phân phối trước các selection tiếp theo. Tuy nhiên, điều này không bảo đảm post-selection reward hoặc diversity tăng.
+Antithetic noise trong diffusion đã có nghiên cứu trên initial noise và stochastic sampling. Áp dụng vào các continuation cùng parent trong thiết kế này vẫn cần kiểm chứng riêng, không được kế thừa nguyên kết quả của paper. arXiv
+Thí nghiệm \(2\times2\)
+Phân bổ	Noise giữa sibling
+Reward-only	Độc lập
+Reward-only	Antithetic
+OT	Độc lập
+OT	Antithetic
+
+
+Đo pair mean reward, pair best reward và diversity giữa các sibling đạt chất lượng, rồi mới nhìn toàn bộ output.
+Thí nghiệm này tách hai cơ chế:
+\[
+\text{chọn parent tốt hơn}
+\quad\text{và}\quad
+\text{tạo continuation khác nhau hơn}.
+\]
+Nếu antithetic giúp mà OT không giúp, kết luận đúng là lợi ích nằm ở coupling noise.
+Trong DDIM, có thể truyền trực tiếp innovation bằng variance_noise; dùng key theo child slot để tránh hai child vô tình nhận cùng noise tape. Hugging Face
+4. R2 — Học từ terminal outcomes, không chỉ tin reward preview
+R1 vẫn phụ thuộc vào reward của predicted-clean image. Nếu E0 cho thấy preview thường chọn sai, thì nên đổi sang R2 thay vì tiếp tục thêm encoder.
+4.1. Thay bank tĩnh bằng archive của các continuation
+Mỗi node gồm:
+\[
+(\text{prefix hash},\ k,\ x_k).
+\]
+Với node đó, lưu số lần đã chạy continuation, terminal rewards, semantic-success flags và terminal features.
+Câu hỏi mới là:
+“Từ checkpoint này, chạy tiếp bằng noise mới thường tạo ra kết quả tốt đến đâu?”
+
+Đây gần với hướng Diffusion Tree Sampling: tái sử dụng computation và truyền terminal feedback để cải thiện việc lựa chọn các nhánh sau. Vì đã có tiền lệ, không nên coi “tree + terminal reward backup” là novelty của dự án. arXiv
+4.2. Một recipe đúng 2.400 sampling-NFE
+Không cần bắt đầu bằng một MCTS lớn.
+Thành phần	Số lượng	Chi phí
+Initial full trajectories	8 × 100	800
+Continuation từ index40	16 × 60	960
+Continuation từ index20	8 × 80	640
+Tổng	32 terminal images	2.400
+
+
+Sau đó chọn tám output từ pool của chính phương pháp.
+32 ảnh ở đây không phải 32 mẫu độc lập. Lợi thế về số endpoint đến từ tái sử dụng prefix, và có thể bị đánh đổi bằng mất diversity. Auxiliary predictions, reward calls và encoder time vẫn phải tính thêm.
+Có thể thực hiện bốn batch:
+\[
+4@\text{index20}
+\rightarrow
+8@\text{index40}
+\rightarrow
+4@\text{index20}
+\rightarrow
+8@\text{index40}.
+\]
+Chỉ cập nhật archive sau khi cả batch đã hoàn thành. Cấu trúc batch này tránh phải gọi CPU reward worker sau từng ảnh đơn lẻ.
+4.3. Tại sao có cả checkpoint20?
+Nếu index50 đã khóa phần lớn bố cục hoặc hình dáng, tạo thêm suffix chỉ thay chi tiết. Fork từ state sớm hơn cho phép kiểm tra liệu semantic structure còn thay đổi được hay không.
+Đây là giả thuyết cần đo, không phải quy luật mọi prompt đều cần checkpoint20.
+Đo thêm:
+\[
+\Pr(\text{semantic success}\mid\text{node},k)
+\]
+và độ khác nhau của các terminal siblings theo checkpoint. Nếu fork20 không tạo thêm cấu trúc tốt nhưng chỉ làm reward nhiễu hơn, không giữ nó chỉ vì “sớm hơn thì khám phá tốt hơn”.
+4.4. OT nên dùng kết quả của action, không chỉ embedding của parent
+Ở R2, hàng của OT là các nhóm good output còn thiếu. Cột là action “chạy thêm một continuation từ node \(i\)”.
+Ước lượng:
+\[
+p_{ig}
+=
+\Pr(
+\text{terminal đạt chất lượng và thuộc nhóm }g
+\mid\text{action }i
+).
+\]
+Một cost để thử là:
+\[
+\boxed{C_{gi}=-\log(\hat p_{ig}+\delta).}
+\]
+\(\hat p_{ig}\) lấy từ terminal outcomes đã quan sát, có pseudo-count để một nhóm chưa xuất hiện không bị xem là bất khả thi.
+Điểm khác biệt với P1 là:
+\[
+\text{geometry của parent}
+\quad\longrightarrow\quad
+\text{khả năng action tạo output mong muốn}.
+\]
+Chỉ khi có đủ dữ liệu, OT mới có thông tin để phân bổ một batch sang nhiều action có triển vọng khác nhau.
+Giữ khoảng 25% action slots làm exploration như nhau cho mọi control. Nếu archive chưa có good sample nào, không dựng các “good mode” giả rồi cố phân bổ theo chúng.
+4.5. Control bắt buộc của R2
+Control	Mục đích
+Uniform node selection	Đo lợi ích của reuse prefix đơn thuần
+Reward/success UCB, không OT	Đo lợi ích của terminal feedback
+Group-stratified allocation	Baseline diversity đơn giản
+Action-OT	Kiểm tra giá trị riêng của transport allocation
+
+
+Nếu UCB đạt cùng reward–diversity như OT thì thuật toán hữu ích có thể là terminal-feedback search, không phải OT.
+Một giới hạn kỹ thuật cần giữ: chỉ các continuation chạy trực tiếp bằng base kernel mới được coi là mẫu của conditional base continuation tại node. Không tự động gộp reward từ các descendants đã bị adaptive steering vào cùng estimator như thể chúng được lấy mẫu không thiên lệch.
+5. R3 — Kernel Poisson flow: đổi objective của velocity
+Đây là hướng đáng nghiên cứu nếu vẫn muốn có continuous guidance thay cho resampling. Nhưng nó nên bắt đầu trên toy problem, không trở thành một campaign TPU mới ngay.
+5.1. Thay “gần bank tốt hơn” bằng “tái phân bổ mass theo reward”
+Giữ diffusion timestep cố định, xét proxy \(R(x)\):
+\[
+\rho_s(x)\propto\rho_0(x)e^{sR(x)}.
+\]
+Khi đó:
+\[
+\partial_s\rho_s
+=
+(R-\mathbb E_{\rho_s}R)\rho_s.
+\]
+Tìm velocity thực hiện cùng sự thay đổi mật độ:
+\[
+\boxed{
+-\nabla\cdot(\rho_s v_s)
+=
+(R-\mathbb E_{\rho_s}R)\rho_s.
+}
+\]
+Kernel Fisher–Rao Flow xây dựng particle dynamics liên quan đến phương trình Poisson và density ratio mà không cần gradient của reward/density ratio. Đây là nền tảng phù hợp cho hướng này, không phải một thuật toán mới chỉ nhờ đổi tên. Proceedings of Machine Learning Research
+5.2. Một discretization nhỏ để kiểm tra
+Chọn các test functions khả vi \(\phi_\ell\) và:
+\[
+v(x)=\sum_{\ell=1}^{M}a_\ell\nabla\phi_\ell(x).
+\]
+Tính:
+\[
+G_{\ell m}
+=
+\frac1N\sum_i
+\left\langle
+\nabla\phi_\ell(x_i),
+\nabla\phi_m(x_i)
+\right\rangle,
+\]
+\[
+b_\ell
+=
+\frac1N\sum_i
+(R_i-\bar R)\phi_\ell(x_i).
+\]
+Giải:
+\[
+\boxed{(G+\zeta I)a=b.}
+\]
+Sau đó cập nhật bằng \(v(x_i)\).
+Thiết kế này chỉ cần reward values và gradient của basis/kernel. Các công thức trên là một dạng Galerkin hữu hạn để thử nghiệm dựa trên weak-form transport; chưa phải chứng nhận một implementation trên diffusion. arXiv
+Control đặc biệt quan trọng
+Nếu \(\phi_\ell\) là các hàm tuyến tính, gradient của chúng là hằng số, nên field chỉ là một hướng dịch chung.
+Vì vậy:
+Nonlinear kernel phải vượt linear-basis control và shuffled reward.
+
+Nếu không, ta đang lặp lại vấn đề của Sinkhorn A dưới một hệ phương trình khác.
+5.3. Bộ toy experiments
+Bài toán	Có thể kiểm tra chính xác
+Gaussian prior + linear reward	Mean của tilted Gaussian
+Gaussian prior + quadratic reward	Mean và covariance
+Target bốn mode, có một mode ít mass	Mode coverage và mass allocation
+
+
+Dùng \(N\in\{8,24,64\}\), so importance resampling, linear field, nonlinear Poisson field và reward shuffle.
+Đo error của phân phối/moments, không chỉ reward trung bình. Tính cả số reward calls khi field cần đánh giá lại sau từng update.
+Chỉ sau khi các kiểm tra này qua mới thử một correction tại index40 trên image, với phép chiếu tuyến tính tần số thấp có transpose rõ ràng để đưa velocity về latent.
+Bắt đầu bằng trần actual \(x_t\)-RMS:
+\[
+b\in\{0.0125,\;0.025\}.
+\]
+Không ép mọi particle phải có cùng độ lớn update: làm vậy có thể phá phương trình transport vừa giải. Sau clipping/projection phải đo lại weak residual.
+5.4. Không đồng nhất proxy tilt với terminal tilt
+Điểm lý thuyết cần giữ:
+\[
+\mathbb E[e^{\lambda r(X_0)}\mid X_t=x]
+\neq
+e^{\lambda\mathbb E[r(X_0)\mid X_t=x]}
+\]
+nói chung.
+Vì thế, lấy một predicted reward rồi chạy Poisson transport không tự tạo đúng reward-tilted diffusion. Các nghiên cứu corrective transport như Interacting Particle Guidance liên hệ trực tiếp với Feynman–Kac PDE, nhưng formulation đó không tự chuyển thành một module cắm vào ImageReward mà không thêm giả định. arXiv
+R3 có objective trực tiếp hơn A, nhưng vẫn phải chứng minh final reward và diversity bằng thực nghiệm.
+6. Encoder và reward nên được xử lý thế nào trong đợt này?
+Giữ DINOv2 trước. Pilot đã kiểm tra được VAE–DINOv2 gradient và replay; thay encoder ngay sẽ thêm một biến trước khi biết proposal hoặc allocation có vấn đề gì.    REPORT
+Vai trò nên tách rõ:
+Thành phần	Vai trò
+ImageReward hiện tại	Utility chính, giữ khả năng nối với report cũ
+DINOv2	Geometry/grouping cho proposal hoặc allocation
+CLIP metric cũ	Đánh giá nối tiếp, giữ nguyên định nghĩa
+Semantic checks riêng	Kiểm tra yêu cầu khó của prompt
+DreamSim hoặc reward thứ hai	Đánh giá bổ sung trên finalist, không cần chạy mọi trial
+
+
+Với prompt ấm trà, semantic check phải hỏi thân ấm có hình cáo đang ngủ hay không, không chỉ hỏi ảnh có cáo và có ấm.
+Không cần đưa semantic evaluator mới vào online objective ngay. Đầu tiên dùng nó để xem reward tăng có đi cùng việc sửa đúng lỗi không. Sau đó mới làm ablation “thay verifier”, tách khỏi ablation OT.
+7. Benchmark cần mạnh hơn trước
+Một thiếu sót dễ lặp lại là so OT mới với một BFS quá mạnh về selection rồi kết luận OT giữ diversity tốt hơn.
+Report trước chỉ có một số policy BFS cố định; đó chưa phải reward–diversity frontier đã được tune. Điểm ước lượng reward của BFS cao hơn, nhưng các so sánh best-reward liên quan vẫn còn CI rộng.    REPORT_VI    REPORT_VI
+Trước khi claim advancement, cần ba baseline đơn giản:
+BFS được tune lại selection strength
+Dùng ba mức cường độ trên log weights của code gốc, chẳng hạn multiplier \(0.5,1,2\), rồi kiểm tra ESS thực. Không suy hướng mạnh/yếu chỉ từ tên tham số tau.
+Hybrid 12 independent + 12 BFS
+Tổng population vẫn 24, tổng nominal sampling cost vẫn 2.400 NFE. Chọn tám ảnh bằng cùng final selector.
+Nếu hybrid đạt gần hết lợi ích của OT, đóng góp có thể chỉ là giữ một phần exploration.
+Resampling variance control
+Giữ reward weights nhưng thay multinomial bằng systematic/residual resampling làm đối chứng. VASR là một công trình liên quan trực tiếp đến việc tách continuation variance khỏi offspring-count variance; vì vậy không nên chỉ so với multinomial resampling rồi quy toàn bộ lợi ích cho semantic OT. arXiv
+Trong R1, mọi control phải dùng cùng cách rounding để tách phần “weights tốt hơn” khỏi phần “resampling ít nhiễu hơn”.
+8. Lịch thí nghiệm và ngân sách đề xuất
+Giai đoạn A — Chẩn đoán hiện tại
+Cache audit, hoàn thành mười edit còn lại, tính proposal oracle và semantic success của bank.
+Chi phí suffix dự kiến: 460 NFE nếu resume index54 được xác nhận, cộng các chi phí phụ thực tế.
+Giai đoạn B — R1 một event, bốn phương pháp
+Sáu development prompts, một prefix seed mới, bốn phương pháp:
+\[
+6\times1\times4\times2400
+=
+\boxed{57.600\text{ sampling-NFE}}.
+\]
+Đây là tổng nominal full-run cost trước cache sharing, warmup, replay và auxiliary evaluations.
+Không có multiple-event tuning ở giai đoạn này. Cần biết riêng donor allocation tại index40 có giá trị hay không.
+Giai đoạn C — Tách cơ chế exploration
+Chỉ khi R1 có tín hiệu, chạy factorial reward-only/OT × independent/antithetic trên prefix seed mới thứ hai.
+Nếu kết quả chỉ xuất hiện ở một prefix, chưa mở rộng thành claim; dữ liệu trước đã cho thấy suffix replicate có thể đổi dấu gain.    REPORT_VI (1)
+Giai đoạn D — R2 hoặc R3 theo lỗi đã xác định
+Chẩn đoán	Hướng ưu tiên
+Preview chọn sai, terminal oracle tốt	R2
+Proposal không đủ biến đổi nội dung	R2 với fork sớm hơn
+Muốn tiếp tục continuous transport	R3 toy trước
+OT không hơn stratified/mixed baseline	Dừng nhánh OT đó
+
+
+Giai đoạn E — Đánh giá cuối, chỉ sau khi khóa finalist
+Ví dụ:
+\[
+24\text{ prompt chưa xem}
+\times2\text{ prefix seeds}
+\times4\text{ methods}
+\times2400
+=
+\boxed{460.800\text{ sampling-NFE}}.
+\]
+Không chạy ngay giai đoạn này. Một cấu hình phải có tín hiệu cơ chế và hiệu ứng thực dụng trước.
+Bốn phương pháp có thể gồm finalist, allocator đơn giản mạnh nhất, BFS/hybrid đã tune và BoN. Baseline công bố như VASR/DTS được thêm bằng ngân sách riêng khi cần nghiên cứu rộng hơn.
+9. Định nghĩa “đáng tiếp tục” trước khi nhìn kết quả
+Metric chính nên là:
+\[
+N_{\mathrm{good\text{-}distinct}}
+=
+\max_{S\subseteq O}|S|,
+\]
+với \(O\) là tám output thực, thỏa:
+\[
+r_{\rm eval}(x)\ge\tau_r,
+\qquad
+\text{semantic success}(x)=1,
+\qquad
+d_{\rm eval}(x,y)\ge\delta.
+\]
+Với tám ảnh chỉ có \(2^8=256\) tập con, có thể tính chính xác.
+Các ngưỡng phải khóa trên development/calibration. Không chọn \(\tau_r,\delta\) sau khi biết phương pháp nào thắng.
+Giữ hai view đầu ra: top8 ImageReward để nối với report cũ, và cùng một quality–diversity selector áp dụng cho mọi phương pháp. Không thay selector riêng cho OT.
+Một mục tiêu thực dụng có thể thống nhất trước là tăng trung bình 0,5 ảnh tốt-và-khác nhau trên mỗi bộ tám ảnh, thay vì tiếp tục theo đuổi một gain 0,00x thiếu ổn định. Đây là tiêu chí quyết định nghiên cứu, không phải ngưỡng thống kê phổ quát.
+Cần báo cùng mean/best reward, prompt success, wall time và verifier cost. Ancestor count, số cluster hoặc giảm OT cost chỉ là diagnostic, không thay terminal diversity.
+10. Setup kỹ thuật để không lặp lại pilot dừng giữa chừng
+P2 repair nên tách riêng: lưu đúng term lỗi, cost, masses, ε và convergence history; sửa trên CPU, giữ objective và ε cuối, rồi kiểm tra envelope gradient của chính instance đó. Báo cáo hiện chưa đủ dữ liệu để xác định nguyên nhân conditioning.    REPORT
+Các job cần có status writer độc lập, để P2 lỗi không khiến P3 và feature-mean mất cơ hội chạy. Không giữ TPU chờ một bài toán OT nhỏ trên CPU.
+Với R1/R2, nên tận dụng backend hiện tại thay vì dựng lại pipeline:
+current latent + current prediction
+            ↓
+reward/feature worker
+            ↓
+allocation hoặc branch decision
+            ↓
+copy đúng state/prediction, hoặc resume checkpoint
+            ↓
+original DDIM transition + keyed child noise
+
+Noise key phải chứa child_slot, không chỉ parent_id. Copy state không được copy cả tương lai ngẫu nhiên của parent, nếu mục tiêu là tạo nhánh mới.
+Cuối cùng, giữ tách cold recipe, campaign compute và wall time. Pilot trước có cold recipe P1 là 2.512 NFE, không phải 2.400; shared-cache latency cũng không phải cold latency.    REPORT    REPORT
+Tài liệu setup
+ot_next_study_plan.zip
+README_VI.md · study_plan.yaml
+Đây là specification để gắn vào runner thực tế, không phải package đã chạy được trên TPU. File chứa các điều kiện mở từng giai đoạn, defaults, controls, budget và logging; những input/threshold chưa biết được để null, không tự đoán. Chưa có model experiment mới nào được chạy.
+Ưu tiên triển khai: E0 proposal ceiling → R1 partial refresh → antithetic ablation. Nếu vấn đề nằm ở reward preview hoặc thiếu thay đổi ngữ nghĩa, chuyển sang R2. R3 chỉ nên là một nhánh toy độc lập cho đến khi nó vượt constant-field và shuffled controls.
+Điểm có khả năng tạo cải thiện không còn là “một metric OT tốt hơn”, mà là phân bổ compute dựa trên những continuation thực sự tốt, khác nhau và còn khả năng phát triển. OT phải chứng minh nó làm quyết định đó tốt hơn phương pháp đơn giản.
