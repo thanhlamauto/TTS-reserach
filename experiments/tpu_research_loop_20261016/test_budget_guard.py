@@ -24,6 +24,22 @@ class GuardTests(unittest.TestCase):
   with tempfile.TemporaryDirectory() as d:
    r=Path(d);self.auth(r);(r/'KILL_SWITCH').touch()
    with self.assertRaises(PermissionError):g.reserve(r,'exploration',30,4)
+ def test_owner_attestation_is_distinct_from_invoice_verification(self):
+  with tempfile.TemporaryDirectory() as d:
+   r=Path(d);self.auth(r);a=json.loads((r/'authorization.json').read_text());a['billing_conditions_verified']=False;a['owner_attested_no_charge']=True
+   (r/'authorization.json').write_text(json.dumps(a));self.assertEqual(g.authorize(r)[1],8)
+ def test_campaign_clock_blocks_idle_reset(self):
+  import time
+  with tempfile.TemporaryDirectory() as d:
+   r=Path(d);self.auth(r)
+   (r/'campaign_clock.json').write_text(json.dumps({'started_unix':time.time()-7201,'physical_slice_chips':4,'technical_cap_chip_hours':8}))
+   with self.assertRaises(PermissionError):g.reserve(r,'confirmation',30,4)
+ def test_exploration_cannot_spend_confirmation_wall_reserve(self):
+  import time
+  with tempfile.TemporaryDirectory() as d:
+   r=Path(d);self.auth(r)
+   (r/'campaign_clock.json').write_text(json.dumps({'started_unix':time.time()-4310,'physical_slice_chips':4,'technical_cap_chip_hours':8}))
+   with self.assertRaises(PermissionError):g.reserve(r,'exploration',30,4)
 
 class InterruptionTests(unittest.TestCase):
  def test_invalid_numbers_are_denied(self):

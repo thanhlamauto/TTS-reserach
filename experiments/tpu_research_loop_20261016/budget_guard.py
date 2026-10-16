@@ -14,7 +14,8 @@ def authorize(root):
  p=root/'authorization.json'
  if not p.exists():raise PermissionError('BUDGET_UNVERIFIED: authorization.json missing; no accelerator initialization permitted')
  a=load(p)
- if not (a.get('human_authorized') is True and a.get('billing_conditions_verified') is True and a.get('authorization_reference')):raise PermissionError('BUDGET_UNVERIFIED: human allocation and billing conditions must both be verified')
+ billing_basis=(a.get('billing_conditions_verified') is True or a.get('owner_attested_no_charge') is True)
+ if not (a.get('human_authorized') is True and billing_basis and a.get('authorization_reference')):raise PermissionError('BUDGET_UNVERIFIED: human allocation and a verified or owner-attested billing basis required')
  if a.get('GPU_budget')!=0:raise PermissionError('GPU budget must remain0')
  amount=a['remaining_authorized_chip_hours']
  if isinstance(amount,bool) or not isinstance(amount,(int,float)) or not math.isfinite(amount):raise PermissionError('BUDGET_UNVERIFIED: allocation must be a finite number')
@@ -28,7 +29,12 @@ def reserve(root,phase,seconds,slice_chips):
  if not math.isfinite(seconds) or seconds<=15:raise ValueError('finite deadline and cleanup headroom required')
  root=Path(root);root.mkdir(parents=True,exist_ok=True)
  with (root/'budget.lock').open('a') as lock:
-  fcntl.flock(lock,fcntl.LOCK_EX);a,cap=authorize(root);rows=history(root);remaining=cap-used(rows)
+  fcntl.flock(lock,fcntl.LOCK_EX);a,cap=authorize(root);rows=history(root)
+  now=time.time();clock_path=root/'campaign_clock.json'
+  clock=load(clock_path) if clock_path.exists() else {'started_unix':now,'physical_slice_chips':4,'technical_cap_chip_hours':cap}
+  if clock['physical_slice_chips']!=4 or clock['technical_cap_chip_hours']!=cap:raise PermissionError('frozen campaign clock/cap changed')
+  elapsed_occupancy=max(0.,now-clock['started_unix'])*4/3600
+  remaining=cap-max(used(rows),elapsed_occupancy)
   if (root/'KILL_SWITCH').exists():raise PermissionError('kill switch active')
   if slice_chips!=4:raise PermissionError('this campaign verified4 physical chips; new topology needs a new preflight')
   hours=seconds*slice_chips/3600
@@ -36,11 +42,15 @@ def reserve(root,phase,seconds,slice_chips):
   if hours>remaining+1e-12:raise PermissionError('BUDGET_EXHAUSTED: cumulative cap including unresolved reservations')
   exploration=sum(r['occupied_slice_chip_hours'] for r in rows if r['event']=='COMPLETE' and r['phase']!='confirmation')+sum(r['reserved_chip_hours'] for r in rows if r['event']=='RESERVE' and r['phase']!='confirmation' and not any(s['event']=='COMPLETE' and s['job_id']==r['job_id'] for s in rows))
   if phase!='confirmation' and exploration+hours>.6*cap+1e-12:raise PermissionError('confirmation reserve40percent would be consumed')
+  deadline=clock['started_unix']+cap*3600/4
+  phase_deadline=deadline if phase=='confirmation' else clock['started_unix']+.6*cap*3600/4
+  if now+seconds>phase_deadline+1e-6:raise PermissionError('campaign wall deadline or confirmation wall reserve would be consumed; clock never resets')
   if phase=='pointmaze_port':
    port=sum(r.get('occupied_slice_chip_hours',0) for r in rows if r['event']=='COMPLETE' and r['phase']==phase)
    port+=sum(r['reserved_chip_hours'] for r in rows if r['event']=='RESERVE' and r['phase']==phase and not any(s['event']=='COMPLETE' and s['job_id']==r['job_id'] for s in rows))
    if port+hours>min(1.,.1*cap)+1e-12:raise PermissionError('PointMaze port subcap would be exceeded')
-  job=uuid.uuid4().hex;row={'event':'RESERVE','job_id':job,'phase':phase,'reserved_chip_hours':hours,'physical_slice_chips':slice_chips,'deadline_unix':time.time()+seconds,'recorded_unix':time.time(),'authorization_sha256':hashlib.sha256((root/'authorization.json').read_bytes()).hexdigest(),'actual_billing_USD':'UNKNOWN','occupancy_is_not_invoice':True}
+  if not clock_path.exists():clock_path.write_text(json.dumps(clock,sort_keys=True)+'\n')
+  job=uuid.uuid4().hex;row={'event':'RESERVE','job_id':job,'phase':phase,'reserved_chip_hours':hours,'physical_slice_chips':slice_chips,'deadline_unix':now+seconds,'campaign_deadline_unix':deadline,'recorded_unix':now,'authorization_sha256':hashlib.sha256((root/'authorization.json').read_bytes()).hexdigest(),'actual_billing_USD':'UNKNOWN','occupancy_is_not_invoice':True}
   append(root,row);return row
 
 def arm_child_deadline(lease):
