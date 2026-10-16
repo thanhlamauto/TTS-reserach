@@ -66,7 +66,8 @@ def main():
  if a.check:
   auth,cap=authorize(a.root);print(json.dumps({'budget_status':'VERIFIED','effective_chip_hours':cap,'used_or_reserved':used(history(a.root)),'confirmation_reserve':.4*cap}));return
  if not a.phase or not a.max_seconds or not a.entrypoint:raise ValueError('phase,deadline,and audited entrypoint required')
- if a.entrypoint.resolve()!=Path(__file__).with_name('reward_tpu_gate.py').resolve():raise PermissionError('only audited reward smoke entrypoint currently enabled; scientific pilot is not ready')
+ allowed={Path(__file__).with_name(n).resolve() for n in ['reward_tpu_gate.py','paired_pilot.py']}
+ if a.entrypoint.resolve() not in allowed:raise PermissionError('entrypoint is not an audited campaign worker')
  record=reserve(a.root,a.phase,a.max_seconds,4);started=time.monotonic();child=None;reason='completed';returncode=None
  previous_sigterm=signal.getsignal(signal.SIGTERM)
  def interrupted(sig,frame):

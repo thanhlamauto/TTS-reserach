@@ -1,0 +1,394 @@
+{
+  "CFG": 7.5,
+  "N": 8,
+  "all_prompts_historically_explored": true,
+  "alpha_family": 0.05,
+  "bootstrap": 20000,
+  "bounds": "prompt-cluster percentile bootstrap descriptive/approximate only; no finite-sample or anytime certificate",
+  "candidates": [
+    {
+      "roles": [
+        "FINE"
+      ],
+      "semantic_sha256": "790f859db9223a8d72c25e81cf9b904ae493a6a7d0ee712cdc213032ee57231c",
+      "semantics": {
+        "DDIM": 100,
+        "eta": 1,
+        "event_index": "zero-based-after-denoise",
+        "particles": 8,
+        "precision": "BF16",
+        "resampling": "SSP",
+        "score_multipliers": [
+          8.0,
+          2.0,
+          32.0
+        ],
+        "scoring": "max_with_zero_initial_history",
+        "selection": "all_endpoints_then_first_argmax",
+        "steps": [
+          50,
+          60,
+          80
+        ]
+      },
+      "source_policy_ids": [
+        "static_768d43be6319cd86"
+      ]
+    },
+    {
+      "roles": [
+        "GRAPH_ONLY",
+        "SHORTLIST_static_df7ddcbdb5f12bd4",
+        "TRANSFER"
+      ],
+      "semantic_sha256": "bce970d0c0a85ea98031a7d3bea3f904729f517d1c30b3b89f6259ef2b9ef0bc",
+      "semantics": {
+        "DDIM": 100,
+        "eta": 1,
+        "event_index": "zero-based-after-denoise",
+        "particles": 8,
+        "precision": "BF16",
+        "resampling": "SSP",
+        "score_multipliers": [
+          8.0,
+          8.0,
+          32.0
+        ],
+        "scoring": "max_with_zero_initial_history",
+        "selection": "all_endpoints_then_first_argmax",
+        "steps": [
+          40,
+          60,
+          90
+        ]
+      },
+      "source_policy_ids": [
+        "static_df7ddcbdb5f12bd4"
+      ]
+    },
+    {
+      "roles": [
+        "MANUAL8"
+      ],
+      "semantic_sha256": "31e98e083b6a39ffb9f47624d0a63e09b878f1bd1d4a8c3377a52b1326be453f",
+      "semantics": {
+        "DDIM": 100,
+        "eta": 1,
+        "event_index": "zero-based-after-denoise",
+        "particles": 8,
+        "precision": "BF16",
+        "resampling": "SSP",
+        "score_multipliers": [
+          6.0693804425899085,
+          15.822498780869108,
+          56.680144328798654
+        ],
+        "scoring": "max_with_zero_initial_history",
+        "selection": "all_endpoints_then_first_argmax",
+        "steps": [
+          20,
+          40,
+          80
+        ]
+      },
+      "source_policy_ids": [
+        "manual_bfs_g0p024_n8"
+      ]
+    },
+    {
+      "roles": [
+        "SHORTLIST_static_269a6a9f91849637"
+      ],
+      "semantic_sha256": "2ea2e1f8a1eae70f8604cb43214ae27b81149774b35555c0c1a14003df2b760a",
+      "semantics": {
+        "DDIM": 100,
+        "eta": 1,
+        "event_index": "zero-based-after-denoise",
+        "particles": 8,
+        "precision": "BF16",
+        "resampling": "SSP",
+        "score_multipliers": [
+          8.0,
+          2.0,
+          32.0
+        ],
+        "scoring": "max_with_zero_initial_history",
+        "selection": "all_endpoints_then_first_argmax",
+        "steps": [
+          40,
+          60,
+          90
+        ]
+      },
+      "source_policy_ids": [
+        "static_269a6a9f91849637"
+      ]
+    },
+    {
+      "roles": [
+        "SHORTLIST_static_4842340bc6450486",
+        "VERIFIED"
+      ],
+      "semantic_sha256": "3e72ea92095d9db57de0eabf49c80f720365c52a3255ec2afeb82887ea547ce1",
+      "semantics": {
+        "DDIM": 100,
+        "eta": 1,
+        "event_index": "zero-based-after-denoise",
+        "particles": 8,
+        "precision": "BF16",
+        "resampling": "SSP",
+        "score_multipliers": [
+          2.0,
+          8.0,
+          32.0
+        ],
+        "scoring": "max_with_zero_initial_history",
+        "selection": "all_endpoints_then_first_argmax",
+        "steps": [
+          50,
+          60,
+          80
+        ]
+      },
+      "source_policy_ids": [
+        "static_4842340bc6450486"
+      ]
+    },
+    {
+      "roles": [
+        "SHORTLIST_static_f22099437a8d0718"
+      ],
+      "semantic_sha256": "68026fe0f34d38c770f73974fe5787625aaeca31a021f908b5a68c124c1ac69a",
+      "semantics": {
+        "DDIM": 100,
+        "eta": 1,
+        "event_index": "zero-based-after-denoise",
+        "particles": 8,
+        "precision": "BF16",
+        "resampling": "SSP",
+        "score_multipliers": [
+          8.0,
+          8.0,
+          32.0
+        ],
+        "scoring": "max_with_zero_initial_history",
+        "selection": "all_endpoints_then_first_argmax",
+        "steps": [
+          40,
+          80,
+          90
+        ]
+      },
+      "source_policy_ids": [
+        "static_f22099437a8d0718"
+      ]
+    }
+  ],
+  "compile_replicates": 0,
+  "compiler_cost_claim": "Diagnostic panel only. Direct, graph and verification have different profiling work here; no equal-budget superiority claim.",
+  "confirmation_opened": false,
+  "development_only": true,
+  "diagnostics": [
+    "prompt/seed paired variance",
+    "same-row residual = actual regret minus sum of edge regrets",
+    "leave-one-prompt-out graph and direct policy prediction",
+    "historical fixed graph/verified/manual outputs on fresh seeds"
+  ],
+  "dtype": "bfloat16",
+  "edges": {
+    "all_exact_baselines_in_bank": true,
+    "candidate_count": 6,
+    "direct_baseline": "uniform full-policy evaluation over the same frozen6-policy bank; no graph; same available incumbents and development info",
+    "edges": {
+      "16ee83580bd4c562c55cb7da40cfda04524829fa07f9fb64745bd88ff6f58384": {
+        "dst": 90,
+        "multiplier": 32.0,
+        "src": 80
+      },
+      "1771db72c49a79ed5bc3e5264ed5b065651ce4e90aed2e43d746a1a42b3ccb81": {
+        "dst": 50,
+        "multiplier": 8.0,
+        "src": -1
+      },
+      "25a3c78a6e77bcaf9f73ef309b9d818dfa2eaad1d6cbd185c0111257105af879": {
+        "dst": 20,
+        "multiplier": 6.0693804425899085,
+        "src": -1
+      },
+      "453cee9efb3426573eb1b9b2d77cb7d2b714dc8a44b6f0abccbe8b61eefb90c3": {
+        "dst": 60,
+        "multiplier": 8.0,
+        "src": 40
+      },
+      "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e": {
+        "dst": 100,
+        "multiplier": null,
+        "src": 90
+      },
+      "6446bc16db50d04f71b11037f966355cd84166cf3b276289770df24eceab41a5": {
+        "dst": 80,
+        "multiplier": 8.0,
+        "src": 40
+      },
+      "647ca6014c9c885d02b7df49da515986de12910d830a87510fe112efe6b7ed6e": {
+        "dst": 80,
+        "multiplier": 32.0,
+        "src": 60
+      },
+      "9083921294936a997c8179b30114b46b66f4dc9f476e415c54765048c07e6bbe": {
+        "dst": 60,
+        "multiplier": 8.0,
+        "src": 50
+      },
+      "90e903da055c67889b9a96fa6443c262d95125f53d01b3628976110bf93e4455": {
+        "dst": 60,
+        "multiplier": 2.0,
+        "src": 50
+      },
+      "a378bee2ce795928e021dd72949c464bcf94d063136f31bef4837dfc3390bf3b": {
+        "dst": 50,
+        "multiplier": 2.0,
+        "src": -1
+      },
+      "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e": {
+        "dst": 100,
+        "multiplier": null,
+        "src": 80
+      },
+      "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a": {
+        "dst": 40,
+        "multiplier": 8.0,
+        "src": -1
+      },
+      "c05a4c190d7cd57cc0792e741f5fe79a13050e702b0d3a4e8b59a82368b3b158": {
+        "dst": 60,
+        "multiplier": 2.0,
+        "src": 40
+      },
+      "d165adf1d175fc5cfb8b7855b8572a79961cce128e6522640bc30f7a47a52450": {
+        "dst": 40,
+        "multiplier": 15.822498780869108,
+        "src": 20
+      },
+      "ded6ff1654163ab6a2bbe08c35b610a16839f73baac04d31fba295af9534b484": {
+        "dst": 80,
+        "multiplier": 56.680144328798654,
+        "src": 40
+      },
+      "fe6a9ec515c04b1b0df17ef22bd5b70e1e2c9bef8de12fd60b008e0bfebc14c4": {
+        "dst": 90,
+        "multiplier": 32.0,
+        "src": 60
+      }
+    },
+    "manual_beta_precision": "full JSON float in hashed edge identity; do not round to g-format key",
+    "offline_budget_matching": "same all-in occupied-slice time cap per compiler replicate; track NFE/verifier/compile/retry separately, Pareto if work dimensions cannot all match",
+    "old_manual_fine_data": "DEVELOPMENT only; not confirmation of the newly covered selector",
+    "paths": {
+      "2ea2e1f8a1eae70f8604cb43214ae27b81149774b35555c0c1a14003df2b760a": [
+        "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a",
+        "c05a4c190d7cd57cc0792e741f5fe79a13050e702b0d3a4e8b59a82368b3b158",
+        "fe6a9ec515c04b1b0df17ef22bd5b70e1e2c9bef8de12fd60b008e0bfebc14c4",
+        "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e"
+      ],
+      "31e98e083b6a39ffb9f47624d0a63e09b878f1bd1d4a8c3377a52b1326be453f": [
+        "25a3c78a6e77bcaf9f73ef309b9d818dfa2eaad1d6cbd185c0111257105af879",
+        "d165adf1d175fc5cfb8b7855b8572a79961cce128e6522640bc30f7a47a52450",
+        "ded6ff1654163ab6a2bbe08c35b610a16839f73baac04d31fba295af9534b484",
+        "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e"
+      ],
+      "3e72ea92095d9db57de0eabf49c80f720365c52a3255ec2afeb82887ea547ce1": [
+        "a378bee2ce795928e021dd72949c464bcf94d063136f31bef4837dfc3390bf3b",
+        "9083921294936a997c8179b30114b46b66f4dc9f476e415c54765048c07e6bbe",
+        "647ca6014c9c885d02b7df49da515986de12910d830a87510fe112efe6b7ed6e",
+        "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e"
+      ],
+      "68026fe0f34d38c770f73974fe5787625aaeca31a021f908b5a68c124c1ac69a": [
+        "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a",
+        "6446bc16db50d04f71b11037f966355cd84166cf3b276289770df24eceab41a5",
+        "16ee83580bd4c562c55cb7da40cfda04524829fa07f9fb64745bd88ff6f58384",
+        "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e"
+      ],
+      "790f859db9223a8d72c25e81cf9b904ae493a6a7d0ee712cdc213032ee57231c": [
+        "1771db72c49a79ed5bc3e5264ed5b065651ce4e90aed2e43d746a1a42b3ccb81",
+        "90e903da055c67889b9a96fa6443c262d95125f53d01b3628976110bf93e4455",
+        "647ca6014c9c885d02b7df49da515986de12910d830a87510fe112efe6b7ed6e",
+        "a65652baf2914126a27537221ceaba5877789bc79d34794b345c7059fd8ce52e"
+      ],
+      "bce970d0c0a85ea98031a7d3bea3f904729f517d1c30b3b89f6259ef2b9ef0bc": [
+        "b9b69491e64af196e4ffe4d8282aaec12ed42baed3425c46ccd53e955d0f093a",
+        "453cee9efb3426573eb1b9b2d77cb7d2b714dc8a44b6f0abccbe8b61eefb90c3",
+        "fe6a9ec515c04b1b0df17ef22bd5b70e1e2c9bef8de12fd60b008e0bfebc14c4",
+        "5dbd96a9bc39f6823ed55aa772e3553bde643e0ffe724e8909a3532f0e0d3e7e"
+      ]
+    },
+    "reference": "new reference must include node50; must pass new same-backend prefix/counter/RNG gates before profiling",
+    "required_selectors": [
+      "graph_only_select",
+      "full_policy_verify_select",
+      "direct_full_policy_select"
+    ],
+    "sampling_nodes": [
+      20,
+      40,
+      50,
+      60,
+      80,
+      90
+    ],
+    "scientific_comparison_status": "NOT_RUN",
+    "union_edge_count": 16
+  },
+  "epsilon_IR": 0.02,
+  "eta": 1.0,
+  "hypothesis": "After exact candidate coverage, seed noise and/or reproducible same-row residuals explain unstable surrogate policy ranking. Do not alter the objective before separating them.",
+  "max_job_seconds": 3600,
+  "missing": "fail on missing/nonfinite rectangular paired blocks; retain crashes; no imputation",
+  "primary": "terminal max8 ImageReward; higher is better",
+  "primary_contrasts": [
+    [
+      "VERIFIED",
+      "TRANSFER"
+    ],
+    [
+      "VERIFIED",
+      "MANUAL8"
+    ],
+    [
+      "TRANSFER",
+      "MANUAL8"
+    ]
+  ],
+  "prompt_rule": "first6 TRAIN IDs sorted by SHA256(STATIC_BFS_TPU_DIAG20261016|id), independent of outcomes",
+  "prompts": [
+    74,
+    18,
+    80,
+    98,
+    84,
+    3
+  ],
+  "protocol": "STATIC_BFS_TPU_COVERED_BANK_DIAGNOSTIC_R1",
+  "purpose": "same-row seed-noise and additive-residual diagnostic, not a new method or final confirmation",
+  "reference_multiplier": 8.0,
+  "reference_steps": [
+    20,
+    40,
+    50,
+    60,
+    80,
+    90
+  ],
+  "secondary_metrics": "NOT_EVALUATED: no independent TPU secondary metric port in scope",
+  "seeds": [
+    2026101631,
+    2026101632,
+    2026101633,
+    2026101634
+  ],
+  "selection_note": "LOPO shadows are correlated diagnostics, not independent compilation replicates; historical fixed shortlist is not relabeled as a new v1 compilation",
+  "stat_seed": 2026101640,
+  "steps": 100,
+  "stopping": "one frozen batch; abort on gate/hash/resource error; do not expand based on reward or until a method wins",
+  "verifier": "ImageReward-v1.0 TPU float32 full matmul precision"
+}

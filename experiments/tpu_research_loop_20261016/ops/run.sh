@@ -12,7 +12,6 @@ export PYTHONUNBUFFERED=1
 ROOT=/home/thanhlamtba31/static-bfs-dcs/experiments/tpu_research_loop_20261016
 PY=/home/thanhlamtba31/static-bfs-dcs/venv/bin/python
 exec "$PY" experiments/tpu_research_loop_20261016/budget_guard.py \
-  --root "$ROOT" --phase SD15_smoke --max-seconds 600 \
-  --entrypoint experiments/tpu_research_loop_20261016/reward_tpu_gate.py \
-  -- --root "$ROOT" \
-  --golden-manifest experiments/tpu_research_loop_20261016/reward_golden_manifest.json
+  --root "$ROOT" --phase exploration --max-seconds 3600 \
+  --entrypoint experiments/tpu_research_loop_20261016/paired_pilot.py \
+  -- --root "$ROOT"
