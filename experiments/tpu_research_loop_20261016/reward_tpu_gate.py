@@ -12,12 +12,17 @@ def main():
  arm_child_deadline(active[0])
  assert os.environ.get('PJRT_DEVICE')=='TPU' and os.environ.get('TPU_VISIBLE_CHIPS')=='0'
  import numpy as np,torch
+ import torch_xla
+ # FP32 parameters alone do not request full-precision TPU matrix products.
+ # Binding verified in the installed2.4 release; do not relax the golden tolerance.
+ torch_xla._XLAC._xla_set_use_full_mat_mul_precision(True)
  import torch_xla.core.xla_model as xm
  import torch_xla.runtime as xr
  import torch_xla.debug.metrics as met
  from PIL import Image
  assert xr.addressable_runtime_device_count()==1
- cache=Path('/dev/shm/static-bfs-research-loop-20261016/reward-gate-xla');cache.mkdir(parents=True,exist_ok=True);xr.initialize_cache(str(cache))
+ cache=Path('/dev/shm/static-bfs-research-loop-20261016/reward-gate-xla-full-fp32');cache.mkdir(parents=True,exist_ok=True);xr.initialize_cache(str(cache))
+ attempt=a.root/'reward_gate_attempts'/active[0]['job_id'];attempt.mkdir(parents=True,exist_ok=False)
  device=xm.xla_device();manifest=json.loads(a.golden_manifest.read_text());rows=manifest['images'];assert len(rows)==8
  sys.path.insert(0,str(a.dcs_root/'official/text_to_image/fkd_diffusers'))
  from image_reward_utils import rm_load
@@ -58,9 +63,10 @@ def main():
    assert match or gap<=.002,'unexplained TPU reward rank flip outside preregistered tie margin'
   unsupported=[name for name in met.counter_names() if name.startswith('aten::') and name!='aten::_local_scalar_dense' and met.counter_value(name)]
   report={'phase':phase,'wall_seconds':wall,'scores':scores.tolist(),'max_abs_error':float(np.max(abs(scores-expected))),'numerical_pass':passed,'rank_checks':rank_checks,'unsupported_or_host_fallback':unsupported,'metrics_report':met.metrics_report()}
-  batches.append(report);(a.root/'reward_gate_partial.json').write_text(json.dumps({'batches':batches},indent=2))
+  batches.append(report);partial={'batches':batches,'full_mat_mul_precision':True,'source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()};(attempt/'partial.json').write_text(json.dumps(partial,indent=2));(a.root/'reward_gate_partial.json').write_text(json.dumps(partial,indent=2))
   assert passed,'TPU FP32 reward mismatch with saved CPU scores; stop without changing tolerance'
   assert not unsupported,'unexpected host fallback in neural verifier'
  assert np.array_equal(batches[1]['scores'],batches[2]['scores'])
- (a.root/'reward_tpu_gate.json').write_text(json.dumps({'passed':True,'elapsed_seconds_including_load':time.perf_counter()-started,'neural_forwards':forwards,'device':str(device),'precision':'float32','CPU_reference':'saved historical scores only; no CPU neural forward','batches':batches},indent=2))
+ result={'passed':True,'elapsed_seconds_including_load':time.perf_counter()-started,'neural_forwards':forwards,'device':str(device),'precision':'float32','full_mat_mul_precision':True,'source_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'CPU_reference':'saved historical scores only; no CPU neural forward','batches':batches}
+ (attempt/'result.json').write_text(json.dumps(result,indent=2));(a.root/'reward_tpu_gate.json').write_text(json.dumps(result,indent=2))
 if __name__=='__main__':main()
