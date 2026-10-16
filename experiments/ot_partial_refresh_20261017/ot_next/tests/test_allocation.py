@@ -1,9 +1,18 @@
 import unittest
 import numpy as np
 from ot_next.allocation import allocate, semi_relaxed, softmax, residual_resample, reward_logits, grouping, sibling_pairs
+from ot_next.identity import compatible_scheduler_metadata
 
 
 class AllocationTests(unittest.TestCase):
+    def test_only_ignored_default_metadata_may_reorder(self):
+        old = dict(beta_start=.00085, _use_default_values=['a','b'])
+        same = dict(beta_start=.00085, _use_default_values=['b','a'])
+        changed = dict(beta_start=.00086, _use_default_values=['b','a'])
+        wrong_default = dict(beta_start=.00085, _use_default_values=['b','c'])
+        self.assertTrue(compatible_scheduler_metadata(old,same))
+        self.assertFalse(compatible_scheduler_metadata(old,changed))
+        self.assertFalse(compatible_scheduler_metadata(old,wrong_default))
     def test_gamma_zero_and_row_constraint(self):
         alpha = np.array([.2, .8])
         d = np.array([[1, 9, 2], [2, 5, 1.]])

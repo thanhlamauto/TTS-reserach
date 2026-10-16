@@ -78,6 +78,31 @@ def main():
         adapter_config['runtime_output']=str(runtime)
         status('load_existing_backend')
         adapter=frozen_xla_factory(adapter_config)
+        # Diffusers builds this one ignored metadata list from a Python set.
+        # Its order varies across interpreters, although every numeric field and
+        # schedule coefficient is identical. Reconstruct the old FULL hash first;
+        # do not accept a hash alias unless it authenticates the current arrays.
+        from .identity import compatible_scheduler_metadata
+        from otlab.adapter import schedule_identity
+        prior_environment=json.loads((old_attempt/'neural_runtime/environment/sampler0.json').read_text())
+        previous=prior_environment['scheduler_config']
+        current=dict(adapter.sampler.scheduler.config)
+        if not compatible_scheduler_metadata(previous,current):
+            raise RuntimeError('numeric or semantic scheduler config changed')
+        old_schedule=json.loads((old_attempt/'replay.json').read_text())['records'][0]['adapter_identity']['schedule_sha']
+        new_hash=adapter.schedule_sha
+        adapter.sampler.scheduler.register_to_config(_use_default_values=previous['_use_default_values'])
+        authenticated=schedule_identity(adapter.sampler)
+        if authenticated!=old_schedule:
+            raise RuntimeError('current timesteps/alphas/config do not reproduce original full hash')
+        adapter.schedule_sha=authenticated
+        adapter.base_identity['schedule_sha']=authenticated
+        adapter.set_prompt(adapter.prompt)
+        atomic_json(run/'SCHEDULER_METADATA_REPAIR.json',dict(
+            original_process_hash=new_hash,authenticated_old_hash=authenticated,
+            all_numeric_parameters_unchanged=True,only_default_key_list_order_normalized=True,
+            full_hash_authenticates_current_timesteps_alphas_final_alpha_eta_config=True,
+            old_order=previous['_use_default_values'],new_process_order=current['_use_default_values']))
         atomic_json(run/'adapter_identity.json',adapter.identity)
         worker_python=old/'worker_venv/bin/python'
         worker_config=protocol_path.parents[2]/'ot_tts_lab_v2_reimpl/configs/worker_dinov2.yaml'
