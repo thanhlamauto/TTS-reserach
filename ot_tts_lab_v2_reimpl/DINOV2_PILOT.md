@@ -30,3 +30,7 @@ of actual Cloud billing. Environment installation has no accelerator access.
 Abort on wrong model identity, nonfinite gradient/objective/state, failed
 finite difference/replay, stale input/source hashes, or post-cast trust failure.
 Implementation repairs are recorded and do not change scientific parameters.
+
+Environment repair before any neural execution: VM Python3.10 cannot install
+NumPy2.3.4. The isolated worker therefore pins NumPy2.2.6. The frozen sampler
+retains NumPy1.26.3; no scientific parameter or backend is changed.

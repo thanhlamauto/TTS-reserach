@@ -11,7 +11,7 @@ if [[ ! -f "$OTLAB_ROOT/worker_environment_ready.json" ]]; then
   "$OTLAB_WORKER" -m pip install --disable-pip-version-check --no-cache-dir \
     torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cpu
   "$OTLAB_WORKER" -m pip install --disable-pip-version-check --no-cache-dir \
-    transformers==4.56.2 diffusers==0.35.1 numpy==2.3.4 PyYAML==6.0.3 Pillow==12.0.0
+    transformers==4.56.2 diffusers==0.35.1 numpy==2.2.6 PyYAML==6.0.3 Pillow==12.0.0
   "$OTLAB_WORKER" -m pip freeze > "$OTLAB_ROOT/worker_environment.freeze.txt"
   "$OTLAB_WORKER" - "$OTLAB_ROOT/worker_environment_ready.json" <<'PY'
 import importlib.metadata,json,pathlib,sys,torch
