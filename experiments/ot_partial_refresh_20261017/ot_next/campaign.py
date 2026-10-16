@@ -110,8 +110,18 @@ def main():
         if file_sha(worker_config)!=file_sha(prior_config):raise RuntimeError('worker configuration changed')
         features=RGBClient(str(worker_python),worker_config,run/'rgb_worker')
         atomic_json(run/'feature_identity.json',features.identity)
-        e0_result=e0.execute(adapter,features,config,run/'E0',status)
-        bank_features=load_tensor(run/'E0/features.pt')['bank_features'].double().numpy()
+        if config.get('reuse_e0'):
+            e0_path=Path(config['reuse_e0'])
+            e0_result=json.loads((e0_path/'SUMMARY.json').read_text())
+            proof=json.loads((e0_path/'replay.json').read_text())
+            if not proof['passed'] or e0_result['edited_proposals']!=16 or e0_result['actual_next_index']!=54:
+                raise RuntimeError('incomplete E0 cannot be reused')
+            status('E0_reuse_complete',path=str(e0_path))
+            atomic_json(run/'E0_REUSE.json',dict(path=str(e0_path),hashes_verified=True,complete=True))
+        else:
+            e0_path=run/'E0'
+            e0_result=e0.execute(adapter,features,config,e0_path,status)
+        bank_features=load_tensor(e0_path/'features.pt')['bank_features'].double().numpy()
         distance=np.maximum(0,1-bank_features@bank_features.T)
         positive=distance[~np.eye(16,dtype=bool)]
         positive=positive[positive>1e-12]

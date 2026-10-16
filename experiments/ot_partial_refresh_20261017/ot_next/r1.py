@@ -14,10 +14,23 @@ from .e0 import contact_sheet, mean_diversity
 @torch.no_grad()
 def prediction(adapter, state, index):
     pieces, clean = [], []
-    for _, count, x, eps, coeff in adapter._chunks(state, index):
+    s=adapter.sampler
+    embed=s.embedding(adapter.prompt)
+    for offset in range(0,len(state),s.batch):
+        chunk=state[offset:offset+s.batch]
+        count=len(chunk)
+        if count<s.batch:chunk=torch.cat([chunk,chunk[-1:].repeat(s.batch-count,1,1,1)])
+        x=chunk.to(device=s.rt.device,dtype=torch.bfloat16)
+        timestep=torch.tensor(s.timesteps[index],dtype=torch.int64,device=s.rt.device)
+        pred=s.pipe.unet(torch.cat([x,x]),timestep,encoder_hidden_states=embed,return_dict=False)[0]
+        uncond,cond=pred.chunk(2)
+        eps=uncond.float()+s.cfg['cfg_scale']*(cond.float()-uncond.float())
+        coeff=s.coefficients[index].to(s.rt.device)
         x0 = (x.float() - coeff[1]*eps.float()) / coeff[0]
         adapter.sampler.rt.xm.mark_step()
-        pieces.append(eps[:count].cpu())
+        # Preserve the native BF16 UNet outputs, NOT a separately rounded FP32
+        # CFG expression. CFG arithmetic remains fused with DDIM at transition.
+        pieces.append(torch.stack([uncond[:count],cond[:count]],dim=1).cpu())
         clean.append(x0[:count].cpu())
         adapter.counters['event_prediction_sample_evaluations'] += count
         adapter.counters['event_prediction_padding_sample_evaluations'] += adapter.sampler.batch-count
@@ -27,14 +40,18 @@ def prediction(adapter, state, index):
 
 
 @torch.no_grad()
-def transition(adapter, state, eps, index, noise):
+def transition(adapter, state, raw_prediction, index, noise):
     result = []
     for offset in range(0, len(state), adapter.sampler.batch):
-        x, e, n = [t[offset:offset+adapter.sampler.batch] for t in (state,eps,noise)]
+        x, raw, n = [t[offset:offset+adapter.sampler.batch] for t in (state,raw_prediction,noise)]
         count = len(x)
         if count < adapter.sampler.batch:
-            x, e, n = [torch.cat([t,t[-1:].repeat(adapter.sampler.batch-count,1,1,1)]) for t in (x,e,n)]
-        y = adapter.update(x.to(adapter.sampler.rt.device), e.to(adapter.sampler.rt.device),
+            x=torch.cat([x,x[-1:].repeat(adapter.sampler.batch-count,1,1,1)])
+            n=torch.cat([n,n[-1:].repeat(adapter.sampler.batch-count,1,1,1)])
+            raw=torch.cat([raw,raw[-1:].repeat(adapter.sampler.batch-count,1,1,1,1)])
+        raw=raw.to(adapter.sampler.rt.device)
+        e=raw[:,0].float()+adapter.sampler.cfg['cfg_scale']*(raw[:,1].float()-raw[:,0].float())
+        y = adapter.update(x.to(adapter.sampler.rt.device), e,
                            adapter.sampler.coefficients[index].to(adapter.sampler.rt.device),
                            n.to(adapter.sampler.rt.device)).to(torch.bfloat16)
         adapter.sampler.rt.xm.mark_step()
@@ -55,7 +72,17 @@ def execute(adapter, features, config, output, merge_distance, status):
     tape = historical_tape(adapter.sampler,noise_seed,24,start=0)
     ids = tuple(range(24))
     status('R1_prefix', prompt_id=0, seed=seed, event_next_index=40)
-    checkpoint = adapter.advance(initial,0,40,ids,tape)
+    if config.get('reuse_r1_prefix'):
+        from otlab.io import load_tensor
+        saved=load_tensor(config['reuse_r1_prefix'])
+        if (saved['next_index']!=40 or saved['noise_seed']!=noise_seed
+                or saved['tape_sha']!=tensor_sha(tape.variance_noise) or not torch.equal(saved['initial'],initial)):
+            raise RuntimeError('saved R1 prefix input identity mismatch')
+        checkpoint=saved['checkpoint']
+        atomic_json(output/'PREFIX_REUSE.json',dict(path=config['reuse_r1_prefix'],exact_inputs_verified=True,
+                                                  reused_sample_nfe=960))
+    else:
+        checkpoint = adapter.advance(initial,0,40,ids,tape)
     torch.save(dict(initial=initial,checkpoint=checkpoint,noise_seed=noise_seed,
                     tape_sha=tensor_sha(tape.variance_noise),next_index=40),output/'prefix.pt')
     status('R1_event_prediction')
@@ -75,6 +102,10 @@ def execute(adapter, features, config, output, merge_distance, status):
     replay_before = dict(adapter.counters)
     direct41 = adapter.advance(checkpoint[:4],40,41,ids[:4],tape)
     reused41 = transition(adapter,checkpoint[:4],eps[:4],40,tape.at(40,ids[:4]))
+    atomic_json(output/'no_op_replay_partial.json',dict(bitwise=torch.equal(direct41,reused41),
+        max_abs=float((direct41.float()-reused41.float()).abs().max()),
+        differing_values=int((direct41!=reused41).sum()),values=direct41.numel(),
+        raw_prediction_dtype=str(eps.dtype),prediction_contract='native BF16 UNet unconditional+conditional outputs'))
     if not torch.equal(direct41,reused41):
         raise RuntimeError('cached epsilon transition is not exact')
     # Copy/reorder test includes a donor different from every source being replaced.
