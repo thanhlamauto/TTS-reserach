@@ -1,0 +1,11 @@
+device: cpu
+cpu_threads: 4
+local_files_only: true
+feature_microbatch: 1
+vae:
+  model_id: /home/thanhlamtba31/static-bfs-dcs/cache/huggingface/models--runwayml--stable-diffusion-v1-5/snapshots/451f4fe16113bff5a5d2269ed5ad43b0592e9a14
+  identity: runwayml/stable-diffusion-v1-5@451f4fe16113bff5a5d2269ed5ad43b0592e9a14/vae
+encoder:
+  family: dinov2
+  model_id: /home/thanhlamtba31/static-bfs-dcs/cache/ot_tts_dinov2/models--facebook--dinov2-base/snapshots/f9e44c814b77203eaa57a6bdbbd535f21ede1415
+  revision: f9e44c814b77203eaa57a6bdbbd535f21ede1415

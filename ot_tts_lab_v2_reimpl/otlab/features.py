@@ -31,9 +31,14 @@ class TensorFeatures:
                                                 local_files_only=local, torch_dtype=torch.float32).eval().to(self.device)
         self.model.requires_grad_(False)
         self.vae.requires_grad_(False)
-        if self.model.config.model_type != "dinov3_vit" or self.model.config.hidden_size != 768:
-            raise ValueError("fixed first pass requires DINOv3 ViT-B/16")
-        if self.model.config.patch_size != 16:
+        families = {"dinov3": ("dinov3_vit", 16), "dinov2": ("dinov2", 14)}
+        family = enc.get("family", "dinov3")
+        if family not in families:
+            raise ValueError("encoder family must be explicitly audited")
+        model_type, patch_size = families[family]
+        if self.model.config.model_type != model_type or self.model.config.hidden_size != 768:
+            raise ValueError(f"fixed pilot requires the declared {family} base encoder")
+        if self.model.config.patch_size != patch_size:
             raise ValueError("wrong encoder patch size")
         p = self.processor
         if int(p.resample) != 3 or not p.do_resize or not p.do_normalize:
@@ -54,7 +59,7 @@ class TensorFeatures:
         vae_weight = Path(config["vae"]["model_id"]) / "vae/diffusion_pytorch_model.safetensors"
         if not isinstance(encoder_weight, (str, Path)) or not Path(encoder_weight).is_file() or not vae_weight.is_file():
             raise ValueError("fingerprint the exact local safetensors files before real execution")
-        self.identity = dict(mode="pretrained", encoder_revision=enc["revision"],
+        self.identity = dict(mode="pretrained", encoder_family=family, encoder_revision=enc["revision"],
                              encoder_sha256=file_sha(encoder_weight), vae_sha256=file_sha(vae_weight),
                              surrogate_dtype="float32", device=str(self.device),
                              versions={name: importlib.metadata.version(name) for name in

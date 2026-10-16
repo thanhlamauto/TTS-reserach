@@ -1,17 +1,22 @@
 {
-  "code_sha256": "8422a9a46b6487484136c7622154db45bfea7837c9c6fcb32c923758fe453ca0",
+  "code_sha256": "8074f94c847d20dab1b6b6604ba7f3730e3e2eab027dc950ac40b55b0741fa98",
   "files": {
     ".gitignore": "29de9a2f522b9e41a974980a9373209d99aa4b30641527d7248636c8b2d682bf",
     "DESIGN_CHOICES.md": "72ec22f6afadd01fcdba5369ac80fd047faeeaa4519b8e2595593d5cfd157b57",
+    "DINOV2_PILOT.md": "3e5c8397a80a5a25cf0b049d3cf47bd1f5db07ff55d19dddd12163f3345471e1",
     "README.md": "0edf2ec4b467b9057c877ca5c0a282adb8b2e894c6f7b6052f83d1f25fd883ef",
     "VALIDATION_STATUS.json": "acaf25c04e07a248af0e9c650527df4202beb328a495d9219aa599c81abfc774",
     "configs/worker.yaml": "421194875432d0c0d9b9d9b485b8323c8d13ca7c6cea8ab1b60743e3f84e04ca",
+    "configs/worker_dinov2.yaml": "e8251a71aa5e7796523e44c1d51708d09f76d168b67ac2797c1d4ad4579a85a0",
+    "ops/run_dinov2_pilot.sh": "78fc49a0e10f0b58d512c4f07f1597f03a235a846c124a8b8a91ab0ccf346686",
     "otlab/__init__.py": "cd3a61706dc51700db773ac65e0a40ded51efadf956b341cea783d65a71b0de0",
     "otlab/adapter.py": "7a42213b456ed4f90a8b52499503caf97423b80c8b023a9888ce2496cbabcf3d",
     "otlab/analysis.py": "dc105828c6d438c929adc62040f90bac6c07593285b2c5108b050da89cb994ba",
+    "otlab/campaign.py": "eba2317c241dbd022cd6463cf9d0cc9971edca6c5db0f6784d166b445a2911ff",
     "otlab/cli.py": "3348b762867fdf3ae5ec3d56a56767fd673caacd7efbbbb32e716dcf812ab1c6",
+    "otlab/evaluate.py": "07aa04068f76b97e19695af0bbf5cec6c02c0d3452e9f3034b801237f535ccd1",
     "otlab/export.py": "f1fc956c86df1087d40c2160f7c4104e923630095b6497b14aba2b63e33723e4",
-    "otlab/features.py": "e12ff2caeed90d772dfffe69c1f2c9fefd50abe8c15e114e25e946d3cd71b47b",
+    "otlab/features.py": "f320e933f54b66722678180749a4428060a866b42670f1862c5514e994babdd0",
     "otlab/geometry.py": "5e11ffee5c6762b5a9daadd1399bcfa02e8f863f14446ed42a14375046617ac8",
     "otlab/io.py": "e8838397d00911156cebf55b660eaff738eb33627af2f01e0b8d8a2e7444ec0e",
     "otlab/model_access.py": "9cd86f0fb668867b676f68df41a30deb9cd0007ff8ea9b5f640905004a81765e",
@@ -31,6 +36,7 @@
     "specification/SUPPLIED_TEST_STATUS.json": "d47e99d1d5c52b50f9e4fa1f1ce7962435ffe898a9d9793e1ee68bc71cb904c2",
     "specification/SWEEP_PLAYBOOK.md": "3976ebf58e7f4d74a4e7d4518d29c918975203e9a289cdc0ee5f598ddd363904",
     "tests/test_contracts.py": "8e2e08ff3c0a23b3e96f5ed39c2d5eb04e7689e40d4bbb21fe0701edaf0e2ac0",
+    "tests/test_dinov2.py": "691f01e9d2722e828c04e0e1344016ef6f7873ea726c6acff198b0fbae2d143b",
     "tests/test_numerics.py": "005845c218d90c6c9dfc054893efe7ca86924527b01c0ea8d65641c1b545fb1f"
   }
 }
