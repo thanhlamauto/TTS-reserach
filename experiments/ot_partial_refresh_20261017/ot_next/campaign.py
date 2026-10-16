@@ -131,7 +131,9 @@ def main():
         atomic_json(run/'COMPLETE.json',finish)
         status('complete',**finish)
     except BaseException as exc:
-        atomic_json(run/'failure.json',dict(error=f'{type(exc).__name__}: {exc}',traceback=traceback.format_exc()))
+        atomic_json(run/'failure.json',dict(error=f'{type(exc).__name__}: {exc}',traceback=traceback.format_exc(),
+                    elapsed_seconds=time.time()-begin,measured_counters=dict(adapter.counters) if adapter else {},
+                    encoder_samples=features.count if features else 0))
         status('failed',error=f'{type(exc).__name__}: {exc}')
         raise
     finally:

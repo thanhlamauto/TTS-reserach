@@ -68,21 +68,32 @@ def execute(adapter, features, config, output, status):
         raise RuntimeError('old/current sampler or reward prompt identity mismatch')
     before = dict(adapter.counters)
     status('E0_exact_replay_gates')
-    # Actual preview->terminal replay validates all8 no-op and all6 selected edits.
-    ids = list(range(8)) + [i for i,c in enumerate(choices) if c]
-    slots = [0]*8 + [choices[i] for i,c in enumerate(choices) if c]
+    # Replay each original8-image population with the original row order. The
+    # earlier14-image parity gate changed the CPU verifier batch geometry;
+    # exact reward equality must use its original8-image call contract.
+    ids = list(range(8))*2
+    slots = [0]*8 + choices
     entry = preview['states'][ids, slots]
     replay = adapter.advance(entry, 54, 100, ids, tape)
-    expected = torch.cat([none['latent'], chosen['latent'][[i for i,c in enumerate(choices) if c]]])
+    expected = torch.cat([none['latent'], chosen['latent']])
     if not torch.equal(replay, expected):
         raise RuntimeError('index54 gate failed; missing edit generation forbidden')
-    replay_reward, replay_rgb = adapter.score(replay, 'replay')
-    expected_rewards = torch.cat([none['rewards'], chosen['rewards'][[i for i,c in enumerate(choices) if c]]])
-    expected_rgb = torch.cat([none['rgb'], chosen['rgb'][[i for i,c in enumerate(choices) if c]]])
-    if not torch.equal(replay_reward, expected_rewards) or not torch.equal(replay_rgb, expected_rgb):
+    scored=[adapter.score(replay[start:start+8],'replay') for start in (0,8)]
+    replay_reward=torch.cat([r for r,im in scored])
+    replay_rgb=torch.cat([im for r,im in scored])
+    expected_rewards = torch.cat([none['rewards'], chosen['rewards']])
+    expected_rgb = torch.cat([none['rgb'], chosen['rgb']])
+    parity=dict(latent_bitwise=True,pixels_bitwise=torch.equal(replay_rgb,expected_rgb),
+                rewards_bitwise=torch.equal(replay_reward,expected_rewards),
+                reward_max_abs=float((replay_reward-expected_rewards).abs().max()),
+                pixel_max_abs=int((replay_rgb.int()-expected_rgb.int()).abs().max()),
+                gate_suffix_nfe=16*46,verifier_batch_shape=8)
+    atomic_json(output/'replay_partial.json',parity)
+    if not parity['rewards_bitwise'] or not parity['pixels_bitwise']:
         raise RuntimeError('old reward/pixel parity failed')
     atomic_json(output/'replay.json', dict(passed=True, noops=8, selected_edits=6, exact_pixels_rewards=True,
-                                         gate_suffix_nfe=14*46, endpoint_sha=tensor_sha(replay)))
+                                         gate_suffix_nfe=16*46, replay_populations=2,verifier_batch_shape=8,
+                                         endpoint_sha=tensor_sha(replay)))
     terminal_latent = torch.zeros_like(preview['states'])
     terminal_rgb = torch.zeros_like(preview['rgb'])
     terminal_reward = torch.zeros_like(preview['proxy_reward'])
