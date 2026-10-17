@@ -1,0 +1,14 @@
+{
+  "evaluator": "blinded Codex visual annotation; descriptive, not a validated semantic model",
+  "rule": "SUCCESS only if all required visible predicates are clearly satisfied; FAIL if any clearly fails; UNKNOWN otherwise. Ignore ancillary style adjectives for primary semantics. Labels are image-hash keyed, shared across methods and selectors. Review grids hide method/IR/allocation labels.",
+  "prompts": {
+    "1": ["a red canoe is visibly floating on a lake", "yellow autumn trees are present", "a distant snow-covered mountain is visible"],
+    "2": ["a robot is visible", "the robot is tending or physically interacting with plants", "vegetables or food-growing garden beds are on a rooftop; flowers alone do not satisfy this"],
+    "3": ["a glass greenhouse is visible", "orchids or clearly orchid-like flowering plants fill it; generic greenery alone is insufficient", "a city courtyard with wet reflective stone or explicit rainy conditions is visible"],
+    "4": ["a black-and-white collie-like dog is visible", "the dog is catching or in direct contact with an orange frisbee", "a grassy coastal beach setting is visible; an inland field alone is insufficient"],
+    "5": ["a lighthouse is visible", "a turquoise cove or sheltered inlet is visible below it", "wildflowers are visibly in the foreground"],
+    "6": ["exactly three pears are visible", "a purple cloth is visible and folded rather than absent", "the fruit and cloth sit on a stone or marble-like tabletop"]
+  },
+  "unknown_policy": "not success in primary count; also report optimistic upper count treating unknown as success",
+  "cannot_infer_from_ImageReward_DINO_CLIP_or_ancestor_count": true
+}

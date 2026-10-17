@@ -2,7 +2,11 @@
 set -euo pipefail
 OTNEXT_REPO="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
 OTNEXT_SOURCE="$OTNEXT_REPO/experiments/ot_partial_refresh_20261017"
-OTNEXT_ROOT=/home/thanhlamtba31/static-bfs-dcs/ot_partial_refresh_20261017
+OTNEXT_ROOT="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["root"])' "$OTNEXT_SOURCE/protocol.json")"
+OTNEXT_MODULE=ot_next.campaign
+if [[ "$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["stages"]==["E1"])' "$OTNEXT_SOURCE/protocol.json")" == True ]]; then
+  OTNEXT_MODULE=ot_next.e1
+fi
 mkdir -p "$OTNEXT_ROOT"
 export PYTHONPATH="$OTNEXT_SOURCE:$OTNEXT_REPO/ot_tts_lab_v2_reimpl:/home/thanhlamtba31/TTS-reserach"
 export PJRT_DEVICE=TPU
@@ -30,5 +34,5 @@ if [[ "$OTNEXT_REMAINING" -lt 1 ]]; then
   exit 75
 fi
 exec timeout --signal=TERM --kill-after=30s "${OTNEXT_REMAINING}s" \
-  /home/thanhlamtba31/static-bfs-dcs/venv/bin/python -u -m ot_next.campaign \
+  /home/thanhlamtba31/static-bfs-dcs/venv/bin/python -u -m "$OTNEXT_MODULE" \
   --protocol "$OTNEXT_SOURCE/protocol.json"

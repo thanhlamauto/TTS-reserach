@@ -1,20 +1,76 @@
 {
-  "E1_six_prompt_quality_pilot": "NOT_OPENED_PENDING_CALIBRATION",
+  "E1_six_prompt_quality_pilot": "USER_AUTHORIZED_CALIBRATED_THEN_RUN",
   "R2_R3_P2_repair": "NOT_OPENED",
   "allocated_physical_chips": 4,
   "antithetic_factorial": "NOT_OPENED",
+  "auxiliary_accounting": "All four instrumented methods cold2400 sampling+24 auxiliary UNet=2424; minimal none inference would not need preview. No equal2400-total claim.",
+  "budget_note": "Separate explicitly authorized fixed six-prompt stage. Parent E0/smoke cost is retained and reported, not reset or hidden.",
+  "calibration": {
+    "baseline_reward_values": [
+      -1.9070221185684204,
+      0.4840231239795685,
+      1.6068195104599,
+      -0.8410924077033997,
+      -1.464347004890442,
+      -2.0780835151672363,
+      -1.3515760898590088,
+      -1.8885736465454102,
+      -0.7591214776039124,
+      -1.047210931777954,
+      -1.5641230344772339,
+      -2.2461702823638916,
+      -1.5287646055221558,
+      -1.0151950120925903,
+      -0.828169584274292,
+      -1.684733510017395,
+      -0.9709081649780273,
+      -1.71769118309021,
+      -1.866302251815796,
+      -1.3094558715820312,
+      -0.9741727113723755,
+      -1.6705052852630615,
+      0.1742723435163498,
+      -2.0299274921417236
+    ],
+    "distance_quantiles": [
+      0.06343273746283673,
+      0.07785658785589741,
+      0.09673784852267564,
+      0.12705432684463303
+    ],
+    "distance_rule": "q25 old24 baseline pairwise CLIP cosine distance;276 unordered pairs",
+    "distance_threshold": 0.07785658785589741,
+    "images": 24,
+    "independent_prompts": 1,
+    "input": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/bank_train_seed20261016/p000/bank.json",
+    "input_sha256": "ad6b7346e57b132edf907a59096c6709a2b85747143410910216784b6dbd5b8e",
+    "new_R1_outcomes_used": false,
+    "notes": "A frozen exploratory threshold on a single old prompt, not a validated universal good-image cutoff. Semantic success is separately required.",
+    "quality_rule": "q75 old24 baseline terminal IR",
+    "quality_threshold": -0.9384542256593704,
+    "reward_quantiles": [
+      -1.7548439502716064,
+      -1.4079615473747253,
+      -0.9384542256593704
+    ],
+    "schema": "ot_next.calibration.v1",
+    "seed": 20261016
+  },
   "calibration_is_implementation_choice": true,
+  "calibration_rule_locked_before_new_E1_outcomes": true,
   "cold_aux_unet_nfe": 24,
   "cold_sampling_nfe": 2400,
   "dcs_root": "/home/thanhlamtba31/static-bfs-dcs",
   "distance_scale": "median positive donor-donor cosine distance, floor1e-6; no column-centering",
   "donor_pool": 12,
   "epsilon": 1.0,
+  "estimated_new_sampling_and_aux_with_shared_prefix_and_gates": 42864,
   "event_next_index": 40,
   "final24prompt_evaluation": "NOT_AUTHORIZED_BY_THIS_RUN",
   "gamma": 1.0,
   "max_groups": 4,
   "merge_calibration": "max(1e-6, q10 of positive off-diagonal cosine distances among existing16 bank terminal DINO features); frozen rule, no new R1 outcomes",
+  "merge_distance": 0.1457543222586308,
   "methods": [
     "none",
     "partial_reward",
@@ -22,29 +78,66 @@
     "partial_ot"
   ],
   "no_GPU_no_Modal_no_new_models": true,
+  "no_neural_stage_after_E1": true,
   "old_root": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016",
+  "parent_campaign_root": "/home/thanhlamtba31/static-bfs-dcs/ot_partial_refresh_20261017",
+  "parent_experiment": "0d686502-ee4c-467c-bfaa-290419947e59",
   "prediction_reuse_status": "FAILED_STRICT_GATE_USE_ORIGINAL_SAMPLER",
-  "primary_independent_distance_threshold": null,
-  "primary_quality_threshold": null,
-  "quality_diversity_selector": null,
+  "primary_bootstrap": "20000 prompt draws, seeds averaged inside prompt; unadjusted95 and approximate Bonferroni97.5 across2 OT-vs-simple contrasts; descriptive only",
+  "primary_independent_distance_threshold": 0.07785658785589741,
+  "primary_quality_threshold": -0.9384542256593704,
+  "primary_selector": "quality_diversity",
+  "proceed_signal": "mean lower-bound good-distinct improvement>=0.5 versus BOTH partial_reward and partial_group, and historical-top8 mean IR delta>=-0.02 versus both; recommend independent-prefix replication only, never auto-launch or claim superiority",
+  "quality_diversity_selector": "IR>=old q75 eligibility, maxIR seed, greedy farthest minimum DINO cosine, IR/id ties, IR fallback to fill8; same for every method",
   "r1_population": 24,
   "r1_prompt_index": 0,
   "r1_smoke_seed": 2026101701,
   "replace": 6,
-  "reuse_e0": "/home/thanhlamtba31/static-bfs-dcs/ot_partial_refresh_20261017/attempts/34c8a5030396/E0",
-  "reuse_r1_prefix": "/home/thanhlamtba31/static-bfs-dcs/ot_partial_refresh_20261017/attempts/34c8a5030396/R1_smoke/prefix.pt",
   "reward_temperature": "bounded bisection to ESS6 in12 donors; near-constant range<=1e-6 stays uniform; scaled inverse temperature<=64",
-  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_partial_refresh_20261017",
+  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_partial_refresh_20261017_E1",
   "rounding": "common keyed uniforms; floor expected counts + iid residual draws; deterministic donor-to-child-slot order",
   "schema": "ot_next.e0_r1_smoke.v1",
-  "scientific_quality_claim_allowed": false,
-  "semantic_checker": null,
+  "scientific_quality_claim_allowed": "exploratory six-TRAIN-prompt, one-prefix evidence only; no final claim",
+  "secondary_selector": "top8_ir",
+  "semantic_checker": "frozen semantic_rubrics.json, method/IR-blinded Codex review, image-hash labels; unknown=not-success lower bound",
   "stages": [
-    "E0",
-    "R1_ENGINEERING_SMOKE"
+    "E1"
   ],
   "survive": 18,
   "transition_mode": "original_fused_recompute",
-  "visible_chips": "0",
-  "wall_cap_seconds": 3600
+  "units": [
+    {
+      "prompt": "A red canoe floating on a still alpine lake with yellow autumn trees and a distant snow-covered mountain.",
+      "prompt_id": 1,
+      "seed": 2026101702
+    },
+    {
+      "prompt": "A tiny robot tending a rooftop vegetable garden at sunrise, detailed editorial photograph.",
+      "prompt_id": 2,
+      "seed": 2026101702
+    },
+    {
+      "prompt": "A glass greenhouse filled with orchids in a rainy city courtyard, reflections on wet stone.",
+      "prompt_id": 3,
+      "seed": 2026101702
+    },
+    {
+      "prompt": "A black and white border collie catching an orange frisbee on a grassy beach, crisp action photography.",
+      "prompt_id": 4,
+      "seed": 2026101702
+    },
+    {
+      "prompt": "A weathered lighthouse above a turquoise cove with wildflowers in the foreground, watercolor painting.",
+      "prompt_id": 5,
+      "seed": 2026101702
+    },
+    {
+      "prompt": "Three pears and a folded purple linen cloth on a marble table, dramatic side lighting, oil painting.",
+      "prompt_id": 6,
+      "seed": 2026101702
+    }
+  ],
+  "visible_chips": "per-worker0..3",
+  "wall_cap_seconds": 3600,
+  "workers": 4
 }

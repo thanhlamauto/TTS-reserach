@@ -1,0 +1,51 @@
+{
+  "baseline_reward_values": [
+    -1.9070221185684204,
+    0.4840231239795685,
+    1.6068195104599,
+    -0.8410924077033997,
+    -1.464347004890442,
+    -2.0780835151672363,
+    -1.3515760898590088,
+    -1.8885736465454102,
+    -0.7591214776039124,
+    -1.047210931777954,
+    -1.5641230344772339,
+    -2.2461702823638916,
+    -1.5287646055221558,
+    -1.0151950120925903,
+    -0.828169584274292,
+    -1.684733510017395,
+    -0.9709081649780273,
+    -1.71769118309021,
+    -1.866302251815796,
+    -1.3094558715820312,
+    -0.9741727113723755,
+    -1.6705052852630615,
+    0.1742723435163498,
+    -2.0299274921417236
+  ],
+  "distance_quantiles": [
+    0.06343273746283673,
+    0.07785658785589741,
+    0.09673784852267564,
+    0.12705432684463303
+  ],
+  "distance_rule": "q25 old24 baseline pairwise CLIP cosine distance;276 unordered pairs",
+  "distance_threshold": 0.07785658785589741,
+  "images": 24,
+  "independent_prompts": 1,
+  "input": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/bank_train_seed20261016/p000/bank.json",
+  "input_sha256": "ad6b7346e57b132edf907a59096c6709a2b85747143410910216784b6dbd5b8e",
+  "new_R1_outcomes_used": false,
+  "notes": "A frozen exploratory threshold on a single old prompt, not a validated universal good-image cutoff. Semantic success is separately required.",
+  "quality_rule": "q75 old24 baseline terminal IR",
+  "quality_threshold": -0.9384542256593704,
+  "reward_quantiles": [
+    -1.7548439502716064,
+    -1.4079615473747253,
+    -0.9384542256593704
+  ],
+  "schema": "ot_next.calibration.v1",
+  "seed": 20261016
+}

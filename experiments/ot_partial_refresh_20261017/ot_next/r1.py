@@ -67,11 +67,11 @@ def execute(adapter, features, config, output, merge_distance, status):
     output.mkdir(parents=True, exist_ok=False)
     before = dict(adapter.counters)
     from sd15_sinkhorn_tpu.common import initial_noise
-    seed, prompt_id = config['r1_smoke_seed'], 0
+    seed, prompt_id = config['r1_smoke_seed'], config['r1_prompt_index']
     initial, noise_seed = initial_noise(seed,prompt_id,0,24)
     tape = historical_tape(adapter.sampler,noise_seed,24,start=0)
     ids = tuple(range(24))
-    status('R1_prefix', prompt_id=0, seed=seed, event_next_index=40)
+    status('R1_prefix', prompt_id=prompt_id, seed=seed, event_next_index=40)
     if config.get('reuse_r1_prefix'):
         from otlab.io import load_tensor
         saved=load_tensor(config['reuse_r1_prefix'])
@@ -144,7 +144,7 @@ def execute(adapter, features, config, output, merge_distance, status):
                                             pair_best_ir=float(reward[[a,b]].max()),
                                             dino_distance=float(1-terminal_dino[a].double()@terminal_dino[b].double()),
                                             clip_distance=float(1-clip_f[a].double()@clip_f[b].double())))
-        row=dict(method=name,prompt_id=0,seed=seed,mean_ir=float(reward.mean()),best_ir=float(reward.max()),
+        row=dict(method=name,prompt_id=prompt_id,seed=seed,mean_ir=float(reward.mean()),best_ir=float(reward.max()),
                  top8_ir=float(reward[top].mean()),top8_indices=top.tolist(),
                  top8_dino_diversity=mean_diversity(terminal_dino[top]),
                  top8_clip_diversity=mean_diversity(clip_f[top]),
