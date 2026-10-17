@@ -2,13 +2,20 @@
 set -euo pipefail
 OTNEXT_REPO="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
 OTNEXT_SOURCE="$OTNEXT_REPO/experiments/ot_partial_refresh_20261017"
+if [[ -f "$OTNEXT_REPO/experiments/ot_remainder_20261017/protocol.json" ]]; then
+  OTNEXT_SOURCE="$OTNEXT_REPO/experiments/ot_remainder_20261017"
+fi
 OTNEXT_ROOT="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["root"])' "$OTNEXT_SOURCE/protocol.json")"
 OTNEXT_MODULE=ot_next.campaign
 if [[ "$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["stages"]==["E1"])' "$OTNEXT_SOURCE/protocol.json")" == True ]]; then
   OTNEXT_MODULE=ot_next.e1
 fi
+if [[ "$OTNEXT_SOURCE" == */ot_remainder_20261017 ]]; then
+  OTNEXT_MODULE=ot_remainder.r2
+fi
 mkdir -p "$OTNEXT_ROOT"
-export PYTHONPATH="$OTNEXT_SOURCE:$OTNEXT_REPO/ot_tts_lab_v2_reimpl:/home/thanhlamtba31/TTS-reserach"
+export PYTHONDONTWRITEBYTECODE=1
+export PYTHONPATH="$OTNEXT_SOURCE:$OTNEXT_REPO/experiments/ot_partial_refresh_20261017:$OTNEXT_REPO/ot_tts_lab_v2_reimpl:/home/thanhlamtba31/TTS-reserach"
 export PJRT_DEVICE=TPU
 export TPU_VISIBLE_CHIPS=0
 export HF_HUB_OFFLINE=1
