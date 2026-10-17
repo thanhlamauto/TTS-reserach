@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "polynomial_coefficients_exact": true,
+  "injected_metric_whitened": true,
+  "same_radius": true,
+  "optimistic_disagreement_abstains": true,
+  "density_ratio_bounds": true,
+  "flat_penalty_recovers_uniform": true,
+  "unidentified_cross_curvature_demonstrated": true
+}

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 OTNEXT_REPO="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
+if [[ -f "$OTNEXT_REPO/experiments/local_noise_avoidance_20261017/protocol.json" ]]; then
+  exec bash "$OTNEXT_REPO/experiments/local_noise_avoidance_20261017/run.sh"
+fi
 OTNEXT_SOURCE="$OTNEXT_REPO/experiments/ot_partial_refresh_20261017"
 OTNEXT_ROOT="$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["root"])' "$OTNEXT_SOURCE/protocol.json")"
 OTNEXT_MODULE=ot_next.campaign
