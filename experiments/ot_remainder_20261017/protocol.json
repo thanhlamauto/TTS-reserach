@@ -7,15 +7,16 @@
   ],
   "replicates": 20,
   "ridge": 0.001,
-  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_R3_toy_20261017",
+  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_R3_importance_completion_20261017",
   "schema": "ot_remainder.R3.v1",
   "scientific_claim": "Numerical diagnostic only; fixed controls and analytic targets, no exact sampling claim",
   "seed": 2026101706,
   "stages": [
-    "R3"
+    "R3_IMPORTANCE"
   ],
   "steps": 40,
   "tilt": 0.5,
-  "user_authorization": "2026-10-17 continue remaining gated experiments; toy only, no new image branch or final",
-  "wall_cap_seconds": 600
+  "user_authorization": "User 2026-10-17: run remaining plan; identical paired toy populations, add two standard importance controls only.",
+  "wall_cap_seconds": 600,
+  "old_root": "/home/thanhlamtba31/static-bfs-dcs/ot_R3_toy_20261017"
 }

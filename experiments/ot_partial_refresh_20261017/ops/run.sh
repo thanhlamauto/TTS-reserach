@@ -11,7 +11,7 @@ if [[ "$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["stages"
   OTNEXT_MODULE=ot_next.e1
 fi
 if [[ "$OTNEXT_SOURCE" == */ot_remainder_20261017 ]]; then
-  OTNEXT_MODULE=ot_remainder.r3
+  OTNEXT_MODULE=ot_remainder.importance
 fi
 mkdir -p "$OTNEXT_ROOT"
 export PYTHONDONTWRITEBYTECODE=1
