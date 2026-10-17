@@ -1,0 +1,1910 @@
+{
+  "evaluator": "Codex visual inspection, not validated human ground truth",
+  "frozen_utc": "2026-10-17T04:29:30.623135+00:00",
+  "full512_images": [
+    "J000.png",
+    "J004.png",
+    "J005.png",
+    "J008.png",
+    "J010.png",
+    "J014.png",
+    "J015.png",
+    "J018.png",
+    "J019.png",
+    "J020.png",
+    "J022.png",
+    "J023.png",
+    "J025.png",
+    "J026.png",
+    "J027.png",
+    "J030.png",
+    "J031.png",
+    "J032.png",
+    "J035.png",
+    "J038.png",
+    "J040.png",
+    "J042.png",
+    "J044.png",
+    "J053.png",
+    "J058.png",
+    "J061.png",
+    "J062.png",
+    "J066.png",
+    "J069.png",
+    "J076.png",
+    "J077.png",
+    "J078.png",
+    "J080.png",
+    "J083.png",
+    "J087.png",
+    "J095.png",
+    "J096.png",
+    "J097.png",
+    "J099.png",
+    "J100.png",
+    "J102.png",
+    "J104.png",
+    "J105.png",
+    "J106.png",
+    "J107.png",
+    "J109.png",
+    "J112.png",
+    "J115.png",
+    "J119.png",
+    "J126.png",
+    "J132.png",
+    "J134.png",
+    "J135.png",
+    "J136.png",
+    "J138.png",
+    "J139.png",
+    "J143.png",
+    "J145.png",
+    "J150.png",
+    "J152.png",
+    "J154.png",
+    "J156.png",
+    "J157.png",
+    "J161.png",
+    "J165.png",
+    "J166.png",
+    "J169.png",
+    "J174.png",
+    "J176.png",
+    "J178.png",
+    "J179.png",
+    "J180.png",
+    "J184.png",
+    "J189.png",
+    "J190.png",
+    "J191.png",
+    "J194.png",
+    "J195.png",
+    "J201.png"
+  ],
+  "images": {
+    "J000": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J001": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J002": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J003": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J004": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J005": {
+      "note": "Greenhouse, orchid-like flowers and wet/rainy or urban stone setting are visible.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J006": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J007": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J008": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J009": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J010": {
+      "note": "Full512 view shows orange plastic disc in contact with dog paw, on grassy coast.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J011": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J012": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J013": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J014": {
+      "note": "Greenhouse, orchid-like flowers and wet/rainy or urban stone setting are visible.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J015": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J016": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J017": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J018": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J019": {
+      "note": "Two whole pears plus cut pieces; exact number of original pears cannot be established visually.",
+      "required_flags": [
+        null,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J020": {
+      "note": "Generic foliage or unopened buds without clearly visible orchids filling the greenhouse.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J021": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J022": {
+      "note": "Generic foliage or unopened buds without clearly visible orchids filling the greenhouse.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J023": {
+      "note": "Autumn forest and canoe, but no visible snowy mountain in the framed image.",
+      "required_flags": [
+        true,
+        true,
+        false
+      ],
+      "success": false
+    },
+    "J024": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J025": {
+      "note": "Greenhouse, orchid-like flowers and wet/rainy or urban stone setting are visible.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J026": {
+      "note": "Orchids and rain on glass are clear, but close crop does not establish a greenhouse.",
+      "required_flags": [
+        null,
+        true,
+        true
+      ],
+      "success": null
+    },
+    "J027": {
+      "note": "Close orchid/window crop does not establish greenhouse or city/rain setting.",
+      "required_flags": [
+        null,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J028": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J029": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J030": {
+      "note": "Two whole pears plus cut pieces; exact number of original pears cannot be established visually.",
+      "required_flags": [
+        null,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J031": {
+      "note": "Plant handling or a tool directed at leaves is visible; rooftop location remains uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J032": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J033": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J034": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J035": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J036": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J037": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J038": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J039": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J040": {
+      "note": "Two whole pears plus cut pieces; exact number of original pears cannot be established visually.",
+      "required_flags": [
+        null,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J041": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J042": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J043": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J044": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J045": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J046": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J047": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J048": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J049": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J050": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J051": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J052": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J053": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J054": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J055": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J056": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J057": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J058": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J059": {
+      "note": "Predominantly green canoe; the red-canoe condition is not satisfied.",
+      "required_flags": [
+        false,
+        true,
+        true
+      ],
+      "success": false
+    },
+    "J060": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J061": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J062": {
+      "note": "Orange slice or peel/pith texture is visible; not a clear plastic frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J063": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J064": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J065": {
+      "note": "Orange slice or peel/pith texture is visible; not a clear plastic frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J066": {
+      "note": "A separate oversized mechanical hand is visible; the small robot itself is standing without clear plant contact.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J067": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J068": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J069": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J070": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J071": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J072": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J073": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J074": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J075": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J076": {
+      "note": "Flower identity/extent is uncertain; urban/rain context also uncertain.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J077": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J078": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J079": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J080": {
+      "note": "Plant handling or a tool directed at leaves is visible; rooftop location remains uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J081": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee. Grayscale sandy shore has no visible grassy beach.",
+      "required_flags": [
+        true,
+        false,
+        false
+      ],
+      "success": false
+    },
+    "J082": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J083": {
+      "note": "Flower identity/extent is uncertain; urban/rain context also uncertain.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J084": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J085": {
+      "note": "Lighthouse is substantially cropped, so its identity is uncertain; coastal structure is also conservative.",
+      "required_flags": [
+        null,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J086": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee. Grayscale sandy shore has no visible grassy beach.",
+      "required_flags": [
+        true,
+        false,
+        false
+      ],
+      "success": false
+    },
+    "J087": {
+      "note": "Greenhouse, orchid-like flowers and wet/rainy or urban stone setting are visible.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J088": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J089": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J090": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J091": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J092": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J093": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J094": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J095": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J096": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J097": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J098": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J099": {
+      "note": "Greenhouse, orchid-like flowers and wet/rainy or urban stone setting are visible.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J100": {
+      "note": "Flower identity/extent is uncertain; urban/rain context also uncertain.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J101": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J102": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J103": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J104": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J105": {
+      "note": "Flower identity/extent is uncertain; urban/rain context also uncertain.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J106": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J107": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J108": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J109": {
+      "note": "Two whole pears plus cut pieces; exact number of original pears cannot be established visually.",
+      "required_flags": [
+        null,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J110": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J111": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J112": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J113": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J114": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J115": {
+      "note": "Autumn forest and canoe, but no visible snowy mountain in the framed image.",
+      "required_flags": [
+        true,
+        true,
+        false
+      ],
+      "success": false
+    },
+    "J116": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J117": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J118": {
+      "note": "Predominantly green canoe; the red-canoe condition is not satisfied.",
+      "required_flags": [
+        false,
+        true,
+        true
+      ],
+      "success": false
+    },
+    "J119": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J120": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J121": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J122": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J123": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J124": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J125": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee. Grayscale sandy shore has no visible grassy beach.",
+      "required_flags": [
+        true,
+        false,
+        false
+      ],
+      "success": false
+    },
+    "J126": {
+      "note": "Only an orange/brown wooden bow appears at the bottom; no visibly red canoe.",
+      "required_flags": [
+        false,
+        true,
+        true
+      ],
+      "success": false
+    },
+    "J127": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J128": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J129": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J130": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J131": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J132": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J133": {
+      "note": "Orange slice or peel/pith texture is visible; not a clear plastic frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J134": {
+      "note": "Orchids and rain on glass are clear, but close crop does not establish a greenhouse.",
+      "required_flags": [
+        null,
+        true,
+        true
+      ],
+      "success": null
+    },
+    "J135": {
+      "note": "Canoe is visible in full512 view; distant ridge snow cover is unclear.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J136": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J137": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J138": {
+      "note": "Greenhouse, orchid-like flowers and wet/rainy or urban stone setting are visible.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J139": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J140": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J141": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J142": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J143": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J144": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J145": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J146": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J147": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J148": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J149": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J150": {
+      "note": "Canoe is visible in full512 view; distant ridge snow cover is unclear.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J151": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J152": {
+      "note": "Three pears, folded purple cloth and clear veined stone/marble tabletop.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J153": {
+      "note": "A separate oversized mechanical hand is visible; the small robot itself is standing without clear plant contact.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J154": {
+      "note": "Three pears, folded purple cloth and clear veined stone/marble tabletop.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J155": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J156": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J157": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J158": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J159": {
+      "note": "Orange slice or peel/pith texture is visible; not a clear plastic frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J160": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J161": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J162": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J163": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J164": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee. Grayscale sandy shore has no visible grassy beach.",
+      "required_flags": [
+        true,
+        false,
+        false
+      ],
+      "success": false
+    },
+    "J165": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J166": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J167": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J168": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J169": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J170": {
+      "note": "Visible coastal indentation/sheltered inlet with turquoise water and foreground wildflowers.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J171": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J172": {
+      "note": "Orange slice or peel/pith texture is visible; not a clear plastic frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J173": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J174": {
+      "note": "Plant handling or a tool directed at leaves is visible; rooftop location remains uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J175": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J176": {
+      "note": "Greenhouse, orchid-like flowers and wet/rainy or urban stone setting are visible.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J177": {
+      "note": "Lighthouse is substantially cropped, so its identity is uncertain; coastal structure is also conservative.",
+      "required_flags": [
+        null,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J178": {
+      "note": "Plant handling or a tool directed at leaves is visible; rooftop location remains uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J179": {
+      "note": "Close orchid/window crop does not establish greenhouse or city/rain setting.",
+      "required_flags": [
+        null,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J180": {
+      "note": "Greenhouse and orchid-like flowers visible; urban courtyard or explicit rain is uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J181": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J182": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J183": {
+      "note": "Lighthouse and foreground flowers visible; open sea does not clearly establish a sheltered cove.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J184": {
+      "note": "Three pear-like fruits and purple folded cloth visible; tabletop material hidden or ambiguous.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J185": {
+      "note": "Purple fruit is present, but purple folded cloth is absent; surface is white cloth or stone.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J186": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J187": {
+      "note": "Close foliage view; robot and roof/action predicates are not reliably visible.",
+      "required_flags": [
+        null,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J188": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J189": {
+      "note": "Flower identity/extent is uncertain; urban/rain context also uncertain.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J190": {
+      "note": "Generic foliage or unopened buds without clearly visible orchids filling the greenhouse.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J191": {
+      "note": "Plant handling or a tool directed at leaves is visible; rooftop location remains uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    },
+    "J192": {
+      "note": "Collie visible, but orange object is spherical or has citrus pulp/rind rather than a frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J193": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J194": {
+      "note": "Red canoe, yellow autumn trees and visibly snow-covered distant peak.",
+      "required_flags": [
+        true,
+        true,
+        true
+      ],
+      "success": true
+    },
+    "J195": {
+      "note": "Generic foliage or unopened buds without clearly visible orchids filling the greenhouse.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J196": {
+      "note": "Hand/plant interaction is partly occluded or not clear enough to call tending.",
+      "required_flags": [
+        true,
+        null,
+        null
+      ],
+      "success": null
+    },
+    "J197": {
+      "note": "Orange disc/object ahead of airborne dog; actual catching/frisbee identity unclear, with separate orange material near mouth.",
+      "required_flags": [
+        true,
+        null,
+        true
+      ],
+      "success": null
+    },
+    "J198": {
+      "note": "Robot near food-growing beds; no clear tending action and rooftop location is uncertain.",
+      "required_flags": [
+        true,
+        false,
+        null
+      ],
+      "success": false
+    },
+    "J199": {
+      "note": "Only two pears are visible.",
+      "required_flags": [
+        false,
+        true,
+        null
+      ],
+      "success": false
+    },
+    "J200": {
+      "note": "Orange slice or peel/pith texture is visible; not a clear plastic frisbee.",
+      "required_flags": [
+        true,
+        false,
+        true
+      ],
+      "success": false
+    },
+    "J201": {
+      "note": "Plant handling or a tool directed at leaves is visible; rooftop location remains uncertain.",
+      "required_flags": [
+        true,
+        true,
+        null
+      ],
+      "success": null
+    }
+  },
+  "method_and_reward_labels_hidden": true,
+  "method_metric_tables_opened_before_freeze": false,
+  "rubric": "semantic_rubrics.json unchanged from E1",
+  "schema": "ot_remainder.R2.blinded_semantics.v1",
+  "unknown": "excluded from primary; included only in possible upper, not a confidence bound"
+}

@@ -1,29 +1,42 @@
 {
-  "action_ot": "row constrained, free column; cost=-log(p_ig+1e-12); logits=rewardUCB, gamma=epsilon=1",
-  "auxiliary_unet_nfe": 0,
-  "batches": [
-    [
-      20,
-      4
-    ],
-    [
-      40,
-      8
-    ],
-    [
-      20,
-      4
-    ],
-    [
-      40,
-      8
-    ]
+  "units": [
+    {
+      "prompt": "A red canoe floating on a still alpine lake with yellow autumn trees and a distant snow-covered mountain.",
+      "prompt_id": 1,
+      "seed": 2026101704
+    },
+    {
+      "prompt": "A tiny robot tending a rooftop vegetable garden at sunrise, detailed editorial photograph.",
+      "prompt_id": 2,
+      "seed": 2026101704
+    },
+    {
+      "prompt": "A glass greenhouse filled with orchids in a rainy city courtyard, reflections on wet stone.",
+      "prompt_id": 3,
+      "seed": 2026101704
+    },
+    {
+      "prompt": "A black and white border collie catching an orange frisbee on a grassy beach, crisp action photography.",
+      "prompt_id": 4,
+      "seed": 2026101704
+    },
+    {
+      "prompt": "A weathered lighthouse above a turquoise cove with wildflowers in the foreground, watercolor painting.",
+      "prompt_id": 5,
+      "seed": 2026101704
+    },
+    {
+      "prompt": "Three pears and a folded purple linen cloth on a marble table, dramatic side lighting, oil painting.",
+      "prompt_id": 6,
+      "seed": 2026101704
+    }
   ],
-  "branch_methods": [
+  "methods": [
     "uniform",
     "reward_ucb",
     "group",
-    "action_ot"
+    "action_ot",
+    "bon24"
   ],
   "calibration": {
     "baseline_reward_values": [
@@ -76,74 +89,13 @@
     "schema": "ot_next.calibration.v1",
     "seed": 20261016
   },
-  "cold_total_nfe": 72000,
-  "dcs_root": "/home/thanhlamtba31/static-bfs-dcs",
-  "exploration": "exact25percent each batch, common uniform slots across methods",
-  "fixed_nodes": "8 original-root states at20 and40; no adaptive descendant becomes a new action node",
-  "group": "hard argmax outcome-group assignment, deficit-weighted mixture of within-group rewardUCB softmax; empty group uses all nodes",
-  "groups": "max4 medoids, old merge distance, fixed from first completed batch containing IR-good outcomes; no fake good modes",
-  "merge_distance": 0.1457543222586308,
-  "methods": [
-    "uniform",
-    "reward_ucb",
-    "group",
-    "action_ot",
-    "bon24"
-  ],
-  "new_nfe": 55200,
-  "no_R1_sweep": true,
-  "no_automatic_image_R3": true,
-  "old_root": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016",
-  "online_quality": "IR >= old calibration threshold only, not semantic success",
-  "outcome_prior": "Dirichlet0.5 per good group plus failure category; delta1e-12",
-  "output_selectors": [
-    "quality_diversity",
-    "top8_ir"
-  ],
-  "parent_experiment": "98d700cb-cbd2-4e14-9dfa-37253c97d5b9",
-  "primary": "same good-distinct in8 actual QD outputs and frozen E1 rubric",
-  "reserved_final": "NOT_OPENED",
-  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_R2_terminal_feedback_20261017",
-  "schema": "ot_remainder.R2.v1",
-  "semantic_evaluator": "method/reward blinded Codex visual review; UNKNOWN excluded lower and included possible upper; not validated ground truth",
-  "signal": "actionOT >=+0.5 GD versus BOTH rewardUCB/group, top8IR delta>=-0.02; descriptive only; no automatic final",
+  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_R2_full_semantics_20261017",
+  "old_r2_root": "/home/thanhlamtba31/static-bfs-dcs/ot_R2_terminal_feedback_20261017",
   "stages": [
-    "R2"
+    "R2_FULL_SEMANTICS"
   ],
-  "ucb": "mean utility + sqrt(2 log(1+sum direct counts)/direct count); fixed softmax for allocation",
-  "units": [
-    {
-      "prompt": "A red canoe floating on a still alpine lake with yellow autumn trees and a distant snow-covered mountain.",
-      "prompt_id": 1,
-      "seed": 2026101704
-    },
-    {
-      "prompt": "A tiny robot tending a rooftop vegetable garden at sunrise, detailed editorial photograph.",
-      "prompt_id": 2,
-      "seed": 2026101704
-    },
-    {
-      "prompt": "A glass greenhouse filled with orchids in a rainy city courtyard, reflections on wet stone.",
-      "prompt_id": 3,
-      "seed": 2026101704
-    },
-    {
-      "prompt": "A black and white border collie catching an orange frisbee on a grassy beach, crisp action photography.",
-      "prompt_id": 4,
-      "seed": 2026101704
-    },
-    {
-      "prompt": "A weathered lighthouse above a turquoise cove with wildflowers in the foreground, watercolor painting.",
-      "prompt_id": 5,
-      "seed": 2026101704
-    },
-    {
-      "prompt": "Three pears and a folded purple linen cloth on a marble table, dramatic side lighting, oil painting.",
-      "prompt_id": 6,
-      "seed": 2026101704
-    }
-  ],
-  "user_authorization": "2026-10-17 user: v\u1eady ch\u1ea1y n\u1ed1t \u0111i. Continue gated remainder; no paid GPU or reserved final.",
-  "utility": "sigmoid(IR-old quality threshold), fixed scale1",
-  "wall_cap_seconds": 3600
+  "wall_cap_seconds": 600,
+  "neural_nfe": 0,
+  "authorization": "User requests remaining planned diagnostics; offline full-pool semantic audit only; old labels frozen unchanged",
+  "final_pool": "UNTOUCHED"
 }
