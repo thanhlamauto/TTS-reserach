@@ -1,0 +1,239 @@
+{
+  "dcs_root": "/home/thanhlamtba31/static-bfs-dcs",
+  "old_root": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016",
+  "checkpoint": 40,
+  "noise_indices": [
+    40,
+    41,
+    42,
+    43,
+    44
+  ],
+  "dimension": 4,
+  "delta_reward": 0.05,
+  "reward_scale": 0.1,
+  "gamma": 1.0,
+  "rho": 0.25,
+  "weight_floor": 0.2,
+  "calibration": {
+    "baseline_reward_values": [
+      -1.9070221185684204,
+      0.4840231239795685,
+      1.6068195104599,
+      -0.8410924077033997,
+      -1.464347004890442,
+      -2.0780835151672363,
+      -1.3515760898590088,
+      -1.8885736465454102,
+      -0.7591214776039124,
+      -1.047210931777954,
+      -1.5641230344772339,
+      -2.2461702823638916,
+      -1.5287646055221558,
+      -1.0151950120925903,
+      -0.828169584274292,
+      -1.684733510017395,
+      -0.9709081649780273,
+      -1.71769118309021,
+      -1.866302251815796,
+      -1.3094558715820312,
+      -0.9741727113723755,
+      -1.6705052852630615,
+      0.1742723435163498,
+      -2.0299274921417236
+    ],
+    "distance_quantiles": [
+      0.06343273746283673,
+      0.07785658785589741,
+      0.09673784852267564,
+      0.12705432684463303
+    ],
+    "distance_rule": "q25 old24 baseline pairwise CLIP cosine distance;276 unordered pairs",
+    "distance_threshold": 0.07785658785589741,
+    "images": 24,
+    "independent_prompts": 1,
+    "input": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/bank_train_seed20261016/p000/bank.json",
+    "input_sha256": "ad6b7346e57b132edf907a59096c6709a2b85747143410910216784b6dbd5b8e",
+    "new_R1_outcomes_used": false,
+    "notes": "A frozen exploratory threshold on a single old prompt, not a validated universal good-image cutoff. Semantic success is separately required.",
+    "quality_rule": "q75 old24 baseline terminal IR",
+    "quality_threshold": -0.9384542256593704,
+    "reward_quantiles": [
+      -1.7548439502716064,
+      -1.4079615473747253,
+      -0.9384542256593704
+    ],
+    "schema": "ot_next.calibration.v1",
+    "seed": 20261016
+  },
+  "units": [
+    {
+      "prompt_id": 1,
+      "prompt": "A red canoe floating on a still alpine lake with yellow autumn trees and a distant snow-covered mountain.",
+      "seed": 2026101714,
+      "split": "TRAIN_development",
+      "unit_id": "p001_s2026101714"
+    },
+    {
+      "prompt_id": 1,
+      "prompt": "A red canoe floating on a still alpine lake with yellow autumn trees and a distant snow-covered mountain.",
+      "seed": 2026101715,
+      "split": "TRAIN_development",
+      "unit_id": "p001_s2026101715"
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "A tiny robot tending a rooftop vegetable garden at sunrise, detailed editorial photograph.",
+      "seed": 2026101714,
+      "split": "TRAIN_development",
+      "unit_id": "p002_s2026101714"
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "A tiny robot tending a rooftop vegetable garden at sunrise, detailed editorial photograph.",
+      "seed": 2026101715,
+      "split": "TRAIN_development",
+      "unit_id": "p002_s2026101715"
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "A glass greenhouse filled with orchids in a rainy city courtyard, reflections on wet stone.",
+      "seed": 2026101714,
+      "split": "TRAIN_development",
+      "unit_id": "p003_s2026101714"
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "A glass greenhouse filled with orchids in a rainy city courtyard, reflections on wet stone.",
+      "seed": 2026101715,
+      "split": "TRAIN_development",
+      "unit_id": "p003_s2026101715"
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "A black and white border collie catching an orange frisbee on a grassy beach, crisp action photography.",
+      "seed": 2026101714,
+      "split": "TRAIN_development",
+      "unit_id": "p004_s2026101714"
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "A black and white border collie catching an orange frisbee on a grassy beach, crisp action photography.",
+      "seed": 2026101715,
+      "split": "TRAIN_development",
+      "unit_id": "p004_s2026101715"
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "A weathered lighthouse above a turquoise cove with wildflowers in the foreground, watercolor painting.",
+      "seed": 2026101714,
+      "split": "TRAIN_development",
+      "unit_id": "p005_s2026101714"
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "A weathered lighthouse above a turquoise cove with wildflowers in the foreground, watercolor painting.",
+      "seed": 2026101715,
+      "split": "TRAIN_development",
+      "unit_id": "p005_s2026101715"
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Three pears and a folded purple linen cloth on a marble table, dramatic side lighting, oil painting.",
+      "seed": 2026101714,
+      "split": "TRAIN_development",
+      "unit_id": "p006_s2026101714"
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Three pears and a folded purple linen cloth on a marble table, dramatic side lighting, oil painting.",
+      "seed": 2026101715,
+      "split": "TRAIN_development",
+      "unit_id": "p006_s2026101715"
+    }
+  ],
+  "root": "/home/thanhlamtba31/static-bfs-dcs/mean_noise_bfs_2400_20261017",
+  "radius": 0.05,
+  "scope": "User explicitly requests same-prompt same-seed 2400-NFE head-to-head despite previous diagnostic stop. Exploratory comparison, not reserved confirmation.",
+  "wall_cap_seconds": 2400,
+  "neural_nfe_cap": 67120,
+  "methods": [
+    "mean_gradient",
+    "allocation_uniform",
+    "bfs_graph"
+  ],
+  "primary_metric": "best terminal ImageReward in entire charged candidate pool",
+  "secondary_metrics": [
+    "mean IR of top8-IR selector",
+    "CLIP diversity on same top8",
+    "QD8-selector IR/diversity",
+    "guided contribution to pool best/top8"
+  ],
+  "mean_allocation": {
+    "initial_roots": 12,
+    "trained_root": 0,
+    "prefix_steps": 40,
+    "scout_actions": 9,
+    "scout_tapes": 2,
+    "scout_suffixes": 18,
+    "guided_suffixes": 3,
+    "independent_suffixes": 11,
+    "suffix_steps": 60,
+    "scout_batch_with_independent_roots": [
+      1,
+      2
+    ],
+    "guided_batch_with_independent_roots": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "total_sampling_nfe": 2400,
+    "auxiliary_unet_nfe": 0,
+    "physical_padding_nfe": 0,
+    "terminal_pool": 32
+  },
+  "bfs": {
+    "name": "graph",
+    "initial_roots": 24,
+    "schedule": [
+      40,
+      60,
+      90
+    ],
+    "tau": [
+      8,
+      8,
+      32
+    ],
+    "event_semantics": "unchanged legacy: after update index40/60/90, x0 from that transition; 41/61/91 completed updates",
+    "potential": "max",
+    "history": "unchanged zero initialization",
+    "resampling": "ssp",
+    "temperature_strength": 1,
+    "total_sampling_nfe": 2400,
+    "auxiliary_unet_nfe": 0,
+    "physical_padding_nfe": 0,
+    "terminal_pool": 24
+  },
+  "noise_coupling": "Same prompt and initial_noise(seed,pid,stream0) master pool. Mean uses first12 fixed roots; BFS first24. Same historical tape on shared roots. All scouts at root0, common action-block history noise, A/B independent tails. Guided/uniform share fresh C tails and first q0 proposal. No gradient transfer across roots or seeds.",
+  "root_count_limitation": "Equal compute does not mean equal root count: adaptive proposal spends compute fitting root0; BFS maintains24 roots. Report this explicitly.",
+  "proposal": "uniform radius sphere q0; exact rejection sampling of floor-capped document mean-gradient weights mixed with rho=.25 unfiltered; no epsilon, hard projection, C-based adaptation or anchor move",
+  "all_scout_outputs_available": true,
+  "uniform_control": "Share prefix/scouts/11 baseline endpoints physically, charge complete2400 cold to both; execute second12 batch twice, unchanged9 endpoints must match bitwise.",
+  "runtime_accounting": "Mean2400+BFS2400+uniform second12 suffix720=5520 actual NFE/unit. Twelve units=66240, plus one880-NFE replay smoke=67120. All logical and physical work counted, CFG branch evals2x.",
+  "inference": "Average2 paired seeds within each of6 prompts, then paired bootstrap20000 with fixed seed2026101723. Small posthoc developmental cohort, no final-confirmation claim; secondary metrics descriptive.",
+  "stop_rule": "Finish all12 units, no reward-dependent stopping, tuning, extra radius or extra seeds. Stop on integrity/replay failure or persistent2400s deadline.",
+  "reserved_final_used": false,
+  "semantic": "Do not infer semantic success from IR/DINO/CLIP. Old blind predicates preserved; no automatic good-distinct win claim.",
+  "bfs_source_hashes": {
+    "/home/thanhlamtba31/TTS-reserach/sd15_sinkhorn_bfs_compare/bfs.py": "4609907a453040c0effddee18b4d5ba9e1f7ce56255fe8bf261a9deb28b93d7b",
+    "/home/thanhlamtba31/TTS-reserach/scripts/static_bfs_graph/adapter.py": "e675c67bcee9b011855621eb4d481afc72507a9deca4d20bd36c81d7771ceffa"
+  }
+}
