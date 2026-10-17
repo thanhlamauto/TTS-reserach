@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 OTNEXT_REPO="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../../.." && pwd)"
+if [[ -f "$OTNEXT_REPO/experiments/local_noise_radius_20261017/protocol.json" ]]; then
+  exec bash "$OTNEXT_REPO/experiments/local_noise_radius_20261017/run.sh"
+fi
 if [[ -f "$OTNEXT_REPO/experiments/local_noise_avoidance_20261017/protocol.json" ]]; then
   exec bash "$OTNEXT_REPO/experiments/local_noise_avoidance_20261017/run.sh"
 fi
