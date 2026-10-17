@@ -1,0 +1,21 @@
+{
+  "nonlinear_gate": "N64 kernel quadratic covariance error <=0.8 linear, below shuffled; fourmode mass TV below both linear/shuffled",
+  "populations": [
+    8,
+    24,
+    64
+  ],
+  "replicates": 20,
+  "ridge": 0.001,
+  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_R3_toy_20261017",
+  "schema": "ot_remainder.R3.v1",
+  "scientific_claim": "Numerical diagnostic only; fixed controls and analytic targets, no exact sampling claim",
+  "seed": 2026101706,
+  "stages": [
+    "R3"
+  ],
+  "steps": 40,
+  "tilt": 0.5,
+  "user_authorization": "2026-10-17 continue remaining gated experiments; toy only, no new image branch or final",
+  "wall_cap_seconds": 600
+}
