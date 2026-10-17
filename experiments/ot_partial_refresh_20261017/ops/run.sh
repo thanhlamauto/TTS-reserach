@@ -11,7 +11,7 @@ if [[ "$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["stages"
   OTNEXT_MODULE=ot_next.e1
 fi
 if [[ "$OTNEXT_SOURCE" == */ot_remainder_20261017 ]]; then
-  OTNEXT_MODULE=ot_remainder.finish_old
+  OTNEXT_MODULE=ot_remainder.complete_controls
 fi
 mkdir -p "$OTNEXT_ROOT"
 export PYTHONDONTWRITEBYTECODE=1
@@ -31,7 +31,7 @@ with (root/'deadline.lock').open('a') as lock:
  path=root/'deadline.json'
  if not path.exists():
   start=time.time()
-  path.write_text(json.dumps(dict(started_unix=start,deadline_unix=start+1800,wall_cap_seconds=1800)))
+  path.write_text(json.dumps(dict(started_unix=start,deadline_unix=start+3600,wall_cap_seconds=3600)))
  clock=json.loads(path.read_text())
  print(max(0,int(clock['deadline_unix']-time.time())))
 PY
