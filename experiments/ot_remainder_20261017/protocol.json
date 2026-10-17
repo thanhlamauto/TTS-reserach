@@ -1,0 +1,17 @@
+{
+  "decision": "all three exact costs satisfy tol and directional envelope gradient with both self arguments; no terminal quality claim",
+  "epsilon": "original epsilon_scale(source,target,kappa1)",
+  "objective": "original full KL regularized Sinkhorn divergence: cross -0.5 source_self -0.5 target_self",
+  "original_request": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/attempts/8074f94c847d/worker_requests/000006.input.pt",
+  "original_request_sha256": "ea82e574ccb218f94c58ede260393c1204fe215786d0dda96c33c3bd170730c8",
+  "repair": "remove zero mass support exactly as original, log dual continuation4eps,2eps,eps, gauge-fixed Newton; no objective relaxation",
+  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_P2_exact_repair_20261017",
+  "schema": "ot_remainder.P2_exact.v1",
+  "stages": [
+    "P2_NUMERICAL"
+  ],
+  "tolerance": 1e-10,
+  "unchanged_source": "ot_tts_lab_v2_reimpl remains frozen; repaired module is a separate wrapper",
+  "user_authorization": "2026-10-17 continue remaining experiments, CPU repair independent of model pilot",
+  "wall_cap_seconds": 600
+}
