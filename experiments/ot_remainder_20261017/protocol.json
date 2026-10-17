@@ -1,17 +1,49 @@
 {
-  "decision": "all three exact costs satisfy tol and directional envelope gradient with both self arguments; no terminal quality claim",
-  "epsilon": "original epsilon_scale(source,target,kappa1)",
-  "objective": "original full KL regularized Sinkhorn divergence: cross -0.5 source_self -0.5 target_self",
-  "original_request": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/attempts/8074f94c847d/worker_requests/000006.input.pt",
-  "original_request_sha256": "ea82e574ccb218f94c58ede260393c1204fe215786d0dda96c33c3bd170730c8",
-  "repair": "remove zero mass support exactly as original, log dual continuation4eps,2eps,eps, gauge-fixed Newton; no objective relaxation",
-  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_P2_exact_repair_20261017",
-  "schema": "ot_remainder.P2_exact.v1",
+  "authorization": "User 2026-10-17 asks to finish remaining experiments; old failed3600s attempt retained, this separately bounded stage authorized now.",
+  "checkpoint": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/attempts/8074f94c847d/export/checkpoint.pt",
+  "cold_per_new_method_nfe": 2424,
+  "dcs_root": "/home/thanhlamtba31/static-bfs-dcs",
+  "exact_instance": "/home/thanhlamtba31/static-bfs-dcs/ot_P2_exact_repair_20261017/exact_instance.pt",
+  "new_denoising_nfe": 2400,
+  "no_final": true,
+  "no_new_prompt": true,
+  "no_tuning": true,
+  "noise": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/attempts/8074f94c847d/export/noise.pt",
+  "objective_and_hyperparameters": "Original proximal_edit bound.025 factor4 steps2, kappa1, beta1 balance.5 unchanged. Only same-objective numerical solver repaired.",
+  "old_attempt": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/attempts/8074f94c847d",
+  "repair_gate": "/home/thanhlamtba31/static-bfs-dcs/ot_P2_exact_repair_20261017/COMPLETE.json",
+  "root": "/home/thanhlamtba31/static-bfs-dcs/ot_P2P3_completion_20261017",
+  "schema": "ot_remainder.finish_old.v1",
+  "scientific_quality_claim": false,
   "stages": [
-    "P2_NUMERICAL"
+    "FINISH_OLD"
   ],
-  "tolerance": 1e-10,
-  "unchanged_source": "ot_tts_lab_v2_reimpl remains frozen; repaired module is a separate wrapper",
-  "user_authorization": "2026-10-17 continue remaining experiments, CPU repair independent of model pilot",
-  "wall_cap_seconds": 600
+  "variants": [
+    {
+      "loss": "sinkhorn",
+      "name": "p2"
+    },
+    {
+      "loss": "mean",
+      "name": "feature_mean"
+    },
+    {
+      "loss": "sinkhorn",
+      "name": "p2_shuffle",
+      "shuffle": true
+    },
+    {
+      "loss": "sliced",
+      "name": "p3",
+      "slices": 32
+    },
+    {
+      "loss": "sliced",
+      "name": "p3_shuffle",
+      "shuffle": true,
+      "slices": 32
+    }
+  ],
+  "wall_cap_seconds": 1800,
+  "worker_python": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/worker_venv/bin/python"
 }
