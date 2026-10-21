@@ -7,7 +7,7 @@ from PIL import Image,ImageDraw
 from otlab.adapter import frozen_xla_factory,schedule_identity
 from otlab.export import historical_tape
 from otlab.noise import NoiseTape,new_tape
-from otlab.io import atomic_json,file_sha,tensor_sha
+from otlab.io import atomic_json,file_sha,tensor_sha,load_tensor
 from ot_next.identity import compatible_scheduler_metadata
 from noise_avoid.campaign import CompactRGB
 from .core import rms,direction,capped_state,matched_random,tests
@@ -120,6 +120,8 @@ def worker(cfg,rank,source):
         encoder=CompactRGB(str(Path(cfg['old_root'])/'worker_venv/bin/python'),source.parents[1]/'ot_tts_lab_v2_reimpl/configs/worker_dinov2.yaml',out/'rgb_worker')
         atomic_json(out/'identity.json',dict(adapter=adapter.identity,encoder=encoder.identity,visible_chip=os.environ['TPU_VISIBLE_CHIPS']))
         for pos,u in enumerate(cfg['units'][rank::4]):
+            if (out/u['unit_id']/'COMPLETE.json').exists():
+                status('reuse_verified_completed_unit',unit=u['unit_id']);continue
             unit(adapter,encoder,cfg,u,out/u['unit_id'],status,rank==0 and pos==0)
             if rank==0 and pos==0:
                 atomic_json(Path(cfg['root'])/'SMOKE_COMPLETE.json',dict(passed=True,replay=4,nfe=3360))
@@ -131,18 +133,47 @@ def worker(cfg,rank,source):
         if encoder:encoder.close()
         if adapter:(out/'xla_metrics.txt').write_text(adapter.sampler.rt.metrics())
 
+def recover_serialization_only(root,cfg):
+    """Reuse completed neural outputs; never reset deadline or resample."""
+    from .analyze import measure
+    failure=json.loads((root/'failure.json').read_text())
+    wf=json.loads((root/'chip0/failure.json').read_text())
+    assert wf['error']=='Object of type int64 is not JSON serializable'
+    assert len(list(root.glob('chip*')))==2 # chip0 directory plus chip0.log
+    assert json.loads((root/'preregistered.json').read_text())==cfg
+    u=cfg['units'][0];case=root/'chip0'/u['unit_id']
+    assert json.loads((case/'REPLAY.json').read_text())['passed']
+    data=load_tensor(case/'raw.pt');logs=json.loads((case/'DIRECTION.json').read_text())
+    assert len(data['rewards'])==52 and len(logs)==4 and torch.isfinite(data['rewards']).all()
+    rows=measure(cfg,u,data['rewards'],data['dino'],data['clip'],logs)
+    atomic_json(case/'metrics.json',dict(unit=u,rows=rows))
+    c=wf['counters'];assert c['denoise_sample_steps']==2960 and c['original_full_replay_sample_steps']==400
+    assert c['terminal_verifier_scores']==52 and c['unet_cfg_branch_sample_evaluations']==6720
+    assert c.get('denoise_padding_sample_steps',0)==0
+    atomic_json(case/'COMPLETE.json',dict(passed=True,unit=u,actual_nfe=3360,counters=c,
+        raw_sha256=file_sha(case/'raw.pt'),elapsed_seconds=failure['elapsed_seconds'],terminal_scores=52,
+        no_correction_cold_nfe=2160,each_corrected_cold_nfe=2360,neural_outputs_reused_after_serialization_repair=True))
+    atomic_json(root/'SMOKE_COMPLETE.json',dict(passed=True,replay=4,nfe=3360,recovered_without_neural_work=True))
+    amendment=dict(original_source_commit='6583b6b',scientific_protocol_unchanged=True,
+        original_protocol_sha256=file_sha(root/'preregistered.json'),
+        repair='Convert numpy pool indices to native Python int; regenerate JSON from existing raw.pt; reuse all3360NFE',
+        original_attempt_elapsed_seconds=failure['elapsed_seconds'],deadline_reset=False,additional_replay_nfe=0)
+    atomic_json(root/'IMPLEMENTATION_AMENDMENT.json',amendment)
+    (root/'failure.json').rename(root/'failure_initial_serialization.json')
+    (root/'chip0/failure.json').rename(root/'chip0/failure_initial_serialization.json')
+
 def main():
     p=argparse.ArgumentParser();p.add_argument('--protocol',required=True);p.add_argument('--worker',type=int);a=p.parse_args()
     source=Path(a.protocol).resolve().parent;cfg=json.loads(Path(a.protocol).read_text());root=Path(cfg['root']);root.mkdir(parents=True,exist_ok=True)
     if a.worker is not None:return worker(cfg,a.worker,source)
     lock=(root/'campaign.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     if (root/'COMPLETE.json').exists():print('ALREADY_COMPLETE');return
-    assert not list(root.glob('chip*')),'Existing attempt: inspect; no duplicate launch'
+    if list(root.glob('chip*')):recover_serialization_only(root,cfg)
     assert shutil.disk_usage(root).free>3*1024**3
     owners=subprocess.run(['fuser']+[f'/dev/vfio/{r}' for r in range(4)],capture_output=True,text=True)
     assert not owners.stdout.strip(),'TPU already owned'
     atomic_json(root/'STATIC_GATES.json',tests());atomic_json(root/'preregistered.json',cfg)
-    atomic_json(root/'SOURCE_HASHES.json',{str(p.relative_to(source)):file_sha(p) for p in source.rglob('*') if p.is_file()})
+    atomic_json(root/('SOURCE_HASHES_REPAIR.json' if (root/'SOURCE_HASHES.json').exists() else 'SOURCE_HASHES.json'),{str(p.relative_to(source)):file_sha(p) for p in source.rglob('*') if p.is_file()})
     processes=[];begin=time.time()
     def interrupted(sig,frame):raise TimeoutError('Campaign deadline')
     signal.signal(signal.SIGTERM,interrupted)
@@ -164,7 +195,7 @@ def main():
             actual_sampling_nfe=cfg['neural_nfe_cap'],cold_all_recipes_nfe=139200,padding=0,aux_unet=0,
             replay_nfe=400,terminal_ir_scores=624,clip_dino_images=624,
             cfg_branch_evaluations=2*cfg['neural_nfe_cap'],elapsed_seconds=time.time()-begin,
-            occupied_worker_chip_hours=sum(json.loads((root/f'chip{r}/COMPLETE.json').read_text())['elapsed_seconds'] for r in range(4))/3600,
+            occupied_worker_chip_hours=(sum(json.loads((root/f'chip{r}/COMPLETE.json').read_text())['elapsed_seconds'] for r in range(4))+(json.loads((root/'IMPLEMENTATION_AMENDMENT.json').read_text())['original_attempt_elapsed_seconds'] if (root/'IMPLEMENTATION_AMENDMENT.json').exists() else 0))/3600,
             visible_chips=[0,1,2,3],actual_billing_usd=None,reserved_final_used=False,decision=result['decision']))
         print('COMPLETE',json.dumps(result['contrasts']),flush=True)
     except BaseException as exc:

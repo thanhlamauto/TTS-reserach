@@ -7,7 +7,7 @@ from ot_next.output_selection import cosine_distance
 
 def measure(cfg,u,rewards,dino,clip,logs):
     r=rewards.double().numpy();dc=cosine_distance(clip.numpy());dd=cosine_distance(dino.numpy());rows=[]
-    shared=np.arange(36);quality=cfg['quality_threshold'];novelty=cfg['novelty_threshold']
+    shared=list(range(36));quality=cfg['quality_threshold'];novelty=cfg['novelty_threshold']
     common_best=[max(r[p],r[4+p*8:12+p*8].max()) for p in range(4)]
     # A fixed append-only proxy archive: quality-sorted common pool, then accepted
     # candidates by parent index. This is not maximum semantic mode coverage.
