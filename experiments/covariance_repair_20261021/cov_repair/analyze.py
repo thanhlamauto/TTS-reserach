@@ -20,9 +20,9 @@ def measure(cfg,u,rewards,dino,clip,logs):
             if k==0:continue
             i=36+(k-1)*4+p;base_bad=max(0.,quality-r[p]);new_bad=max(0.,quality-r[i])
             take=logs[p]['active'] and base_bad-new_bad>=cfg['delta_badness']
-            bad_gain[p]=base_bad-new_bad if take else 0.
+            bad_gain[p]=float(base_bad-new_bad) if take else 0.
             if take:
-                accepted.append(i);gain[p]=max(0.,r[i]-common_best[p])
+                accepted.append(i);gain[p]=float(max(0.,r[i]-common_best[p]))
                 if r[i]>=quality and (not archive or dc[i,archive].min()>=novelty):archive.append(i);novel+=1
         pool=list(shared)+accepted;top=sorted(pool,key=lambda i:(-r[i],i))[:8]
         rows.append(dict(method=name,unit_id=u['unit_id'],prompt_id=u['prompt_id'],seed=u['seed'],
@@ -32,7 +32,7 @@ def measure(cfg,u,rewards,dino,clip,logs):
             top8_clip_diversity=float(dc[np.ix_(top,top)][np.triu_indices(8,1)].mean()),
             top8_dino_diversity=float(dd[np.ix_(top,top)][np.triu_indices(8,1)].mean()),
             accepted=len(accepted),active_directions=active,corrected_in_top8=sum(i>=36 for i in top),
-            contribution_parents=sum(g>1e-12 for g in gain),quality_novel_proxy_added=novel,
+            contribution_parents=sum(int(g>1e-12) for g in gain),quality_novel_proxy_added=novel,
             common_quality_novel_proxy_archive_size=len(common_archive),
             mean_accepted_badness_reduction=float(np.mean(bad_gain)),top8_indices=top,
             pool_indices=pool,all_scout_outputs_retained=True,

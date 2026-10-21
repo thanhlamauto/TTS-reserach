@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "negative_covariance_sign": true,
+  "flat_badness_noop": true,
+  "good_parent_noop": true,
+  "actual_bf16_cap": true,
+  "matched_random": true,
+  "weak_direction_not_amplified": true,
+  "positive_acceptance_native_json": true,
+  "positive_scout_contribution_native_json": true,
+  "eta16_caps_bind": true,
+  "eta16_distinct_actual_caps": true,
+  "actual_random_match": true
+}
