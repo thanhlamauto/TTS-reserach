@@ -115,8 +115,8 @@ def analysis(cfg,root,rows,active_details,begin,adapter,encoder):
     lines+=['','## Chi phí gồm scout','',
         'Mỗi corrected recipe lạnh:4×[prefix50+8×prior5+(baseline1+scout8+correction1)×suffix50]=2360NFE/prompt-seed. No-correction=2160NFE. Chi phí scout1600NFE/unit gồm160 tạo ensemble+1280scout suffix? Xem diễn giải dưới.',
         '', 'Chi tiết chính xác: prefix4×50=200; tạo ensemble4×8×5=160; scout4×8×50=1600; baseline4×50=200; correction4×50=200. Tổng2360. Scout construction+rollout=1760NFE/unit, luôn được tính cho cả covariance và random. Dòng diễn giải chi phí chi tiết này là bảng accounting có thẩm quyền.',
-        '', 'Cả5recipe×12units có cold nominal139200NFE. Cache dùng lại25920NFE prefix/prior/scout/baseline;9200NFE correction slots là identity no-op dùng lại endpoint đã kiểm; chỉ8candidate thay đổi×50=400NFE chạy mới. Replay4baseline suffix×50=200NFE được tách riêng. Tổng neural mới600NFE,1200CFG branch sample evals,0padding/aux. Không lấy600 thay cho chi phí2360 khi so method.',
-        '', 'Tám correction mới có8terminal IR scores và8DINO/CLIP encodes; replay thêm4IR/pixels;432common terminal records được dùng lại với nguồn/hash. Không chấm lại scout miễn phí rồi bỏ chi phí khỏi recipe.',
+        '', 'Cả5recipe×12units có cold nominal139200NFE. Cache dùng lại25920NFE prefix/prior/scout/baseline;9200NFE correction slots là identity no-op dùng lại endpoint đã kiểm; chỉ8candidate thay đổi×50=400NFE chạy mới. Replay4baseline suffix×50=200NFE được tách riêng. Tổng neural mới800NFE gồm600NFE của lượt hoàn tất và200NFE preflight bị lỗi lúc đầu;1600CFG branch sample evals,0padding/aux. Không lấy600 thay cho chi phí2360 khi so method.',
+        '', 'Tám correction mới có8DINO/CLIP encodes; ImageReward giữ batch16correction và36common như nguồn cũ:32terminal scores,36replay scores,40CPU batch-diagnostic scores và4scores của preflight đầu;432common terminal records được dùng lại với nguồn/hash. Không chấm lại scout miễn phí rồi bỏ chi phí khỏi recipe.',
         '', 'η16 chọn từ norm hướng cũ: power-of2 kế tiếp trênmax(.5rQ/RMS(v)); không dùng reward mới để chọn. Random giữ RNG direction cũ trong ensemble span, khớp actual BF16 RMS≤2%, không lớn hơn covariance. Zero gradients không bị ép lên cap.',
         '', 'Primary và gates giữ như pilot trước; mọi scout luôn có quyền vào pool. Các raw correction dù bị reject vẫn được log riêng. Hai active parents đều thuộc prompt6 nên không có evidence rộng để nominate hoặc mở allocation sweep; bootstrap6prompt chỉ mô tả cohort có5prompt no-op.',
         '', 'Cached parent/scout data được khôi phục từ immutable HF archive và kiểm checksum toàn archive/từngmember. StackSD1.5/DDIM100 eta1 CFG7.5 BF16 không đổi. Gate replay baseline phải khớp bitwise latent/pixels/reward4/4 trước khi chạy correction. Một chip TPU hiện có, không GPU thuê.',
@@ -127,9 +127,9 @@ def analysis(cfg,root,rows,active_details,begin,adapter,encoder):
     c=dict(adapter.counters)
     assert c['denoise_sample_steps']==600 and c['unet_cfg_branch_sample_evaluations']==1200
     assert c.get('denoise_padding_sample_steps',0)==0 and c.get('aux_clean_sample_evaluations',0)==0
-    assert c['terminal_verifier_scores']==8 and c['replay_verifier_scores']==4 and encoder.count==8
+    assert c['terminal_verifier_scores']==32 and c['replay_verifier_scores']==36 and c['batch_diagnostic_verifier_scores']==40 and encoder.count==8
     atomic_json(root/'COMPLETE.json',dict(passed=True,eta=16,units=12,parents=48,active_parents=2,cold_nfe_per_corrected_recipe_unit=2360,
-        actual_new_sampling_nfe=600,new_candidate_sampling_nfe=400,replay_nfe=200,cold_all_recipes_nfe=139200,
+        actual_new_sampling_nfe=800,new_candidate_sampling_nfe=400,replay_nfe=400,prior_failed_replay_nfe=200,current_run_sampling_nfe=600,cold_all_recipes_nfe=139200,
         reused_common_cold_nfe=25920,cached_identity_slots_nfe=9200,counters=c,new_feature_images=8,visible_chips=[0],
         elapsed_seconds=time.time()-begin,actual_billing_usd=None,reserved_final_used=False,decision=result['decision']))
     print('COMPLETE',json.dumps(result),flush=True)
@@ -140,7 +140,15 @@ def main():
     source=Path(args.protocol).resolve().parent;cfg=json.loads(Path(args.protocol).read_text());root=Path(cfg['root']);root.mkdir(parents=True,exist_ok=True)
     lock=(root/'campaign.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     if (root/'COMPLETE.json').exists():print('ALREADY_COMPLETE');return
-    assert not list(root.glob('p*')),'Existing attempt: inspect before resume'
+    assert not [p for p in root.glob('p[0-9]*') if p.is_dir()],'Existing unit outputs: inspect before resume'
+    if (root/'failure.json').exists():
+        old_failure=json.loads((root/'failure.json').read_text())
+        assert old_failure['error']=='Cached baseline replay mismatch' and old_failure['counters']['denoise_sample_steps']==200
+        atomic_json(root/'IMPLEMENTATION_AMENDMENT.json',dict(original_source_commit='e879d6e',prior_replay_nfe=200,deadline_reset=False,
+            correction_eta_gate_cap_and_scouts_unchanged=True,repair='Separate replay components and preserve original ImageReward batch shapes36common/16correction; exact gates unchanged'))
+        (root/'failure.json').rename(root/'failure_initial_replay_batch.json')
+        (root/'preregistered.json').rename(root/'preregistered_initial.json')
+        (root/'SOURCE_HASHES.json').rename(root/'SOURCE_HASHES_INITIAL.json')
     assert not subprocess.run(['fuser']+[f'/dev/vfio/{r}' for r in range(4)],capture_output=True,text=True).stdout.strip(),'TPU owned'
     begin=time.time();adapter=encoder=None
     def status(stage,**kw):
@@ -162,9 +170,25 @@ def main():
         encoder=CompactRGB(str(Path(cfg['old_root'])/'worker_venv/bin/python'),source.parents[1]/'ot_tts_lab_v2_reimpl/configs/worker_dinov2.yaml',root/'rgb_worker')
         atomic_json(root/'identity.json',dict(adapter=adapter.identity,encoder=encoder.identity,visible_chip=os.environ['TPU_VISIBLE_CHIPS']))
         u,data,_,_=prepared[0];adapter.set_prompt(u['prompt']);history=historical_tape(adapter.sampler,int(data['noise_seed']),4,start=0)
-        status('original_cached_baseline_replay4');y=adapter.advance(data['parent'],50,100,tuple(range(4)),history);r,rgb=adapter.score(y,'replay')
-        assert torch.equal(y,data['final'][:4]) and torch.equal(rgb,data['rgb'][:4]) and torch.equal(r,data['rewards'][:4]),'Cached baseline replay mismatch'
-        atomic_json(root/'REPLAY.json',dict(passed=True,cases=4,latent_bitwise=True,pixels_bitwise=True,reward_exact=True,replay_nfe=200))
+        # CPU-only diagnostic isolates numerical batch-context effects before replay.
+        pil=[Image.fromarray(im.permute(1,2,0).numpy()) for im in data['rgb'][:36]]
+        r4=torch.tensor(adapter.reward.score(adapter.prompt,pil[:4]));r36=torch.tensor(adapter.reward.score(adapter.prompt,pil))
+        adapter.counters['batch_diagnostic_verifier_scores']+=40
+        diagnostic=dict(cached_rgb_batch4_ir_max_difference=float((r4-data['rewards'][:4]).abs().max()),
+            cached_rgb_original_batch36_ir_max_difference=float((r36-data['rewards'][:36]).abs().max()),
+            original_batch36_exact=torch.equal(r36,data['rewards'][:36]),diagnostic_ir_scores=40)
+        atomic_json(root/'IR_BATCH_DIAGNOSTIC.json',diagnostic)
+        assert diagnostic['original_batch36_exact'],'Original36-score verifier replay changed on identical pixels'
+        status('original_cached_baseline_replay4');y=adapter.advance(data['parent'],50,100,tuple(range(4)),history)
+        # Match the original common score shape36, keeping32 scout endpoints cached.
+        r,rgb=adapter.score(torch.cat([y,data['final'][4:36]]),'replay')
+        replay=dict(latent_bitwise=torch.equal(y,data['final'][:4]),pixels_bitwise=torch.equal(rgb,data['rgb'][:36]),
+            reward_exact=torch.equal(r,data['rewards'][:36]),max_latent_difference=float((y.float()-data['final'][:4].float()).abs().max()),
+            max_ir_difference=float((r-data['rewards'][:36]).abs().max()),replay_nfe=200,cases=4,verifier_batch_size=36)
+        torch.save(dict(latent=y,rewards=r,rgb=rgb),root/'replay_diagnostic.pt')
+        atomic_json(root/'REPLAY_COMPONENTS.json',replay)
+        assert replay['latent_bitwise'] and replay['pixels_bitwise'] and replay['reward_exact'],'Separated original-batch replay mismatch'
+        atomic_json(root/'REPLAY.json',dict(passed=True,**replay))
         from sd15_sinkhorn_tpu.reward import CLIPCPU
         adapter.clip=CLIPCPU(adapter.sampler.cfg,cfg['dcs_root']);rows=[];details=[]
         for u,data,logs,states in prepared:
@@ -177,7 +201,10 @@ def main():
                 assert len(active)==1;p=active[0];slots=[k*4+p for k in range(4)];status('eta16_covariance_random4',unit=u['unit_id'],parent=p)
                 h=historical_tape(adapter.sampler,int(data['noise_seed']),4,start=0)
                 tape=NoiseTape(h.variance_noise[50:,[p]*4].clone(),50,tuple(range(4)),adapter.schedule_sha)
-                end=adapter.advance(states[slots],50,100,tuple(range(4)),tape);r,rgb=adapter.score(end,'terminal')
+                end=adapter.advance(states[slots],50,100,tuple(range(4)),tape)
+                # Preserve the old correction verifier batch16 (12identity slots).
+                score_states=data['final'][:4].repeat(4,1,1,1);score_states[slots]=end
+                all_r,all_rgb=adapter.score(score_states,'terminal');r,rgb=all_r[slots],all_rgb[slots]
                 f=encoder.encode(rgb,u['unit_id']);clip=torch.tensor(adapter.clip.score(adapter.prompt,[Image.fromarray(im.permute(1,2,0).numpy()) for im in rgb])['clip_embeddings'])
                 for key,val in [('final',end),('rgb',rgb),('rewards',r),('dino',f),('clip',clip)]:full[key][slots]=val
                 torch.save(dict(parent=p,correction_slots=slots,states=states[slots],final=end,rewards=r,rgb=rgb,dino=f,clip=clip,

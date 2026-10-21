@@ -9,16 +9,19 @@
     "all_cold_recipe_nfe": 139200,
     "shared_historical_prefix_prior_scout_baseline_nfe": 25920,
     "new_changed_suffix_nfe": 400,
-    "new_original_suffix_replay_nfe": 200,
-    "new_total_actual_nfe": 600,
+    "new_original_suffix_replay_nfe": 400,
+    "new_total_actual_nfe": 800,
     "cold_correction_slots_nfe": 9600,
     "cached_identity_noop_slots_nfe": 9200,
     "padding": 0,
     "auxiliary_unet": 0,
-    "new_terminal_ir_scores": 8,
-    "replay_ir_scores": 4,
+    "new_terminal_ir_scores": 32,
+    "replay_ir_scores": 36,
     "cached_common_terminal_ir_scores": 432,
-    "new_clip_dino_images": 8
+    "new_clip_dino_images": 8,
+    "prior_failed_replay_nfe": 200,
+    "batch_diagnostic_ir_scores": 40,
+    "prior_failed_ir_scores": 4
   },
   "badness_std_min": 1e-06,
   "cap_ratios": [
@@ -39,7 +42,7 @@
     "cov050",
     "random050"
   ],
-  "neural_nfe_cap": 600,
+  "neural_nfe_cap": 800,
   "novelty_threshold": 0.07785658785589741,
   "old_root": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016",
   "parents_per_unit": 4,
@@ -49,7 +52,7 @@
   "proposal": "VP forward kernel from input noise level index50 back to index45: q=alpha45/alpha50, sqrt(q)*x50+sqrt(1-q)*Gaussian; original five DDIM transitions45..49 return to exact index50; independent proposal tapes. h0 is this fixed five-step roundtrip.",
   "proposal_start_index": 45,
   "quality_threshold": -0.9384542256593704,
-  "replay_nfe": 200,
+  "replay_nfe": 400,
   "reserved_final_used": false,
   "root": "/dev/shm/tqk_covariance_eta16_20261021",
   "scope": "User requested higher eta so fixed caps produce different real corrections, same prompts/seeds/scouts/tapes, both compared to matched random with all scout costs charged.",
@@ -1817,5 +1820,6 @@
   ],
   "eta_selection": "16 is next power of2 above max(.5*rQ/ungated_covariance_RMS) from old active direction logs; geometric binding only, no new reward used.",
   "incremental_suffix_nfe": 400,
-  "deviations": "Execution uses verified saved parent/scout tensors and identity no-op endpoints. Cold recipe costs unchanged; only400 new candidate NFE plus200 replay physically executed on one chip."
+  "deviations": "Execution uses verified saved parent/scout tensors and identity no-op endpoints. Cold recipe costs unchanged; only400 new candidate NFE plus200 replay physically executed on one chip.",
+  "implementation_amendment": "Separate exact replay components; restore original IR scoring shapes36common/16correction; no tolerance relaxation. Additional200NFE previously executed replay retained in total800; no deadline reset or scientific hyperparameter change."
 }
