@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "negative_covariance_sign": true,
+  "flat_badness_noop": true,
+  "good_parent_noop": true,
+  "actual_bf16_cap": true,
+  "matched_random": true,
+  "weak_direction_not_amplified": true,
+  "all_scouts_retained": true,
+  "no_signal_all_methods_same_pool": true
+}

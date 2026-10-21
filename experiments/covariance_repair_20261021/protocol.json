@@ -1,0 +1,193 @@
+{
+  "root": "/dev/shm/tqk_covariance_repair_20261021",
+  "dcs_root": "/home/thanhlamtba31/static-bfs-dcs",
+  "old_root": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016",
+  "checkpoint": 50,
+  "proposal_start_index": 45,
+  "K": 8,
+  "parents_per_unit": 4,
+  "eta": 1.0,
+  "cap_ratios": [
+    0.25,
+    0.5
+  ],
+  "quality_threshold": -0.9384542256593704,
+  "novelty_threshold": 0.07785658785589741,
+  "threshold_provenance": {
+    "baseline_reward_values": [
+      -1.9070221185684204,
+      0.4840231239795685,
+      1.6068195104599,
+      -0.8410924077033997,
+      -1.464347004890442,
+      -2.0780835151672363,
+      -1.3515760898590088,
+      -1.8885736465454102,
+      -0.7591214776039124,
+      -1.047210931777954,
+      -1.5641230344772339,
+      -2.2461702823638916,
+      -1.5287646055221558,
+      -1.0151950120925903,
+      -0.828169584274292,
+      -1.684733510017395,
+      -0.9709081649780273,
+      -1.71769118309021,
+      -1.866302251815796,
+      -1.3094558715820312,
+      -0.9741727113723755,
+      -1.6705052852630615,
+      0.1742723435163498,
+      -2.0299274921417236
+    ],
+    "distance_quantiles": [
+      0.06343273746283673,
+      0.07785658785589741,
+      0.09673784852267564,
+      0.12705432684463303
+    ],
+    "distance_rule": "q25 old24 baseline pairwise CLIP cosine distance;276 unordered pairs",
+    "distance_threshold": 0.07785658785589741,
+    "images": 24,
+    "independent_prompts": 1,
+    "input": "/home/thanhlamtba31/static-bfs-dcs/ot_tts_dinov2_pilot_20261016/bank_train_seed20261016/p000/bank.json",
+    "input_sha256": "ad6b7346e57b132edf907a59096c6709a2b85747143410910216784b6dbd5b8e",
+    "new_R1_outcomes_used": false,
+    "notes": "A frozen exploratory threshold on a single old prompt, not a validated universal good-image cutoff. Semantic success is separately required.",
+    "quality_rule": "q75 old24 baseline terminal IR",
+    "quality_threshold": -0.9384542256593704,
+    "reward_quantiles": [
+      -1.7548439502716064,
+      -1.4079615473747253,
+      -0.9384542256593704
+    ],
+    "schema": "ot_next.calibration.v1",
+    "seed": 20261016
+  },
+  "delta_badness": 0.05,
+  "badness_std_min": 1e-06,
+  "split_cosine_min": 0.0,
+  "units": [
+    {
+      "prompt_id": 1,
+      "prompt": "A red canoe floating on a still alpine lake with yellow autumn trees and a distant snow-covered mountain.",
+      "seed": 2026102101,
+      "split": "TRAIN_development",
+      "unit_id": "p001_s2026102101"
+    },
+    {
+      "prompt_id": 1,
+      "prompt": "A red canoe floating on a still alpine lake with yellow autumn trees and a distant snow-covered mountain.",
+      "seed": 2026102102,
+      "split": "TRAIN_development",
+      "unit_id": "p001_s2026102102"
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "A tiny robot tending a rooftop vegetable garden at sunrise, detailed editorial photograph.",
+      "seed": 2026102101,
+      "split": "TRAIN_development",
+      "unit_id": "p002_s2026102101"
+    },
+    {
+      "prompt_id": 2,
+      "prompt": "A tiny robot tending a rooftop vegetable garden at sunrise, detailed editorial photograph.",
+      "seed": 2026102102,
+      "split": "TRAIN_development",
+      "unit_id": "p002_s2026102102"
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "A glass greenhouse filled with orchids in a rainy city courtyard, reflections on wet stone.",
+      "seed": 2026102101,
+      "split": "TRAIN_development",
+      "unit_id": "p003_s2026102101"
+    },
+    {
+      "prompt_id": 3,
+      "prompt": "A glass greenhouse filled with orchids in a rainy city courtyard, reflections on wet stone.",
+      "seed": 2026102102,
+      "split": "TRAIN_development",
+      "unit_id": "p003_s2026102102"
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "A black and white border collie catching an orange frisbee on a grassy beach, crisp action photography.",
+      "seed": 2026102101,
+      "split": "TRAIN_development",
+      "unit_id": "p004_s2026102101"
+    },
+    {
+      "prompt_id": 4,
+      "prompt": "A black and white border collie catching an orange frisbee on a grassy beach, crisp action photography.",
+      "seed": 2026102102,
+      "split": "TRAIN_development",
+      "unit_id": "p004_s2026102102"
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "A weathered lighthouse above a turquoise cove with wildflowers in the foreground, watercolor painting.",
+      "seed": 2026102101,
+      "split": "TRAIN_development",
+      "unit_id": "p005_s2026102101"
+    },
+    {
+      "prompt_id": 5,
+      "prompt": "A weathered lighthouse above a turquoise cove with wildflowers in the foreground, watercolor painting.",
+      "seed": 2026102102,
+      "split": "TRAIN_development",
+      "unit_id": "p005_s2026102102"
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Three pears and a folded purple linen cloth on a marble table, dramatic side lighting, oil painting.",
+      "seed": 2026102101,
+      "split": "TRAIN_development",
+      "unit_id": "p006_s2026102101"
+    },
+    {
+      "prompt_id": 6,
+      "prompt": "Three pears and a folded purple linen cloth on a marble table, dramatic side lighting, oil painting.",
+      "seed": 2026102102,
+      "split": "TRAIN_development",
+      "unit_id": "p006_s2026102102"
+    }
+  ],
+  "wall_cap_seconds": 1800,
+  "neural_nfe_cap": 35920,
+  "replay_nfe": 400,
+  "physical_nfe_per_unit": 2960,
+  "methods": [
+    "no_correction",
+    "cov025",
+    "random025",
+    "cov050",
+    "random050"
+  ],
+  "primary": "mean over four parents of accepted candidate incremental best IR beyond shared baseline-plus-eight-scout pool; compare covariance minus matched random",
+  "signal_gate": "parent below quality threshold, sample badness std>1e-6, first4/last4 covariance cosine>0; otherwise exact zero step",
+  "acceptance": "base_badness-candidate_badness>=.05, finite endpoint/reward, and signal gate; keep old candidate pool unchanged on reject. No semantic-preservation guarantee.",
+  "proposal": "VP forward kernel from input noise level index50 back to index45: q=alpha45/alpha50, sqrt(q)*x50+sqrt(1-q)*Gaussian; original five DDIM transitions45..49 return to exact index50; independent proposal tapes. h0 is this fixed five-step roundtrip.",
+  "coupling": "Within each root: baseline,8scouts,4correction endpoints share exact50..99 historical tape. Roots and prompt/seed units use independent streams. Same random direction across both caps; random actual BF16 displacement matched to covariance within2%, never larger.",
+  "accounting": {
+    "common_cold_nfe_per_parent": 540,
+    "corrected_cold_nfe_per_parent": 590,
+    "no_correction_cold_nfe_per_unit": 2160,
+    "each_corrected_cold_nfe_per_unit": 2360,
+    "actual_shared_nfe_per_unit": 2960,
+    "padding": 0,
+    "auxiliary_unet": 0,
+    "replay_extra": 400,
+    "all_cold_recipe_nfe": 139200,
+    "actual_campaign_nfe": 35920
+  },
+  "inference": "Average4roots then2seeds within each of6 development prompts; bootstrap20000 and exact paired one-sided sign flips. Two cap contrasts Holm corrected. No final/validation/test, no confirmation claim.",
+  "progression_gate": "At least one covariance accepted endpoint improves on its entire own shared scout pool; its covariance-vs-random primary CI95 lower>0 and Holm-adjusted one-sided p<=.05. This licenses a follow-up design, not automatic compute extension. No allocation/width sweep before review.",
+  "stopping": "Finish fixed12 units irrespective reward. Stop on integrity/failure or persistent1800s cap. No step backtracking or tuning on new outcomes.",
+  "future_rounds": {
+    "round2": "Only after mechanism evidence, freeze cap and compare ensemble widths .5h0,h0,2h0 in a new node.",
+    "round3": "Only after useful local branching/repair, compare exploration compute fractions .25/.5/.75 with allocation-matched no-covariance controls."
+  },
+  "scope": "User supplied PDF+request: exploratory mechanism round1 only; not an equal-budget BFS head-to-head or a 2400-NFE winner claim.",
+  "reserved_final_used": false
+}
