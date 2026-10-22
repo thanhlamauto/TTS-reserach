@@ -1,5 +1,9 @@
 # Notebook Best-of-N
 
+**Hiện tại dùng Google Colab GPU; không còn access TPU cũ.** Mở
+[GPU notebook trên Colab](https://colab.research.google.com/github/thanhlamauto/TTS-reserach/blob/main/notebooks/best_of_n/best_of_n_sd15_gpu.ipynb).
+TPU notebook bên dưới chỉ giữ để tham khảo lịch sử.
+
 - `best_of_n_sd15_current_tpu.ipynb`: dùng đúng sampler/source hashes/seed stream trên TPU VM hiện tại. Chọn kernel venv cũ; không cài lại package. N phải chia hết4.
 - `best_of_n_sd15_gpu.ipynb`: độc lập trênCUDA/Colab, có cell cài package. Model revision được khóa; không coi kết quả bitwise tương đươngTPU.
 

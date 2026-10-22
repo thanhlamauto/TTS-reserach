@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "public_without_token_or_local_index": true,
+  "catalog_status": "COMPLETE",
+  "paths": [
+    "ssd/TQK-research/static-bfs-graph/tiny-v1/edges/edge_values.csv",
+    "ssd/TQK-research/static-bfs-graph/tiny-v1/edges/tiny_edge_values.csv"
+  ],
+  "archive": "ssd_completion_20261022/archives/ssd-010.tar.zst",
+  "archive_bytes": 3004751,
+  "sha256": [
+    "33f1178d0cb5cddf29a739f093609fbe7fb1b46046f96fa83373c1b84bf77ff6",
+    "33f1178d0cb5cddf29a739f093609fbe7fb1b46046f96fa83373c1b84bf77ff6"
+  ],
+  "both_aliases_restored": true,
+  "temporary_data_removed": true,
+  "native_windows_executed": false
+}

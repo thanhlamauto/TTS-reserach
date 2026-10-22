@@ -1,0 +1,21 @@
+{
+  "schema": "tqk.ssd.backup.v1",
+  "repo_id": "LamTNguyen/TQK-research-artifacts",
+  "status": "COMPLETE",
+  "source_root": "/Volumes/Extreme SSD/TQK-research",
+  "originals_deleted": false,
+  "total_files": 41121,
+  "total_logical_bytes": 2205314387,
+  "new_unique_files": 40557,
+  "reused_or_duplicate_files": 564,
+  "new_archives": 11,
+  "credential_findings": 0,
+  "catalog_receipt": {
+    "path": "ssd_completion_20261022/SSD_CATALOG.json",
+    "revision": "23d7c8ae7efeb1cd7fa11c7d2c23102b069ffc27",
+    "sha256": "23ae284fe7d9b4ac3378b298e5b77d2d70b8404fe51969c194d524ac895044f3",
+    "bytes": 22740354,
+    "full_http_sha256_verified": true
+  },
+  "new_uploaded_archive_bytes": 503993156
+}

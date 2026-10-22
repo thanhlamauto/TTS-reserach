@@ -1,16 +1,18 @@
 # TTS research — Static BFS, OT-TTS và SD1.5
 
-**Chuyển sang Windows:** đọc [README_WINDOWS_VI.md](README_WINDOWS_VI.md), rồi
+**Hiện dùng Windows + Google Colab GPU; TPU cũ không còn access.**
+Đọc [README_WINDOWS_VI.md](README_WINDOWS_VI.md), rồi
 [handoff cho agent](docs/migration/AGENT_HANDOFF_VI.md).
 
 - [Kết quả và raw trên Hugging Face](https://huggingface.co/datasets/LamTNguyen/TQK-research-artifacts).
 - [Công cụ restore theo checksum](tools/migration/restore_artifacts.py), hỗ trợ Windows/Linux/macOS.
-- [Notebook Best-of-N SD1.5](notebooks/best_of_n/README_VI.md): CUDA hoặc kernel trên TPU.
+- [Prompt setup cho agent mới](WINDOWS_COLAB_SETUP_PROMPT.md).
+- [Notebook Best-of-N SD1.5 trên Colab](https://colab.research.google.com/github/thanhlamauto/TTS-reserach/blob/main/notebooks/best_of_n/best_of_n_sd15_gpu.ipynb).
 - [Cây và run OpenResearch](docs/migration/OPENRESEARCH_STATE.json).
 
 Code và protocol nằm trong Git; dữ liệu lớn tải theo nhu cầu từ HF. Các branch
 experiment đã hoàn tất được giữ nguyên. Không cần MacBook để phục hồi artifact.
-Một số kết quả chỉ có trên SSD vắng mặt được [liệt kê rõ](docs/migration/SSD_DEPENDENCIES.md).
+Phần dữ liệu SSD bổ sung có [catalog và hướng dẫn](docs/migration/SSD_DEPENDENCIES.md).
 
 Phần dưới là README xuất bản Static BFS trước đây; các giới hạn/kết quả hiện tại
 đọc trong handoff và report đúng experiment, không suy từ mô tả lịch sử này.

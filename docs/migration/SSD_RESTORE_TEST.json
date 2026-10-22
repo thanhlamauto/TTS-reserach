@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": [
+    "all duplicate aliases restored, no dictionary overwrite",
+    "SSD index works without Mac/workspace catalog",
+    "incomplete SSD catalog rejected",
+    "Windows and POSIX traversal rejected",
+    "SSD-only listing skips both old online indexes",
+    "checksum failure cleans temporary files"
+  ],
+  "native_windows_executed": false,
+  "neural_compute_executed": false
+}

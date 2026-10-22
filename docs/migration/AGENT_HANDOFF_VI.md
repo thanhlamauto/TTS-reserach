@@ -1,5 +1,11 @@
 # Handoff nghiên cứu — 22/10/2026
 
+**Chỉ thị hiện tại:** TPU cũ không còn truy cập được. Dùng Windows + Google
+Colab GPU; đọc README_WINDOWS_VI.md và WINDOWS_COLAB_SETUP_PROMPT.md. Các thông
+tin SSH/TPU bên dưới chỉ là lịch sử, không được dùng để launch/kết nối. Kết quả
+SSD được bổ sung ở ssd_completion_20261022/SSD_CATALOG.json; không còn phụ thuộc
+symlink Mac cho các file đã được index và verified.
+
 Đây là chuyển máy, không phải một experiment mới. Không có neural compute nào
 được launch trong migration. Lấy dữ liệu từ public dataset
 `LamTNguyen/TQK-research-artifacts`; SHA/revision nằm trong hai catalog ở root
@@ -55,7 +61,8 @@ thực tế. Không sửa lịch sử frozen để che failed replay.
 
 1. Đọc yêu cầu mới của chủ dự án. Migration này không cấp một campaign mới.
 2. Chọn đúng protocol/commit, restore raw hoặc report theo prefix, xác minh hash.
-3. Xác minh SSH VM bằng key của máy mới, kiểm tra owner/job, disk/RAM và env.
+3. Khởi tạo Colab GPU mới, ghi hardware/package/dtype và amendment backend;
+   không truy cập TPU cũ. Chạy correctness/replay trên chính CUDA.
 4. Cấu hình project ORX tại đường dẫn mới; chạy exact replay gate nếu tiếp tục
    một method cũ. Không sửa branch đã trả lời hypothesis.
 5. Giữ TRAIN/VALIDATION/TEST/confirmation split và frozen seed/RNG. Không dùng
