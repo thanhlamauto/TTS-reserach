@@ -1,0 +1,24 @@
+{
+  "best_of_n_sd15_current_tpu.ipynb": {
+    "code_cells": 5,
+    "json_structure_pass": true,
+    "all_code_cells_ast_pass": true,
+    "no_saved_neural_outputs": true,
+    "no_embedded_hf_credentials": true,
+    "sha256": "e299f348b79419060811e10805f9f2e9377baa341e997a6ff81dddbb1c76fd69"
+  },
+  "best_of_n_sd15_gpu.ipynb": {
+    "code_cells": 6,
+    "json_structure_pass": true,
+    "all_code_cells_ast_pass": true,
+    "no_saved_neural_outputs": true,
+    "no_embedded_hf_credentials": true,
+    "sha256": "340866ba08f875d24ad68d687b06f07a5f7db9d39df4f9030c175ca27cc17edb"
+  },
+  "mock_unet_counter_and_partial_batch_pass": true,
+  "per_candidate_rng_keys_pass": true,
+  "argmax_stable_tie_and_all_image_export_pass": true,
+  "tpu_initial_root_prefix_invariance_pass": true,
+  "neural_models_executed": false,
+  "validation_scope": "JSON/AST and CPU mock utility checks; notebooks not executed with real model weights"
+}

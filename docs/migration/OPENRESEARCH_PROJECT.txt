@@ -1,0 +1,24 @@
+OT-TTS DINOv2 SD1.5 TPU pilot (local)
+  id:      fa33a8b7-57ba-43f5-bbd1-4fe2c56f826f
+  repo:    /Users/nguyenthanhlam/Documents/ChatGPT/TQK-research/TTS-reserach
+  branch:  codex/ot-tts-dinov2-pilot-20261016 (baseline)
+  command: bash ot_tts_lab_v2_reimpl/ops/run_dinov2_pilot.sh
+
+Experiments
+  9f65fe05-8f7a-41fa-98a1-5e69f411f120  DINOv2 paired SD1.5 pilot [root]  (orx/dinov2-paired-sd1-5-pilot)
+  eac9f830-7a27-488f-837b-e808bcc3f33a  Static BFS TPU-only research loop [root]  (orx/static-bfs-tpu-only-research-loop)
+  75249e25-c917-4364-aa54-e7dc9bcf4f9c  Covered bank paired noise and residual diagnostic  (orx/covered-bank-paired-noise-and-residual-diagnosti)
+  0d686502-ee4c-467c-bfaa-290419947e59  OT E0 proposal ceiling and R1 partial refresh smoke  (orx/ot-e0-proposal-ceiling-and-r1-partial-refresh-sm)
+  98d700cb-cbd2-4e14-9dfa-37253c97d5b9  R1 calibrated six-prompt partial refresh pilot  (orx/r1-calibrated-six-prompt-partial-refresh-pilot)
+  a6bc6793-16f9-4f50-8e6c-e9ac7aa359cb  R2 terminal feedback branching pilot  (orx/r2-terminal-feedback-branching-pilot)
+  9858339e-2035-4cf0-a26f-d9e13847e929  R3 Poisson transport toy sanity  (orx/r3-poisson-transport-toy-sanity)
+  e249899e-2ae2-438f-b454-458b500c8a15  P2 exact instance numerical repair  (orx/p2-exact-instance-numerical-repair)
+  9f4e3869-9985-4a71-958e-11b05f93874e  Complete blocked P2 P3 pilot controls  (orx/complete-blocked-p2-p3-pilot-controls)
+  b79f9c72-862b-487e-80ea-00565c12188f  R3 importance resampling completion  (orx/r3-importance-resampling-completion)
+  f7d4ef5a-1650-42e7-b573-5d1718fa37b8  Complete fixed six prompt BFS and image Poisson controls  (orx/complete-fixed-six-prompt-bfs-and-image-poisson)
+  fcd571d2-a742-4ed4-9f25-63ddda2234f7  R2 full pool conditional semantic audit  (orx/r2-full-pool-conditional-semantic-audit)
+  705b8337-f28a-430c-988d-a6bfaeb2714d  Local noise avoidance paired curvature diagnostic  (orx/local-noise-avoidance-paired-curvature-diagnosti)
+  b2a79127-f24d-4624-abec-1e1641ba1196  Bounded noise radius headroom calibration and fresh screen  (orx/bounded-noise-radius-headroom-calibration-and-fr)
+  1b48932c-d09a-48d8-8791-211e05fa67ea  Mean gradient avoidance versus BFS at 2400 NFE  (orx/mean-gradient-avoidance-versus-bfs-at-2400-nfe)
+  9ed38e89-17f9-4a4e-87e6-975bde25a498  Diffusion prior covariance repair mechanism round1  (orx/diffusion-prior-covariance-repair-mechanism-roun)
+  ec2abe74-bd84-490a-84fe-ba2b33c29d6c  Covariance eta16 binding caps paired rerun  (orx/covariance-eta16-binding-caps-paired-rerun)

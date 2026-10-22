@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "checks": [
+    "selective extraction ignores unrequested/malicious archive names",
+    "Windows/POSIX traversal and drive paths rejected",
+    "existing different file is never overwritten",
+    "checksum failure cleans temporary file",
+    "native Python zstandard; no POSIX executable dependency"
+  ],
+  "native_windows_executed": false
+}

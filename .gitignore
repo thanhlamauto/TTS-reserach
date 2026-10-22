@@ -17,3 +17,10 @@ tmp/
 *.safetensors
 .DS_Store
 ._*
+
+# Local recovery outputs and Windows environments
+.venv-controller/
+.venv-gpu/
+artifacts/
+recovered_workspace/
+experiments/graph_selection_forensics_v1/

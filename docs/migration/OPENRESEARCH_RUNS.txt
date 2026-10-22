@@ -1,0 +1,39 @@
+ID                                    STATUS  EXPERIMENT                                                  COMMIT   DURATION  UPDATED
+────────────────────────────────────  ──────  ──────────────────────────────────────────────────────────  ───────  ────────  ───────
+be66c722-4b99-4848-9513-9c4389495f70  done    Covariance eta16 binding caps paired rerun                  aee2789  1m10s     1d ago
+af781c7c-661d-4d72-97a5-49813abfe78e  failed  Covariance eta16 binding caps paired rerun                  e879d6e  1m38s     1d ago
+85e97357-d2a9-4bf6-9116-b2dc42ca1875  done    Diffusion prior covariance repair mechanism round1          f34fea3  5m19s     1d ago
+224314e4-f4ff-422e-9a78-446574f20e78  failed  Diffusion prior covariance repair mechanism round1          6583b6b  3m27s     1d ago
+77d555a6-8560-42e2-9769-f4c62810091a  done    Mean gradient avoidance versus BFS at 2400 NFE              5173977  13m18s    4d ago
+e7d876d6-8e5f-4507-a38e-f4951e44e153  done    Bounded noise radius headroom calibration and fresh screen  0e40bf4  2m50s     4d ago
+fe108519-905f-49ed-b4d9-8a27378ff156  done    Local noise avoidance paired curvature diagnostic           9ff97dd  7m21s     4d ago
+fb7d57d2-4a5e-41c2-be9a-a0fc055489e8  done    R2 full pool conditional semantic audit                     3063ccf  45s       5d ago
+32a8a17e-36e7-4e77-9dec-8fa096f661fb  done    Complete fixed six prompt BFS and image Poisson controls    08b7402  28m07s    5d ago
+16d6c0c1-edc1-45af-8ad7-d5d3ce35645b  failed  Complete fixed six prompt BFS and image Poisson controls    08b7402  11m12s    5d ago
+67e47290-6654-4285-8751-f65a9f624843  done    R3 importance resampling completion                         de3fe5b  33s       5d ago
+3565d8bb-2fae-4092-b57c-838264fa0d46  done    Complete blocked P2 P3 pilot controls                       0844a7c  28m41s    5d ago
+a034c3c7-b58b-449b-9a95-f29048871999  done    P2 exact instance numerical repair                          8717fee  2m59s     5d ago
+21405e19-eca3-4daf-aaa4-6f1592ab872e  done    R3 Poisson transport toy sanity                             1d1a4eb  16s       5d ago
+767f89ee-fb72-4e31-b500-652c43038ed7  done    R2 terminal feedback branching pilot                        808521f  14m59s    5d ago
+f40363e7-b42b-4866-bd79-fe91417dc888  done    R1 calibrated six-prompt partial refresh pilot              435a983  8m48s     5d ago
+60a3847e-f882-4102-960f-c339cd78f4b6  done    OT E0 proposal ceiling and R1 partial refresh smoke         4e91f82  4m58s     5d ago
+cdf70b4c-eae0-43f8-bfe1-7a209c4f8d38  failed  OT E0 proposal ceiling and R1 partial refresh smoke         da9dad5  1m34s     5d ago
+ead9e469-0d34-49dc-9f9c-bd8506d28fff  failed  OT E0 proposal ceiling and R1 partial refresh smoke         23e301d  2m50s     5d ago
+09da2b9b-1c6d-4d37-9632-7abf777893c6  failed  OT E0 proposal ceiling and R1 partial refresh smoke         226f49b  1m40s     5d ago
+49c411f4-ab39-4f82-b92e-2d09c3a7fd2b  failed  OT E0 proposal ceiling and R1 partial refresh smoke         9cb323a  29s       5d ago
+0b820346-a262-4bbe-a3d4-58880a7d8808  done    Covered bank paired noise and residual diagnostic           29c0fa5  58m46s    6d ago
+c746cdc5-cc63-4a74-a158-db65825e32aa  done    Static BFS TPU-only research loop                           a822097  1m06s     6d ago
+38d0ec3a-6ca1-4cee-bba0-881acff99fe7  failed  Static BFS TPU-only research loop                           7184f12  44s       6d ago
+44789850-fdb0-4ae6-819f-d8e71d3268c1  failed  DINOv2 paired SD1.5 pilot                                   30a7788  2h43m     6d ago
+75fca963-9fec-4f1d-8356-de306278442d  failed  DINOv2 paired SD1.5 pilot                                   3c1a7df  35s       6d ago
+
+af781c7c-661d-4d72-97a5-49813abfe78e  reason: Job failed: exited with code 1
+224314e4-f4ff-422e-9a78-446574f20e78  reason: Job failed: exited with code 1
+16d6c0c1-edc1-45af-8ad7-d5d3ce35645b  reason: Submission was interrupted before the ssh provider handle was recorded. Inspect the provider for resources labelled or_run=16d6c0c1-edc1-45af-8ad7-d5d3ce35645b before retrying.
+cdf70b4c-eae0-43f8-bfe1-7a209c4f8d38  reason: Job failed: exited with code 1
+ead9e469-0d34-49dc-9f9c-bd8506d28fff  reason: Job failed: exited with code 1
+09da2b9b-1c6d-4d37-9632-7abf777893c6  reason: Job failed: exited with code 1
+49c411f4-ab39-4f82-b92e-2d09c3a7fd2b  reason: Job failed: exited with code 1
+38d0ec3a-6ca1-4cee-bba0-881acff99fe7  reason: Job failed: exited with code 1
+44789850-fdb0-4ae6-819f-d8e71d3268c1  reason: Job failed: exited with code 1
+75fca963-9fec-4f1d-8356-de306278442d  reason: Job failed: exited with code 1

@@ -1,0 +1,17 @@
+model: runwayml/stable-diffusion-v1-5
+revision: 451f4fe16113bff5a5d2269ed5ad43b0592e9a14
+resolution: 512
+steps: 30
+ddim_eta: 0.0
+cfg_scale: 7.5
+dtype: bfloat16
+batch_size: 4
+n_reference: 16
+n_source: 8
+checkpoints: [0.35, 0.50, 0.65]
+seed: 20261015
+clip_model: openai/clip-vit-base-patch32
+clip_revision: 3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268
+replay_latent_atol: 0.001
+replay_latent_rtol: 0.01
+replay_image_mae_max: 0.5
