@@ -12,8 +12,9 @@ Cài Git for Windows và Python 3.11 hoặc 3.12. Mở PowerShell:
 git config --global core.longpaths true
 mkdir D:\TQK-research
 cd D:\TQK-research
-git clone https://github.com/thanhlamauto/TTS-reserach.git
+git -c core.autocrlf=false clone https://github.com/thanhlamauto/TTS-reserach.git
 cd TTS-reserach
+git config core.autocrlf false
 # Nếu đang dùng bản main cũ:
 git fetch origin
 git switch codex/windows-migration-20261022
@@ -21,6 +22,9 @@ py -3.11 -m venv .venv-controller
 .\.venv-controller\Scripts\python.exe -m pip install -r tools/migration/requirements.txt
 .\.venv-controller\Scripts\python.exe tools/migration/restore_artifacts.py list --prefix artifacts/covariance_eta16_20261021/
 ```
+
+Giữ LF và tắt autocrlf cho repo này để source-hash không đổi khi checkout các
+nhánh frozen trên Windows. Repo có `.gitattributes` bảo toàn LF.
 
 Thay `py -3.11` bằng phiên bản Python đã cài. Môi trường controller chỉ quản lý
 artifact, không cài Torch/XLA. Không copy các thư mục venv của macOS sang Windows.

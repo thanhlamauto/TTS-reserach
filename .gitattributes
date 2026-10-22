@@ -1,0 +1,13 @@
+# Preserve source bytes on Windows for frozen source-hash/replay checks.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.pt binary
+*.pth binary
+*.npz binary
+*.bundle binary
+*.zst binary
+*.gz binary
