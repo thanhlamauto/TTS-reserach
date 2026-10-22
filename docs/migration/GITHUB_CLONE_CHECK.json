@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "url": "https://github.com/thanhlamauto/TTS-reserach.git",
+  "default_branch": "main",
+  "commit": "25c2417d60857a534525353564098fac1d410b95",
+  "checked_files": [
+    "README_WINDOWS_VI.md",
+    "AGENTS.md",
+    "tools/migration/restore_artifacts.py",
+    "docs/migration/AGENT_HANDOFF_VI.md",
+    "notebooks/best_of_n/best_of_n_sd15_gpu.ipynb",
+    "support/legacy_workspace/sd15_sinkhorn_tpu/sd15_sampler.py"
+  ],
+  "scratch_clone_removed": true
+}

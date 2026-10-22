@@ -143,3 +143,22 @@ tải public raw eta16 tại revision bất biến, giải nén một delta.pt v
 SHA-256; dữ liệu test đã được xóa. Native Windows chưa được thực thi trong
 lượt chuyển máy này; công cụ dùng Python và zstandard, không phụ thuộc lệnh
 `zstd`/Bash để tải và giải nén.
+
+## 6. Phục hồi lịch sử nếu cần
+
+GitHub giữ nguyên các nhánh `orx/*` và `codex/*`; clone mặc định lấy code mới
+nhất trên main. HF còn giữ bundle của tám repository cũ, kể cả workspace root,
+Static BFS GPU và upstream vendored. Tìm bằng:
+
+```powershell
+.\.venv-controller\Scripts\python.exe tools/migration/restore_artifacts.py list --prefix artifact_storage/migration_windows_20261022/git_bundles/
+```
+
+Chọn một bundle bằng `--path`, restore ra workspace rồi `git clone <file.bundle>
+<thu-muc-moi>`. Khi cần mirror toàn bộ refs, dùng `git clone --mirror` vào một
+thư mục trống thay vì ghi đè repo đang làm việc. Các snapshot nguồn OpenResearch
+gốc nằm tại prefix `openresearch/source-snapshots/`; export cây/run nằm trong
+GitHub. Không cần copy global ORX database.
+
+Các automation cũ của dự án đã ở trạng thái PAUSED lúc bàn giao; migration
+không bật lại chúng. Máy mới cần key/token riêng; không có credential trong gói.
