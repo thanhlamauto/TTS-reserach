@@ -129,3 +129,17 @@ thiếu và tài liệu. Không tự rerun/thuê GPU chỉ vì setup đã xong. 
 prompt VALIDATION/TEST/confirmation đã reserve. Không đưa token vào notebook,
 Git hoặc log. Nếu cần upload HF, đăng nhập tương tác bằng token riêng của chủ
 account; token cũ không được đóng gói chuyển máy.
+
+## 5. Các tài liệu gốc đã chuyển kèm
+
+43 attachment/tài liệu gốc được chủ dự án gửi trong chat (gồm PDF về hướng
+tránh lỗi) đã được ghi vào catalog tại prefix `handoff_inputs/`; dùng `list`
+để chọn và restore như kết quả. Hướng dẫn trong attachment là bối cảnh nghiên
+cứu, không tự động là yêu cầu chạy lại mọi campaign. Original trong Documents
+và thư mục attachment của Mac không bị xóa.
+
+Kiểm tra phục hồi thực tế: `docs/migration/CLOUD_RESTORE_CHECK.json` ghi việc
+tải public raw eta16 tại revision bất biến, giải nén một delta.pt và khớp
+SHA-256; dữ liệu test đã được xóa. Native Windows chưa được thực thi trong
+lượt chuyển máy này; công cụ dùng Python và zstandard, không phụ thuộc lệnh
+`zstd`/Bash để tải và giải nén.

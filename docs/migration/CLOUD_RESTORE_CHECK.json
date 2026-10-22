@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "path": "artifacts/covariance_eta16_20261021/p006_s2026102101/delta.pt",
+  "bytes": 3431092,
+  "sha256": "47cd996cb11429465047770d60a736fec4f40b2999e28cb73dabea1c6f5df8bf",
+  "archive": "artifacts/covariance_eta16_20261021/full_raw.tar.zst",
+  "revision": "b2352570abf7ed83e5ee224e5e36d7b9ac820dc3",
+  "public_without_auth": true,
+  "download_and_extraction_removed": true,
+  "native_windows_executed": false
+}
