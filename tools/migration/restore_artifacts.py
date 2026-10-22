@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Public, checksum-verified selective artifact recovery; Windows/Linux/macOS."""
-import argparse,collections,hashlib,json,os,shutil,tarfile,tempfile,urllib.parse,urllib.request
+import argparse,collections,hashlib,json,os,shutil,tarfile,tempfile,time,urllib.parse,urllib.request
 from pathlib import Path,PurePosixPath
 REPO='LamTNguyen/TQK-research-artifacts'
 CAT='migration_windows_20261022/MIGRATION_CATALOG.json'
@@ -9,7 +9,7 @@ BASE='https://huggingface.co/datasets/'+REPO+'/resolve/'
 def url(path,revision='main'):
  return BASE+urllib.parse.quote(revision,safe='')+'/'+urllib.parse.quote(path,safe='/')
 def read_json(path):
- with urllib.request.urlopen(url(path),timeout=90) as f:return json.load(f)
+ with urllib.request.urlopen(url(path)+'?download=true&catalog_refresh='+str(time.time_ns()),timeout=90) as f:return json.load(f)
 def sha(path):
  h=hashlib.sha256()
  with path.open('rb') as f:
